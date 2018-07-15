@@ -1,0 +1,38 @@
+@import "~@/sass/base";
+
+.h-video-play {
+    position: relative;
+    min-height: 100px;
+    cursor: pointer;
+
+    &:after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        content: '';
+        background-image: url('~@/assets/large-white-play-button.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 85px;
+    }
+
+    &--small:after {
+        background-image: url('~@/assets/play-button.svg');
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .h-video-play {
+        min-height: 140px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .h-video-play {
+        &:after {
+            background-size: auto;
+        }
+    }
+}

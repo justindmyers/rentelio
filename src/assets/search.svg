@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+  <g transform="scale(.16)">
+    <line fill="none" stroke-width="15" fill-opacity="null" x1="142" y1="142" x2="108" y2="108" stroke-miterlimit="10" stroke-linecap="round" stroke="#000000" />
+
+    <circle cx="65" cy="65" r="57" fill="none" stroke-width="15" fill-opacity="null" stroke="#000000"  />
+  </g>
+</svg>

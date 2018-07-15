@@ -1,0 +1,11 @@
+@import "~@/sass/base";
+
+input[type=text], textarea {
+    padding: 6px 15px;
+    border: 1px solid $primary-color; 
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $medium-grey;
+    opacity: 1; /* Firefox */
+}

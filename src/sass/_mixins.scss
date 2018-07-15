@@ -1,0 +1,177 @@
+@mixin triangle($size, $color, $direction) {
+    height: 0;
+    width: 0;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-width: $size / 2;
+
+    @if $direction==up {
+        border-bottom-color: $color;
+    }
+
+    @else if $direction==right {
+        border-left-color: $color;
+    }
+
+    @else if $direction==down {
+        border-top-color: $color;
+    }
+
+    @else if $direction==left {
+        border-right-color: $color;
+    }
+}
+
+@mixin bordered-triangle($size, $border-width, $color, $border-color, $direction, $alt: false) {
+    $back-size: $size + ($border-width * 2);
+    position: relative;
+
+    &:after,
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &:after {
+        @include triangle($size, $color, $direction);
+    }
+
+    &:before {
+        @include triangle($back-size, $border-color, $direction);
+
+        $mid-border-width: ($border-width / 2);
+        $border-width-and-mid: $border-width + $mid-border-width;
+
+        @if ($alt==true) {
+            $mid-border-width: 0;
+            $border-width-and-mid: $border-width * 2;
+        }
+
+        @if ($direction==up) or ($direction==down) {
+            margin-left: - $border-width;
+
+            @if ($direction==down) {
+                margin-top: -$mid-border-width;
+            }
+
+            @else {
+                margin-top: - $border-width-and-mid;
+            }
+        }
+
+        @else if ($direction==right) or ($direction==left) {
+            margin-top: - $border-width;
+
+            @if ($direction==right) {
+                margin-left: - $mid-border-width;
+            }
+
+            @else {
+                margin-left: - $border-width-and-mid;
+            }
+        }
+    }
+}
+
+// Set the correct font color according to the theme color
+// Used for background colors in components
+@mixin theme-color-contrast($colors, $themeClass: '.h-theme', $property: 'color', $opacity: 1, $this: &, $parent: &, $isParent: false) {
+    @at-root {
+        #{$parent}#{$themeClass} {
+            @each $theme, $value in $colors {
+                // If the element being themed is the same as the parent, don't add it as a child 
+                @if($isParent == true) {
+                    &--#{$theme} {
+                        #{$property}: rgba(color-yiq($value), $opacity);
+                    }
+                } @else {
+                    &--#{$theme} #{$this} {
+                        #{$property}: rgba(color-yiq($value), $opacity);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Add theming support for components
+@mixin theme-component($colors, $properties, $parent: &, $themeClass: '.h-theme', $this: &, $isParent: false, $includeBody: true, $isImportant: false) {
+    @at-root {
+        #{$parent}#{$themeClass} {
+            @each $theme, $value in $colors {
+                // If the element being themed is the same as the parent, don't add it as a child 
+                @if($isParent == true) {
+                    &--#{$theme} {
+                        @each $property in $properties {
+                            #{$property}: $value if($isImportant, unquote('!important'), unquote(''));
+                        }
+                    }
+                } @else {
+                    &--#{$theme} #{$this} {
+                        @each $property in $properties {
+                            #{$property}: $value if($isImportant, unquote('!important'), unquote(''))
+                        }
+                    }
+                }
+            }
+        }
+
+        // Add the styling to the body tag as well
+        @if($includeBody == true) {
+            body#{$themeClass} {
+                @each $theme, $value in $colors {
+                    &--#{$theme} #{$this} {
+                        @each $property in $properties {
+                            #{$property}: $value;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin scrim-gradient($startColor, $direction: 'to bottom') {
+    $scrimCoordinates: (
+    0: 1,
+    19: 0.738,
+    34: 0.541,
+    47: 0.382,
+    56.5: 0.278,
+    65: 0.194,
+    73: 0.126,
+    80.2: 0.075,
+    86.1: 0.042,
+    91: 0.021,
+    95.2: 0.008,
+    98.2: 0.002,
+    100: 0);
+
+    $hue: hue($startColor);
+    $saturation: saturation($startColor);
+    $lightness: lightness($startColor);
+    $stops: ();
+
+    @each $colorStop, $alphaValue in $scrimCoordinates {
+        $stop: hsla($hue, $saturation, $lightness, $alphaValue) percentage($colorStop/100);
+        $stops: append($stops, $stop, comma);
+    }
+
+    background: linear-gradient(unquote($direction), $stops);
+}
+
+@mixin reset-list() {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin reset-button() {
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: unset;
+}

@@ -1,0 +1,23 @@
+@import "~@/sass/base";
+
+.dropdown-menu {
+    &.is-shown {
+        visibility: hidden;
+        display: block;
+    }
+
+    &.is-visible {
+        visibility: visible;
+    }
+
+    ul, ol {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    & > ul, & > ol {
+        & > li:first-child {
+            margin-top: 0;
+        }
+    }
+}

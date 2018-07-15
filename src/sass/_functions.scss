@@ -1,0 +1,12 @@
+@function rem-calc($size, $base: 16) { 
+    $remSize: stripUnit($size) / stripUnit($base); 
+    @return $remSize * 1rem; 
+}
+
+@function stripUnit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+@function aspect-ratio($width, $height) {
+    @return unquote(($height/$width * 100) + '%');
+}

@@ -1,0 +1,24 @@
+.h-icon {
+    width: 50px;
+
+    &--large {
+        width: 75px;
+    }
+
+    &--small {
+        width: 25px;
+    }
+}
+
+[class^="h-icon-"] {
+    height: auto !important;
+}
+
+a.h-icon, span.h-icon {
+    display: inline-block;
+
+    img {
+        max-width: 100%;
+    }
+}
+

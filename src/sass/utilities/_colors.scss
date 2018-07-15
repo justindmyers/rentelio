@@ -1,0 +1,95 @@
+@import "~@/sass/base";
+
+// Add support for style guide colors
+@each $color, $value in $colors {
+    .h-color--#{$color} {
+        color: $value !important;
+    }
+}
+
+// Add support for style guide colors
+@each $color, $value in $colors {
+    .h-bg-color--#{$color} {
+        background-color: $value !important;
+    }
+}
+
+// Changes the text color based off of the theme - only use with theme background colors
+.h-text-contrast {
+    @include theme-color-contrast($colors, $isParent: true);
+}
+
+.primary-color-text{
+    color: $primary-color;
+}
+
+.primary-color-alt-text{
+    color: $primary-color-alt;
+}
+
+.secondary-color-text{
+    color: $secondary-color;
+}
+
+.secondary-color-alt-text{
+    color: $secondary-color-alt;
+}
+
+.tertiary-color-text{
+    color: $tertiary-color;
+}
+
+.tertiary-color-alt-text{
+    color: $tertiary-color-alt;
+}
+
+.light-grey-text{
+    color: $light-grey;
+}
+
+.light-grey-alt-text{
+    color: $light-grey-alt;
+}
+
+.light-grey-alt-2-text{
+    color: $light-grey-alt-2;
+}
+
+.medium-grey-text{
+    color: $medium-grey;
+}
+
+.medium-grey-alt-text{
+    color: $medium-grey-alt;
+}
+
+.dark-grey-text{
+    color: $dark-grey;
+
+}
+
+.dark-grey-alt-text{
+    color: $dark-grey-alt;
+}
+
+.white-text{
+    color: $white;
+}
+
+//Links
+
+.primary-color-text:hover{
+    color: $primary-color;
+}
+
+.primary-color-alt-text:hover{
+    color: $primary-color-alt;
+}
+
+.secondary-color-text:hover{
+    color: $secondary-color;
+}
+
+.secondary-color-alt-text:hover{
+    color: $secondary-color-alt;
+}

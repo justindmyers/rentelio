@@ -1,0 +1,54 @@
+@import "~@/sass/base";
+
+.c-nav-dropdown {
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+
+    &__item {
+        margin-top: rem-calc(10);
+    }
+
+    &__list {
+        margin-bottom: 0;
+    }
+
+    &__link {
+        color: $dark-grey;
+
+        &:hover, &:focus, &:active {
+            color: $dark-grey;
+        }
+    }
+
+    &__header {
+        font-weight: 600;
+    }
+
+    &__arrow {
+        @include bordered-triangle(20px, 1px, $white, $light-grey, up, true);
+
+        // arrows don't need scaling so use px
+        top: -20px;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .c-nav-dropdown {
+        position: static !important;
+        width: 100%;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .c-nav-dropdown:not([x-placement]) {
+        min-width: rem-calc(200);
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+}

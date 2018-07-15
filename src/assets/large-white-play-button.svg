@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="156px" height="156px" viewBox="0 0 156 156" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Large white Play BTN</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M577,5097 C554.943333,5097 537,5114.94333 537,5137 C537,5159.05667 554.943333,5177 577,5177 C599.056667,5177 617,5159.05667 617,5137 C617,5114.94333 599.056667,5097 577,5097 Z M567,5153.66667 L567,5120.33333 L593.666667,5137 L567,5153.66667 Z" id="path-1"></path>
+        <filter x="-76.2%" y="-73.8%" width="252.5%" height="252.5%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="20" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="xc_UI_Kit_Page2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-499.000000, -5061.000000)">
+        <g id="Large-white-Play-BTN" fill-rule="nonzero">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

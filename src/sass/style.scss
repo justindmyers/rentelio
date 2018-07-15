@@ -1,0 +1,18 @@
+// Customized BootStrap styling
+@import "base";
+@import "bootstrap/bootstrap";
+@import "utilities/utilities";
+
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/fa-regular';
+@import '~@fortawesome/fontawesome-free/scss/fa-solid';
+
+img {
+    max-width: 100%;
+}
+
+.btn-round {
+    border-radius: 30px;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="116px" height="116px" viewBox="0 0 116 116" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Sm Play BTN</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M753,5117 C741.971667,5117 733,5125.97167 733,5137 C733,5148.02833 741.971667,5157 753,5157 C764.028333,5157 773,5148.02833 773,5137 C773,5125.97167 764.028333,5117 753,5117 Z M748,5146 L748,5129 L761,5137.5 L748,5146 Z" id="path-1"></path>
+        <filter x="-152.5%" y="-147.5%" width="405.0%" height="405.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="20" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="xc_UI_Kit_Page2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-695.000000, -5081.000000)">
+        <g id="Sm-Play-BTN" fill-rule="nonzero">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
