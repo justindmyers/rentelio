@@ -1,74 +1,64 @@
 <template>
     <div>
-        <NavBar></NavBar>
+        <Hero>
+            <template slot="image">
+                <img src="assets/placeholder.gif" v-lazy-img="'/images/property.png'" alt="Hero image" />
 
-        <main>
-            <Hero>
-                <template slot="image">
-                    <img src="assets/placeholder.gif" v-lazy-img="'/images/property.png'" alt="Hero image" />
+                <span class="h-mask is-medium"></span>
+            </template>
+        </Hero>
 
-                    <span class="h-mask is-medium"></span>
-                </template>
-            </Hero>
-
-            <div class="l-dashboard">
-                <div class="container">
-                    <div class="l-dashboard__section">
-                        <h1 class="h3">592 Highland Avenue</h1>
-                        <p>Los Angeles, CA 90019</p>
-                    </div>
-
-                    <div class="l-dashboard__section">
-                        <nav>
-                            <ul class="c-icon-nav nav">
-                                <li><i class="fas fa-info"></i> Property<br/> Info</li>
-                                <li><i class="fas fa-wrench"></i> Request<br/> Support</li>
-                                <li><i class="far fa-credit-card"></i> Make a<br/> Payment</li>
-                                <li><i class="fas fa-user"></i> Your<br/> Profile</li>
-                            </ul>
-                        </nav>
-                    </div>
-
-                    <div class="l-dashboard__section">
-                        <Listing type="Messages" title-key="title" date-key="sentAt" :list="messages"></Listing>
-                    </div>
-
-                    <div class="l-dashboard__section">
-                        <Listing type="Payments" title-key="title" date-key="date" :list="payments"></Listing>
-                    </div>
+        <div class="l-dashboard">
+            <div class="container">
+                <div class="l-dashboard__section">
+                    <h1 class="h3">592 Highland Avenue</h1>
+                    <p>Los Angeles, CA 90019</p>
                 </div>
 
-                <ProfileCard>
-                    <template slot="image">
-                        <img src="//placehold.it/100/100" />
-                    </template>
+                <div class="l-dashboard__section">
+                    <nav>
+                        <ul class="c-icon-nav nav">
+                            <li><i class="fas fa-info"></i> Property<br/> Info</li>
+                            <li><i class="fas fa-wrench"></i> Request<br/> Support</li>
+                            <li><i class="far fa-credit-card"></i> Make a<br/> Payment</li>
+                            <li><i class="fas fa-user"></i> Your<br/> Profile</li>
+                        </ul>
+                    </nav>
+                </div>
 
-                    <h3 class="mb-1">Trevor Smith</h3>
-                    <p>Landlord</p>
+                <div class="l-dashboard__section">
+                    <Listing type="Messages" title-key="title" date-key="sentAt" :list="messages" view-all-path="dashboard/messages" :show-view-all="true"></Listing>
+                </div>
 
-                    <p class="mb-1">Mobile: <a href="tel:1-310-431-0012">1-310-231-0012</a></p>
-                    <p class="mb-0">Email: <a href="mailto:tsmith@email.com">tsmith@email.com</a></p>
-                </ProfileCard>
+                <div class="l-dashboard__section">
+                    <Listing type="Payments" title-key="title" date-key="date" :list="payments" view-all-path="dashboard/payments" :show-view-all="true"></Listing>
+                </div>
             </div>
-        </main>
 
-        <Footer></Footer>
+            <ProfileCard>
+                <template slot="image">
+                    <img src="//placehold.it/100/100" />
+                </template>
+
+                <h3 class="mb-1">Trevor Smith</h3>
+                <p>Landlord</p>
+
+                <p class="mb-1">Mobile: <a href="tel:1-310-431-0012">1-310-231-0012</a></p>
+                <p class="mb-0">Email: <a href="mailto:tsmith@email.com">tsmith@email.com</a></p>
+            </ProfileCard>
+        </div>
     </div>
 </template>
 
 <script>
-    import NavBar from '../components/NavBar/NavBar.vue';
     import Hero from '../components/Hero/Hero.vue';
-    import Footer from '../components/Footer/Footer.vue';
     import Listing from '../components/Listing/Listing.vue';
     import ProfileCard from '../components/ProfileCard/ProfileCard.vue';
 
     export default {
         name: 'app',
         components: {
-            NavBar,
             Hero,
-            Footer,
             Listing,
             ProfileCard
         },
@@ -82,7 +72,7 @@
         },
         mounted() {
             this.$store.dispatch('payments/getAllPayments');
-            this.$store.dispatch('messages/getAllMessages')
+            this.$store.dispatch('messages/getAllMessages');
         },
     };
 </script>

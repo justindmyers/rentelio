@@ -5,6 +5,8 @@ import BootstrapVue from 'bootstrap-vue'
 import routes from './routes';
 import store from './store';
 
+import MainLayout from '@/layouts/Main.vue';
+
 import './sass/style.scss';
 
 import modal from '@/components/modal.js';
@@ -42,8 +44,16 @@ const app = {
         app.receivedEvent('deviceready');
 
         new Vue({
-            router
-        }).$mount('#app');
+            router,
+            store,
+            el: '#app',
+            components: {
+                MainLayout
+            },
+            render: function(createElement) {
+                return createElement(MainLayout);
+            }
+        });
     },
     receivedEvent: function (id) {
         var parentElement = document.getElementById(id);
@@ -64,5 +74,12 @@ if(isCordovaApp) {
     new Vue({
         router,
         store,
-    }).$mount('#app');
+        el: '#app',
+        components: {
+            MainLayout
+        },
+        render: function(createElement) {
+            return createElement(MainLayout);
+        }
+    });
 }

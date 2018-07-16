@@ -1,63 +1,57 @@
 <template>
     <div>
-        <NavBar></NavBar>
+        <Hero>
+            <template slot="image">
+                <img src="assets/placeholder.gif" v-lazy-img="'/images/Rectangle.png'" alt="Hero image" />
 
-        <main>
-            <Hero>
-                <template slot="image">
-                    <img src="assets/placeholder.gif" v-lazy-img="'/images/Rectangle.png'" alt="Hero image" />
+                <span class="h-mask is-medium"></span>
+            </template>
 
-                    <span class="h-mask is-medium"></span>
-                </template>
+            <h1 class="c-hero__heading h1">Renting Made Easy.</h1>
+        </Hero>
 
-                <h1 class="c-hero__heading h1">Renting Made Easy.</h1>
-            </Hero>
+        <FiftyFiftyIcon background="linear-gradient(212.32deg, rgba(100,185,175,1) 0%, rgba(153,210,203,1) 100%)">
+            <template slot="image">
+                <img src="assets/placeholder.gif" v-lazy-img="'/images/Phone-Tenant.png'" alt="" />
+            </template>
 
-            <FiftyFiftyIcon background="linear-gradient(212.32deg, rgba(100,185,175,1) 0%, rgba(153,210,203,1) 100%)">
-                <template slot="image">
-                    <img src="assets/placeholder.gif" v-lazy-img="'/images/Phone-Tenant.png'" alt="" />
-                </template>
+            <h3>Tenants</h3>
+            <p>The simplest way to manage your rent payments and maintenance requests.</p>
+        </FiftyFiftyIcon>
 
-                <h3>Tenants</h3>
-                <p>The simplest way to manage your rent payments and maintenance requests.</p>
-            </FiftyFiftyIcon>
+        <FiftyFiftyIcon opposite background="#fff" font-color="#333" end>
+            <template slot="image">
+                <img src="assets/placeholder.gif" v-lazy-img="'/images/Phone-Landlord.png'" alt="" />
+            </template>
 
-            <FiftyFiftyIcon opposite background="#fff" font-color="#333" end>
-                <template slot="image">
-                    <img src="assets/placeholder.gif" v-lazy-img="'/images/Phone-Landlord.png'" alt="" />
-                </template>
+            <h3>Landlords</h3>
+            <p>The easiest way to manage all your properties and stay in contact</p>
+            <a href="#">See Pricing</a>
+        </FiftyFiftyIcon>
 
-                <h3>Landlords</h3>
-                <p>The easiest way to manage all your properties and stay in contact</p>
-                <a href="#">See Pricing</a>
-            </FiftyFiftyIcon>
+        <Testimonial>
+            <template slot="image">
+                <img src="//i.pravatar.cc/300" />
+            </template>
 
-            <Testimonial>
-                <template slot="image">
-                    <img src="//i.pravatar.cc/300" />
-                </template>
+            <blockquote>
+                <p>“Communication was a breeze when I needed to get my sink checked out”</p>
+            </blockquote>
 
-                <blockquote>
-                    <p>“Communication was a breeze when I needed to get my sink checked out”</p>
-                </blockquote>
+            <div class="c-testimonial__name">- Janet</div>
+        </Testimonial>
 
-                <div class="c-testimonial__name">- Janet</div>
-            </Testimonial>
+        <Testimonial opposite>
+            <template slot="image">
+                <img src="//i.pravatar.cc/300?1" />
+            </template>
 
-            <Testimonial opposite>
-                <template slot="image">
-                    <img src="//i.pravatar.cc/300?1" />
-                </template>
+            <blockquote>
+                <p>“Communication was a breeze when I needed to get my sink checked out”</p>
+            </blockquote>
 
-                <blockquote>
-                    <p>“Communication was a breeze when I needed to get my sink checked out”</p>
-                </blockquote>
-
-                <div class="c-testimonial__name">- Janet</div>
-            </Testimonial>
-        </main>
-
-        <Footer></Footer>
+            <div class="c-testimonial__name">- Janet</div>
+        </Testimonial>
     </div>
 </template>
 

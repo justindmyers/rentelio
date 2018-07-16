@@ -11,14 +11,14 @@
             </thead>
             <tbody>
                 <tr v-for="listItem in list" :key="listItem.id">
-                    <td><a href="#">{{ listItem[titleKey] }}</a></td>
+                    <td><router-link :to="`${viewAllPath}/${listItem.id}`">{{ listItem[titleKey] }}</router-link></td>
                     <td>{{ formatDate(listItem[dateKey]) }}</td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="c-messages__actions">
-            <a href="#">View All {{ type }}</a>
+        <div class="c-messages__actions" v-if="showViewAll && viewAllPath">
+            <router-link :to="viewAllPath">View All {{ type }}</router-link>
         </div>
     </div>
 </template>
@@ -43,6 +43,13 @@
             list: {
                 type: Array,
                 required: true
+            },
+            viewAllPath: {
+                type: String
+            },
+            showViewAll: {
+                type: Boolean,
+                default: false
             }
         },
         methods: {

@@ -16,3 +16,9 @@ img {
 .btn-round {
     border-radius: 30px;
 }
+
+body, .l-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

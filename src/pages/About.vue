@@ -1,45 +1,37 @@
 <template>
     <div>
-        <NavBar></NavBar>
+        <Hero>
+            <template slot="image">
+                <img class="h-mask-img" src="assets/placeholder.gif" v-lazy-img="'//placeimg.com/1200/600'" alt="Hero image" />
 
-        <main>
-            <Hero>
-                <template slot="image">
-                    <img class="h-mask-img" src="assets/placeholder.gif" v-lazy-img="'//placeimg.com/1200/600'" alt="Hero image" />
+                <span class="h-mask is-dark"></span>
+            </template>
 
-                    <span class="h-mask is-dark"></span>
-                </template>
+            <h1 class="c-hero__heading h1">About</h1>
+            <p class="c-hero__subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer imperdiet diam ut est gravida, sed elementum turpis vehicula. </p>
 
-                <h1 class="c-hero__heading h1">About</h1>
-                <p class="c-hero__subheading">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer imperdiet diam ut est gravida, sed elementum turpis vehicula. </p>
+            <a href="#" class="c-hero__cta c-cta btn btn-primary">Learn More</a>
+        </Hero>
 
-                <a href="#" class="c-hero__cta c-cta btn btn-primary">Learn More</a>
-            </Hero>
+        <TextPromo></TextPromo>
 
-            <TextPromo></TextPromo>
+        <FiftyFiftyImage>
+            <template slot="image">
+                <img src="assets/placeholder.gif" v-lazy-img="'//placeimg.com/600/600'" alt="" />
+            </template>
 
-            <FiftyFiftyImage>
-                <template slot="image">
-                    <img src="assets/placeholder.gif" v-lazy-img="'//placeimg.com/600/600'" alt="" />
-                </template>
+            <h3 class="h-line-mark">Global Biotech Launches New Informative Website</h3>
+            <p>A global BioTech firm partnered with XCentium to develop a patient information website to support a new medicine, which was first in it’s class. </p>
+            <a href="#" class="c-cta btn btn-primary">Read More</a>
+        </FiftyFiftyImage>
 
-                <h3 class="h-line-mark">Global Biotech Launches New Informative Website</h3>
-                <p>A global BioTech firm partnered with XCentium to develop a patient information website to support a new medicine, which was first in it’s class. </p>
-                <a href="#" class="c-cta btn btn-primary">Read More</a>
-            </FiftyFiftyImage>
-
-            <VideoPromo></VideoPromo>
-        </main>
-
-        <Footer></Footer>
+        <VideoPromo></VideoPromo>
     </div>
 </template>
 
 <script>
-    import NavBar from '../components/NavBar/NavBar.vue';
     import Hero from '../components/Hero/Hero.vue';
     import FiftyFiftyImage from '../components/FiftyFiftyImage/FiftyFiftyImage.vue';
-    import Footer from '../components/Footer/Footer.vue';
     import Testimonial from '../components/Testimonial/Testimonial.vue';
     import TextPromo from '../components/TextPromo/TextPromo.vue';
     import VideoPromo from '../components/VideoPromo/VideoPromo.vue';
@@ -48,10 +40,8 @@
     export default {
         name: 'about',
         components: {
-            NavBar,
             Hero,
             FiftyFiftyImage,
-            Footer,
             Testimonial,
             TextPromo,
             VideoPromo,

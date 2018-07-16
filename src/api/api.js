@@ -5,7 +5,11 @@ const strapi = new Strapi(apiUrl);
 
 export default {
     getMessages() {
-        return strapi.request('get', '/message');
+        return strapi.request('get', '/message', {
+            params: {
+                _sort: 'sentAt:desc'
+            }
+        });
     },
     getPayments() {
         return strapi.request('get', '/payment');

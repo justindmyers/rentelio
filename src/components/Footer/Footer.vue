@@ -43,7 +43,6 @@
 
         &__content {
             padding: rem-calc(30) 0 0;
-            margin: 0 -15px;
             background: #535D68;
             text-align: center;
             color: $white;

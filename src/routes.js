@@ -1,6 +1,10 @@
 import Home from './pages/Home.vue';
 import About from './pages/About.vue';
 import Dashboard from './pages/Dashboard.vue';
+import Messages from '@/pages/Messages.vue';
+import MessageDetail from '@/pages/MessageDetail.vue';
+import Payments from '@/pages/Payments.vue';
+import PaymentDetail from '@/pages/PaymentDetail.vue';
 
 export default [
     {
@@ -22,6 +26,28 @@ export default [
     {
         path: '/dashboard',
         component: Dashboard
+    },
+    {
+        // View All Messages
+        path: '/dashboard/messages',
+        component: Messages
+    },
+    {
+        // Message Detail
+        path: '/dashboard/messages/:id',
+        component: MessageDetail,
+        props: true
+    },
+    {
+        // View All Payments
+        path: '/dashboard/payments',
+        component: Payments
+    },
+    {
+        // Payment Detail
+        path: '/dashboard/payments/:id',
+        component: PaymentDetail,
+        props: true
     },
     {
         path: '/tenant',
