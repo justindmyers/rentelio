@@ -8,17 +8,17 @@
             <form>
                 <div class="input-group mb-4">
                     <label for="name">Name</label>
-                    <input id="name" class="form-control" name="name" value="Shelly Williams" />
+                    <input type="text" id="name" class="form-control" name="name" value="Shelly Williams" />
                 </div>
 
                 <div class="input-group mb-4">
                     <label for="email">Email</label>
-                    <input id="email" class="form-control" name="email" value="swilliams@email.com" />
+                    <input type="email" id="email" class="form-control" name="email" value="swilliams@email.com" />
                 </div>
 
                 <div class="input-group mb-4">
                     <label for="phone">Phone</label>
-                    <input id="phone" class="form-control" name="phone" value="310-283-9912" />
+                    <input type="phone" id="phone" class="form-control" name="phone" value="310-283-9912" />
                 </div>
 
                 <div class="input-group mb-4">

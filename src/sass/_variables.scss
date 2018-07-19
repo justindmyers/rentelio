@@ -1,22 +1,6 @@
 // In case we need to change this for production
 $assets-base: '/assets';
 
-//Colors
-$primary-color: #11869b;
-$primary-color-alt: #015666;
-$secondary-color: #a9044f;
-$secondary-color-alt: #ba0034;
-$tertiary-color: #f2a300;
-$tertiary-color-alt: #f38800;
-$light-grey: #cdd6dd;
-$light-grey-alt: #adbbc5;
-$light-grey-alt-2: #f6f6f6;
-$medium-grey: #a399a8;
-$medium-grey-alt: #526774;
-$dark-grey: #35434b;
-$dark-grey-alt: #161e23;
-$white: #ffffff;
-
 // Easing Curves
 $swift-ease-out-duration: 0.4s !default;
 $swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
@@ -41,20 +25,3 @@ $material-enter: all $material-enter-duration $material-enter-timing-function;
 $material-leave-duration: 0.3s;
 $material-leave-timing-function: cubic-bezier(0.4, 0.0, 1, 1);
 $material-leave: all $material-leave-duration $material-leave-timing-function;
-
-// Icons
-$icon-check: "\e900";
-$icon-circle-star: "\e903";
-$icon-cross: "\e904";
-$icon-down-arrow: "\e905";
-$icon-heart: "\e906";
-$icon-login-signup: "\e907";
-$icon-minus: "\e901";
-$icon-play: "\e902";
-$icon-play-circle: "\e908";
-$icon-plus: "\e909";
-$icon-print: "\e90a";
-$icon-search: "\e90b";
-$icon-solid-heart: "\e90c";
-$icon-star: "\e90d";
-$icon-times: "\e90e";

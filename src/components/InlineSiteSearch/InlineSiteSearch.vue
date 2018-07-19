@@ -149,28 +149,10 @@
             position: absolute;
             right: 0rem;
             height: 100%;
-            background: $primary-color;
+            background: $primary;
             color: $white;
             padding: 0 3rem;
             font-size: 1.2rem;
-        }
-
-        ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-            color: $light-grey;
-            font-size: 1rem;
-            font-style: italic;
-        }
-
-        ::-moz-placeholder { /* Firefox 19+ */
-            color: pink;
-        }
-
-        :-ms-input-placeholder { /* IE 10+ */
-            color: pink;
-        }
-
-        :-moz-placeholder { /* Firefox 18- */
-            color: pink;
         }
 
         .c-search-modal-close{

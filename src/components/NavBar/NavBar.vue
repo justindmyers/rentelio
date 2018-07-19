@@ -195,7 +195,7 @@
 
             .dropdown-arrow {
                 padding: 0 0 0 rem-calc(10);
-                color: $medium-grey;
+                color: $gray-200;
 
                 &:before {
                     display: block;
