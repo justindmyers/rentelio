@@ -11,7 +11,7 @@
         <div class="l-dashboard">
             <div class="container">
                 <div class="l-dashboard__section">
-                    <Listing type="Payments" title-key="title" date-key="sentAt" :list="payments" view-all-path="dashboard/payments"></Listing>
+                    <Listing type="Payments" title-key="title" date-key="sentAt" :list="payments" view-all-path="/dashboard/payments"></Listing>
                 </div>
             </div>
         </div>
@@ -41,15 +41,4 @@
 
 <style lang="scss" scoped>
     @import "~@/sass/base";
-
-    .l-dashboard {
-        &__section {
-            padding: rem-calc(30) 0 rem-calc(25);
-            border-bottom: 1px solid #e3e3e3;
-
-            & > *:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
 </style>

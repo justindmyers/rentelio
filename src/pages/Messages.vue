@@ -38,18 +38,3 @@
         },
     };
 </script>
-
-<style lang="scss" scoped>
-    @import "~@/sass/base";
-
-    .l-dashboard {
-        &__section {
-            padding: rem-calc(30) 0 rem-calc(25);
-            border-bottom: 1px solid #e3e3e3;
-
-            & > *:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
-</style>

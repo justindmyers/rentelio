@@ -33,8 +33,6 @@
     $hero-content-padding: rem-calc(175) rem-calc(15) rem-calc(30) !default;
     $hero-content-container-padding: 0 0 rem-calc(60) !default;
 
-    $hero-kicker-margin: 0 0 rem-calc(10) 0 !default;
-
     $hero-heading-color: $white;
 
     $hero-subheading-color: $gray-600 !default;
@@ -42,18 +40,6 @@
     $hero-subheading-margin: 0 0 rem-calc(24) 0;
 
     $hero-cta-margin: rem-calc(15) 0 0 0;
-
-    .c-hero-center{
-        text-align: center;
-        display: flex;
-        justify-content: center;
-    }
-
-    .c-hero-right{
-        text-align: right;
-        display: flex;
-        justify-content: flex-end;
-    }
 
     .c-hero {
         $this: &;
@@ -75,11 +61,6 @@
             }
 
             @include theme-component($colors: $colors, $properties: 'border-bottom-color', $parent: $this);
-        }
-
-        &__kicker {
-            font-weight: 500;
-            margin: $hero-kicker-margin;
         }
 
         &__heading {
@@ -119,6 +100,16 @@
             margin-top: 15px;
             display: block;
         }
+
+        .alert {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #B3325E;
+            color: $white;
+            border: none;
+        }
     }
 
     @include media-breakpoint-up(sm) { 
@@ -155,14 +146,6 @@
 
     @include media-breakpoint-up(lg) {
         .c-hero-card {
-            &__media {
-                min-height: 500px;
-            }
-        }
-    }
-
-    @include media-breakpoint-up(lg) {
-        .c-hero-card {
             &__content-container {
                 width: 550px;
                 padding: 48px 48px 36px;
@@ -176,7 +159,7 @@
             &__media {
                 margin-left: 250px;
                 width: calc(100% - 250px);
-                min-height: 600px;
+                min-height: 500px;
             }
         }
     }

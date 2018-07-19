@@ -5,6 +5,11 @@ import Messages from '@/pages/Messages.vue';
 import MessageDetail from '@/pages/MessageDetail.vue';
 import Payments from '@/pages/Payments.vue';
 import PaymentDetail from '@/pages/PaymentDetail.vue';
+import PropertyDetail from '@/pages/PropertyDetail.vue';
+import RequestSupport from '@/pages/RequestSupport.vue';
+import SchedulePayment from '@/pages/SchedulePayment.vue';
+import UserProfile from '@/pages/UserProfile.vue';
+import DashboardHome from '@/pages/DashboardHome.vue';
 
 export default [
     {
@@ -25,7 +30,29 @@ export default [
     },
     {
         path: '/dashboard',
-        component: Dashboard
+        component: Dashboard,
+        children: [
+            {
+                path: '',
+                component: DashboardHome
+            },
+            {
+                path: 'property-detail',
+                component: PropertyDetail
+            },
+            {
+                path: 'request-support',
+                component: RequestSupport
+            },
+            {
+                path: 'schedule-payment',
+                component: SchedulePayment
+            },
+            {
+                path: 'profile',
+                component: UserProfile
+            }
+        ]
     },
     {
         // View All Messages

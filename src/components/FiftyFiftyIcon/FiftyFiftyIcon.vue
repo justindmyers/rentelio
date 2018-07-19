@@ -2,39 +2,41 @@
     <div class="l-fifty" :class="{ 'is-opposite' : opposite }" :style="{ color: fontColor }">
         <span class="l-fifty__background" :style="{ background: background }"></span>
 
-        <div class="row no-gutters">
-            <template v-if="opposite">
-                <div class="col-6">
-                    <div class="l-fifty__text">
-                        <slot></slot>
+        <div class="container">
+            <div class="row no-gutters">
+                <template v-if="opposite">
+                    <div class="col-6">
+                        <div class="l-fifty__text">
+                            <slot></slot>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-6">
-                    <div class="l-fifty__image">
-                        <slot name="image"></slot>
+                    <div class="col-6">
+                        <div class="l-fifty__image">
+                            <slot name="image"></slot>
+                        </div>
                     </div>
-                </div>
-            </template>
+                </template>
 
-            <template v-else>
-                <div class="col-6">
-                    <div class="l-fifty__image">
-                        <slot name="image"></slot>
+                <template v-else>
+                    <div class="col-6">
+                        <div class="l-fifty__image">
+                            <slot name="image"></slot>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-6">
-                    <div class="l-fifty__text">
-                        <slot></slot>
+                    <div class="col-6">
+                        <div class="l-fifty__text">
+                            <slot></slot>
+                        </div>
                     </div>
-                </div>
+                </template>
+            </div>
+
+            <template v-if="end">
+                <span class="l-fifty__end"></span>
             </template>
         </div>
-
-        <template v-if="end">
-            <span class="l-fifty__end"></span>
-        </template>
     </div>
 </template>
 
@@ -67,7 +69,7 @@
         $this: &;
 
         position: relative;
-        padding: 0 20px 15px;
+        padding: 0 0 15px;
         color: $white;
 
         &__background {

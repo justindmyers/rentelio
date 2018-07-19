@@ -1,6 +1,7 @@
 // Customized BootStrap styling
 @import "base";
 @import "bootstrap/bootstrap";
+@import "layouts/layouts";
 @import "utilities/utilities";
 
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
@@ -13,6 +14,10 @@ img {
     max-width: 100%;
 }
 
+label {
+    font-weight: 600;
+}
+
 .btn-round {
     border-radius: 30px;
 }
@@ -21,4 +26,36 @@ body, .l-main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+.slide-leave-active {
+    transition: $material-leave;
+    opacity: 1;
+}
+
+.slide-enter-active {
+    transition: $material-enter;
+    opacity: 1;
+}
+.slide-enter {
+    transform: translate(100%, 0);
+    opacity: 0;
+}
+.slide-leave-to {
+    transform: translate(100%, 0);
+    opacity: 0;
+}
+
+.btn--back {
+    @include reset-button();
+
+    margin-top: rem-calc(20);
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    
+    i {
+        margin-right: rem-calc(10);
+        font-size: rem-calc(20);
+    }
 }

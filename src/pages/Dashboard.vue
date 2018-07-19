@@ -1,39 +1,21 @@
 <template>
     <div>
-        <Hero>
+        <Hero :class="{ 'c-hero--small': $route.path !== '/dashboard' }">
             <template slot="image">
                 <img src="assets/placeholder.gif" v-lazy-img="'/images/property.png'" alt="Hero image" />
 
                 <span class="h-mask is-medium"></span>
             </template>
+
+            <b-alert show dismissible variant="danger">
+                Rent due in 5 days
+            </b-alert>
         </Hero>
 
         <div class="l-dashboard">
-            <div class="container">
-                <div class="l-dashboard__section">
-                    <h1 class="h3">592 Highland Avenue</h1>
-                    <p>Los Angeles, CA 90019</p>
-                </div>
-
-                <div class="l-dashboard__section">
-                    <nav>
-                        <ul class="c-icon-nav nav">
-                            <li><i class="fas fa-info"></i> Property<br/> Info</li>
-                            <li><i class="fas fa-wrench"></i> Request<br/> Support</li>
-                            <li><i class="far fa-credit-card"></i> Make a<br/> Payment</li>
-                            <li><i class="fas fa-user"></i> Your<br/> Profile</li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <div class="l-dashboard__section">
-                    <Listing type="Messages" title-key="title" date-key="sentAt" :list="messages" view-all-path="dashboard/messages" :show-view-all="true"></Listing>
-                </div>
-
-                <div class="l-dashboard__section">
-                    <Listing type="Payments" title-key="title" date-key="date" :list="payments" view-all-path="dashboard/payments" :show-view-all="true"></Listing>
-                </div>
-            </div>
+            <transition name="slide" mode="out-in">
+                <router-view></router-view>
+            </transition>
 
             <ProfileCard>
                 <template slot="image">
@@ -52,63 +34,17 @@
 
 <script>
     import Hero from '../components/Hero/Hero.vue';
-    import Listing from '../components/Listing/Listing.vue';
     import ProfileCard from '../components/ProfileCard/ProfileCard.vue';
 
     export default {
-        name: 'app',
+        name: 'Dashboard',
         components: {
             Hero,
-            Listing,
             ProfileCard
-        },
-        computed: {
-            payments() {
-                return this.$store.getters['payments/list'];
-            },
-            messages() {
-                return this.$store.getters['messages/list'];
-            }
-        },
-        mounted() {
-            this.$store.dispatch('payments/getAllPayments');
-            this.$store.dispatch('messages/getAllMessages');
-        },
+        }
     };
 </script>
 
 <style lang="scss" scoped>
     @import "~@/sass/base";
-
-    .l-dashboard {
-        &__section {
-            padding: rem-calc(30) 0 rem-calc(25);
-            border-bottom: 1px solid #e3e3e3;
-
-            & > *:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
-
-    .c-icon-nav {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 rem-calc(10);
-
-        & > li {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            line-height: 1.3;
-            color: #535D68;
-            font-size: rem-calc(14);
-
-            i {
-                color: #535D68;
-                font-size: rem-calc(35);
-                margin-bottom: rem-calc(10);
-            }
-        }
-    }
 </style>

@@ -109,9 +109,11 @@
     }
 
     .l-header {
-        position: relative;
+        position: sticky;
+        top: 0;
         background-color: #fff;
         z-index: 1001;
+        box-shadow: 0 0 3px rgba(0, 0, 0, .5);
 
         &__inner {
             display: flex;

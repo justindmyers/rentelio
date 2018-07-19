@@ -69,6 +69,8 @@
         }
 
         &__table {
+            margin-bottom: 0;
+
             td {
                 padding-top: rem-calc(8);
                 padding-bottom: rem-calc(8);
@@ -90,6 +92,7 @@
             top: 5px;
             font-size: rem-calc(14);
             text-align: center;
+            margin-top: rem-calc(10);
         }
     }
 </style>
