@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="input-group">
-                    <button class="btn btn-large">Save info</button>
+                    <button class="btn btn-lg btn-primary">Save info</button>
                 </div>
             </form>
         </div>

@@ -39,8 +39,10 @@
                     <div class="c-image-upload">
                         Upload a photo
                     </div>
+                </div>
 
-                    <button class="btn btn-large">Send Request</button>
+                <div class="input-group">
+                    <button class="btn btn-lg btn-primary">Send Request</button>
                 </div>
             </form>
         </div>

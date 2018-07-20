@@ -15,8 +15,8 @@ $input-btn-padding-y-sm:      .25rem !default;
 $input-btn-padding-x-sm:      .5rem !default;
 $input-btn-line-height-sm:    $line-height-sm !default;
 
-$input-btn-padding-y-lg:      .5rem !default;
-$input-btn-padding-x-lg:      1rem !default;
+$input-btn-padding-y-lg:      rem-calc(10) !default;
+$input-btn-padding-x-lg:      rem-calc(25) !default;
 $input-btn-line-height-lg:    $line-height-lg !default;
 
 $input-btn-border-width:      $border-width !default;
@@ -51,8 +51,8 @@ $btn-link-disabled-color:     $gray-600 !default;
 $btn-block-spacing-y:         .5rem !default;
 
 // Allows for customizing button radius independently from global border radius
-$btn-border-radius:           0 !default;
-$btn-border-radius-lg:        0 !default;
-$btn-border-radius-sm:        0 !default;
+$btn-border-radius:           30px !default;
+$btn-border-radius-lg:        30px !default;
+$btn-border-radius-sm:        30px !default;
 
 $btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
