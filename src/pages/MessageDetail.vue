@@ -7,7 +7,7 @@
                 <div class="l-dashboard__section">
                     <h1 class="h3">Message Detail</h1>
 
-                    <div>
+                    <div v-if="message">
                         {{ message.title }}
                         {{ message.text }}
                         {{ message.sentAt }}
@@ -30,6 +30,9 @@
             message() {
                 return this.$store.getters['messages/getMessageById'](this.id);
             }
+        },
+        mounted() {
+            this.$store.dispatch('messages/getMessageById', this.id);
         }
     };
 </script>

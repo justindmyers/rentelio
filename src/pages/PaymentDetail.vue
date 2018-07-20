@@ -31,10 +31,8 @@
                 return this.$store.getters['payments/getPaymentById'](this.id);
             }
         },
-        methods: {
-            goBack() {
-                this.$router.go(-1);
-            }
+        mounted() {
+            this.$store.dispatch('payments/getPaymentById', this.id);
         }
     };
 </script>

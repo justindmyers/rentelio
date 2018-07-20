@@ -8,6 +8,15 @@ export const mutations = {
     add(state, payment) {
         state.list.push(payment);
     },
+    update(state, payment) {
+        const index = state.list.indexOf(item => item.id === payment.id);
+
+        if(index) {
+            state.list.splice(index, 1, payment);
+        } else {
+            state.list.push(payment);
+        }
+    },
     emptyList(state) {
         state.list = [];
     }
@@ -34,6 +43,13 @@ export const actions = {
                 id: payment.id || payment._id,
                 ...payment
             });
+        });
+    },
+    async getPaymentById({ commit }, id) {
+        const response = await api.getPayment(id);
+
+        commit('update', {
+            id: response.id || response._id, ...response
         });
     }
 };

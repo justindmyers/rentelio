@@ -35,6 +35,6 @@
         },
         mounted() {
             this.$store.dispatch('messages/getAllMessages');
-        },
+        }
     };
 </script>

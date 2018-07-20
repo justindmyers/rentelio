@@ -8,6 +8,15 @@ export const mutations = {
     add(state, message) {
         state.list.push(message);
     },
+    update(state, message) {
+        const messageItem = state.list.find(item => item.id === message.id);
+
+        if(typeof messageItem !== 'undefined') {
+            state.list.splice(state.list.indexOf(messageItem), 1, message);
+        } else {
+            state.list.push(message);
+        }
+    },
     emptyList(state) {
         state.list = [];
     }
@@ -34,6 +43,13 @@ export const actions = {
                 id: message.id || message._id,
                 ...message
             });
+        });
+    },
+    async getMessageById({ commit }, id) {
+        const response = await api.getMessage(id);
+
+        commit('update', {
+            id: response.id || response._id, ...response
         });
     }
 };

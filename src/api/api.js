@@ -11,7 +11,13 @@ export default {
             }
         });
     },
+    getMessage(id) {
+        return strapi.request('get', '/message/' + id);
+    },
     getPayments() {
         return strapi.request('get', '/payment');
-    }
+    },
+    getPayment(id) {
+        return strapi.request('get', '/payment/' + id);
+    },
 };
