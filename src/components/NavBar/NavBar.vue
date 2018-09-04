@@ -26,7 +26,7 @@
             <div class="l-header__utility">
                 <nav class="c-icon-nav">
                     <ul class="c-icon-nav__list">
-                        <li class="c-icon-nav__item">
+                        <li class="c-icon-nav__item" v-if="!isLoggedIn">
                             <InlineSiteSearch form-action="#" input-name="query" :search-icon="require(`@/assets/search.svg`)" placeholder="Placeholder">
                                 <button class="c-icon-nav__link">
                                     <img src="@/assets/search.svg" alt="Search">
@@ -50,7 +50,11 @@
                                     <img src="@/assets/menu-close.svg" />
                                 </b-btn-close>
 
-                                <nav class="c-main-nav">
+                                <div v-if="isLoggedIn">
+                                    Logged In Menu Here
+                                </div>
+
+                                <nav class="c-main-nav" v-if="!isLoggedIn">
                                     <ul class="c-main-nav__list">
                                         <li class="c-main-nav__item">
                                             <router-link class="c-main-nav__link" to="/">Who is it for?</router-link>
@@ -92,6 +96,11 @@
         components: {
             InlineSiteSearch,
             Modal
+        },
+        computed: {
+            isLoggedIn() {
+                return this.$store.getters['user/isLoggedIn'];
+            }
         }
     };
 </script>

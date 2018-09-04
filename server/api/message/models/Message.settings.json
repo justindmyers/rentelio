@@ -1,0 +1,39 @@
+{
+  "connection": "default",
+  "collectionName": "message",
+  "info": {
+    "name": "message",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "text": {
+      "default": "",
+      "type": "text"
+    },
+    "sender": {
+      "model": "user",
+      "via": "sent_messages",
+      "plugin": "users-permissions"
+    },
+    "recipient": {
+      "model": "user",
+      "via": "received_messages",
+      "plugin": "users-permissions"
+    },
+    "dateRead": {
+      "default": "",
+      "type": "date"
+    },
+    "title": {
+      "default": "",
+      "type": "string"
+    },
+    "dateSent": {
+      "default": "",
+      "type": "date"
+    }
+  }
+}

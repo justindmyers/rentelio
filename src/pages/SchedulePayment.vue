@@ -39,7 +39,7 @@
                     <div id="card-errors" role="alert"></div>
                 </div>
 
-                <button class="btn btn-primary btn-lg">Submit Payment</button>
+                <button class="btn btn-primary btn-lg btn-block">Submit Payment</button>
             </form>
         </div>
     </div>

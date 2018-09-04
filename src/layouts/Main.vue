@@ -21,6 +21,9 @@
         components: {
             NavBar,
             Footer
+        },
+        created() {
+            this.$store.dispatch('user/getCurrentUser');
         }
     };
 </script>

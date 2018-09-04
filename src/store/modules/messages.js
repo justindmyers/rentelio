@@ -1,10 +1,10 @@
-import api from '../../api/api';
+import messageApi from '../../api/messages';
 
-export const state = () => ({
+const state = () => ({
     list: []
 });
 
-export const mutations = {
+const mutations = {
     add(state, message) {
         state.list.push(message);
     },
@@ -22,21 +22,23 @@ export const mutations = {
     }
 };
 
-export const getters = {
+const getters = {
     list: state => {
-        return state.list;
+        return state.list.map(toViewModel);
     },
     getMessageById: state => id => {
-        // Need to check to see if data has been loaded first
-        return state.list.find(item => item.id === id);
+        return state.list.filter(item => item.id === id)
+                         .map(toViewModel)
+                         .pop();
     }
 };
 
-export const actions = {
-    async getAllMessages({ commit }, config) {
+// Use Message data object here?
+const actions = {
+    async getAllMessages({ commit }) {
         commit('emptyList');
 
-        const response = await api.getMessages(config);
+        const response = await messageApi.get();
 
         response.forEach(message => {
             commit('add', {
@@ -46,13 +48,22 @@ export const actions = {
         });
     },
     async getMessageById({ commit }, id) {
-        const response = await api.getMessage(id);
+        const response = await messageApi.get(id);
 
         commit('update', {
             id: response.id || response._id, ...response
         });
     }
 };
+
+function toViewModel(message) {
+    return Object.freeze({
+        id: message.id,
+        title: message.title,
+        dateSent: message.dateSent,
+        sender: message.sender.email
+    });
+}
 
 export default {
     namespaced: true,

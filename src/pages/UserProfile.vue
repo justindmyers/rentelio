@@ -8,17 +8,17 @@
             <form>
                 <div class="input-group mb-4">
                     <label for="name">Name</label>
-                    <input type="text" id="name" class="form-control" name="name" value="Shelly Williams" />
+                    <input type="text" id="name" class="form-control" name="name" :value="user.username" />
                 </div>
 
                 <div class="input-group mb-4">
                     <label for="email">Email</label>
-                    <input type="email" id="email" class="form-control" name="email" value="swilliams@email.com" />
+                    <input type="email" id="email" class="form-control" name="email" :value="user.email" />
                 </div>
 
                 <div class="input-group mb-4">
                     <label for="phone">Phone</label>
-                    <input type="phone" id="phone" class="form-control" name="phone" value="310-283-9912" />
+                    <input type="phone" id="phone" class="form-control" name="phone" :value="user.phone" />
                 </div>
 
                 <div class="input-group mb-4">
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="input-group">
-                    <button class="btn btn-lg btn-primary">Save info</button>
+                    <button class="btn btn-lg btn-primary btn-block">Save info</button>
                 </div>
             </form>
         </div>
@@ -41,6 +41,11 @@
         name: 'UserProfile',
         components: {
             BackButton
+        },
+        computed: {
+            user() {
+                return this.$store.getters['user/currentUser'];
+            }
         }
     };
 </script>

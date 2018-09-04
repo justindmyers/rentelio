@@ -1,8 +1,7 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import BootstrapVue from 'bootstrap-vue'
-import routes from './routes';
+import router from './routing/router';
 import store from './store';
 
 import MainLayout from '@/layouts/Main.vue';
@@ -13,7 +12,6 @@ import modal from '@/components/modal.js';
 import youtube from '@/components/youtube.js';
 import lazyImg from '@/directives/lazy-img';
 
-Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(Vuex);
 
@@ -24,10 +22,6 @@ Vue.component('youtube', youtube);
 Vue.config.productionTip = false
 
 var isCordovaApp = !!window.cordova;
-
-const router = new VueRouter({
-    routes
-});
 
 const app = {
     initialize: function () {

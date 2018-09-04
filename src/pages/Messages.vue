@@ -11,7 +11,7 @@
         <div class="l-dashboard">
             <div class="container">
                 <div class="l-dashboard__section">
-                    <Listing type="Messages" title-key="title" date-key="sentAt" :list="messages" view-all-path="dashboard/messages"></Listing>
+                    <Listing type="Messages" title-key="title" date-key="dateSent" :list="messages" view-all-path="messages"></Listing>
                 </div>
             </div>
         </div>

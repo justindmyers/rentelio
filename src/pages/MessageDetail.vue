@@ -10,7 +10,8 @@
                     <div v-if="message">
                         {{ message.title }}
                         {{ message.text }}
-                        {{ message.sentAt }}
+                        {{ message.sender }}
+                        {{ message.dateSent }}
                     </div>
                 </div>
             </div>
