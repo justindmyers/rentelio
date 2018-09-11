@@ -1,8 +1,8 @@
 <template>
     <div class="c-messages">
-        <h2 class="c-messages__heading h5">{{ type }}</h2>
+        <h2 class="c-messages__heading h4">{{ type }}</h2>
 
-        <table class="c-messages__table table">
+        <table class="c-messages__table table" v-if="list.length">
             <thead>
                 <tr>
                     <th class="sr-only" scope="col">Title</th>
@@ -12,20 +12,22 @@
             <tbody>
                 <tr v-for="listItem in list" :key="listItem.id">
                     <td><router-link :to="`${viewAllPath}/${listItem.id}`">{{ listItem[titleKey] }}</router-link></td>
-                    <td>{{ formatDate(listItem[dateKey]) }}</td>
+                    <td>{{ listItem[dateKey] }}</td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="c-messages__actions" v-if="showViewAll && viewAllPath">
+        <div class="c-messages__actions" v-if="showViewAll && viewAllPath && list.length">
             <router-link :to="viewAllPath">View All {{ type }}</router-link>
+        </div>
+
+        <div v-if="!list.length">
+            No {{ type }} to Display
         </div>
     </div>
 </template>
 
 <script>
-    import moment from 'moment';
-
     export default {
         props: {
             type: {
@@ -50,11 +52,6 @@
             showViewAll: {
                 type: Boolean,
                 default: false
-            }
-        },
-        methods: {
-            formatDate(date) {
-                return moment(date).format('MM/DD/YYYY');
             }
         }
     };

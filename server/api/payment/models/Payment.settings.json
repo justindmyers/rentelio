@@ -1,0 +1,64 @@
+{
+  "connection": "default",
+  "collectionName": "payment",
+  "info": {
+    "name": "payment",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "sender": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "recipient": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "amount": {
+      "default": "",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "type": "string"
+    },
+    "paymentDate": {
+      "default": "",
+      "type": "date"
+    },
+    "confirmationNumber": {
+      "default": "",
+      "type": "string"
+    },
+    "type": {
+      "default": "CRE",
+      "type": "enumeration",
+      "enum": [
+        "DEB",
+        "CRE",
+        "TRA",
+        "BAL"
+      ]
+    },
+    "status": {
+      "default": "Submitted",
+      "type": "enumeration",
+      "enum": [
+        "Submitted",
+        "Pending",
+        "Complete",
+        "Cancelled"
+      ]
+    },
+    "currencyType": {
+      "default": "USD",
+      "type": "enumeration",
+      "enum": [
+        "USD"
+      ]
+    }
+  }
+}

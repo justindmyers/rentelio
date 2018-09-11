@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Hero :class="{ 'c-hero--small': $route.path !== '/dashboard' }">
+        <Hero class="c-hero--dashboard" :class="{ 'c-hero--small': $route.path !== '/tenant/dashboard' }">
             <template slot="image">
                 <img src="assets/placeholder.gif" v-lazy-img="'/images/property.png'" alt="Hero image" />
 
@@ -13,7 +13,11 @@
         </Hero>
 
         <div class="l-dashboard">
-            <transition name="slide" mode="out-in">
+            <div class="back-container container" v-if="$route.path !== '/tenant/dashboard'">
+                <BackButton></BackButton>
+            </div>
+
+            <transition name="slide" mode="out-in" @beforeLeave="beforeLeave" @enter="enter" @afterEnter="afterEnter">
                 <router-view></router-view>
             </transition>
 
@@ -35,12 +39,36 @@
 <script>
     import Hero from '../components/Hero/Hero.vue';
     import ProfileCard from '../components/ProfileCard/ProfileCard.vue';
+    import BackButton from '@/components/BackButton/BackButton.vue';
 
     export default {
         name: 'Dashboard',
         components: {
             Hero,
-            ProfileCard
+            ProfileCard,
+            BackButton
+        },
+        data() {
+            return {
+                prevHeight: 0,
+            };
+        },
+        methods: {
+            beforeLeave(element) {
+                this.prevHeight = getComputedStyle(element).height;
+            },
+            enter(element) {
+                const { height } = getComputedStyle(element);
+
+                element.style.height = this.prevHeight;
+
+                setTimeout(() => {
+                    element.style.height = height;
+                }, 30);
+            },
+            afterEnter(element) {
+                element.style.height = 'auto';
+            }
         }
     };
 </script>

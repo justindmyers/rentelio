@@ -1,6 +1,6 @@
 import Home from '@/pages/Home.vue';
 import About from '@/pages/About.vue';
-import Dashboard from '@/pages/Dashboard.vue';
+import Info from '@/pages/Info.vue';
 import Messages from '@/pages/Messages.vue';
 import MessageDetail from '@/pages/MessageDetail.vue';
 import Payments from '@/pages/Payments.vue';
@@ -11,6 +11,14 @@ import SchedulePayment from '@/pages/SchedulePayment.vue';
 import UserProfile from '@/pages/UserProfile.vue';
 import DashboardHome from '@/pages/DashboardHome.vue';
 import Login from '@/pages/Login.vue';
+import Register from '@/pages/Register.vue';
+import ResetPassword from '@/pages/ResetPassword.vue';
+import Unauthorized from '@/pages/Unauthorized.vue';
+import ConfirmAccount from '@/pages/ConfirmAccount.vue';
+import SomethingWrong from '@/pages/SomethingWrong.vue';
+
+import TenantLayout from '@/layouts/TenantLayout.vue';
+import LandlordLayout from '@/layouts/LandlordLayout.vue';
 
 export default [
     {
@@ -22,46 +30,62 @@ export default [
         component: About
     },
     {
-        path: '/account',
-        component: Home
-    },
-    {
         path: '/info',
-        component: Home
+        component: Info
     },
     {
         path: '/login',
-        component: Login
+        name: 'login',
+        component: Login,
+        meta: {
+            isGuest: true
+        }
     },
     {
         path: '/register',
-        component: Home
+        name: 'register',
+        component: Register,
+        meta: {
+            isGuest: true
+        }
     },
     {
-        path: '/dashboard',
-        component: Dashboard,
-        meta: { 
-            requiresAuth: true
+        path: '/forgot-password',
+        name: 'forgot-password',
+        component: ResetPassword,
+        meta: {
+            isGuest: true
+        }
+    },
+    {
+        path: '/confirm-account',
+        name: 'confirm-account',
+        component: ConfirmAccount,
+        meta: {
+            isGuest: true
+        }
+    },
+    {
+        path: '/unauthorized',
+        component: Unauthorized,
+        name: 'unauthorized'
+    },
+    {
+        path: '/something-wrong',
+        component: SomethingWrong,
+        name: 'something-wrong'
+    },
+    {
+        path: '/landlord',
+        component: LandlordLayout,
+        meta: {
+            requiresAuth: true,
+            isLandlord: true
         },
         children: [
             {
                 path: '',
                 component: DashboardHome
-            },
-            {
-                // need tenent and landlord version
-                path: 'property-detail',
-                component: PropertyDetail
-            },
-            {
-                // need request management page
-                path: 'request-support',
-                component: RequestSupport
-            },
-            {
-                // need payments in proceess page?
-                path: 'schedule-payment',
-                component: SchedulePayment
             },
             {
                 path: 'profile',
@@ -70,37 +94,60 @@ export default [
         ]
     },
     {
-        // View All Messages
-        path: '/dashboard/messages',
-        component: Messages,
-        meta: { 
-            requiresAuth: true
-        }
-    },
-    {
-        // Message Detail
-        path: '/dashboard/messages/:id',
-        component: MessageDetail,
-        props: true,
-        meta: { 
-            requiresAuth: true
-        }
-    },
-    {
-        // View All Payments
-        path: '/dashboard/payments',
-        component: Payments,
-        meta: { 
-            requiresAuth: true
-        }
-    },
-    {
-        // Payment Detail
-        path: '/dashboard/payments/:id',
-        component: PaymentDetail,
-        props: true,
-        meta: { 
-            requiresAuth: true
-        }
+        path: '/tenant',
+        component: TenantLayout,
+        meta: {
+            requiresAuth: true,
+            isTenant: true
+        },
+        children: [
+            {
+                path: 'dashboard',
+                name: 'tenant-dashboard',
+                component: DashboardHome
+            },
+            {
+                path: 'property-detail',
+                name: 'tenant-property-detail',
+                component: PropertyDetail
+            },
+            {
+                path: 'request-support',
+                name: 'tenant-request-support',
+                component: RequestSupport
+            },
+            {
+                path: 'schedule-payment',
+                name: 'tenant-schedule-payment',
+                component: SchedulePayment
+            },
+            {
+                path: 'profile',
+                name: 'tenant-profile',
+                component: UserProfile
+            },
+            {
+                path: 'messages',
+                name: 'tenant-messages',
+                component: Messages
+            },
+            {
+                path: 'messages/:id',
+                name: 'tenant-message-detail',
+                component: MessageDetail,
+                props: true
+            },
+            {
+                path: 'payments',
+                name: 'tenant-payments',
+                component: Payments
+            },
+            {
+                path: 'payments/:id',
+                name: 'tenant-payment-detail',
+                component: PaymentDetail,
+                props: true
+            }
+        ]
     }
 ];

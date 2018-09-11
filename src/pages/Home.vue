@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="p-home">
         <Hero>
             <template slot="image">
                 <img src="assets/placeholder.gif" v-lazy-img="'/images/Rectangle.png'" alt="Hero image" />
@@ -57,7 +57,6 @@
 
 <script>
     import NavBar from '../components/NavBar/NavBar.vue';
-    import FeaturedPeople from '../components/FeaturedPeople/FeaturedPeople.vue';
     import Hero from '../components/Hero/Hero.vue';
     import FiftyFiftyIcon from '../components/FiftyFiftyIcon/FiftyFiftyIcon.vue';
     import FiftyFiftyImage from '../components/FiftyFiftyImage/FiftyFiftyImage.vue';
@@ -71,7 +70,6 @@
         name: 'app',
         components: {
             NavBar,
-            FeaturedPeople,
             Hero,
             FiftyFiftyIcon,
             FiftyFiftyImage,

@@ -1,14 +1,12 @@
 <template>
-    <div class="l-section">
-        <div class="c-video-promo">
-            <button class="c-video-promo__media h-placeholder-image h-placeholder-image--bg h-video-play" v-b-modal="'uniqueModalId'">
-                <img src="@/assets/placeholder.gif" v-lazy-img="'//placeimg.com/1200/600'" alt="" />
+    <div class="c-video-promo">
+        <button class="c-video-promo__media h-placeholder-image h-placeholder-image--bg h-video-play" v-b-modal="'uniqueModalId'">
+            <img src="@/assets/placeholder.gif" v-lazy-img="'//placeimg.com/1200/600'" alt="" />
 
-                <span class="h-mask is-dark"></span>
-            </button>
+            <span class="h-mask is-dark"></span>
+        </button>
 
-            <Youtube trigger="uniqueModalId" video-id="M7lc1UVf-VE"></Youtube>
-        </div>
+        <Youtube trigger="uniqueModalId" video-id="M7lc1UVf-VE"></Youtube>
     </div>
 </template>
 

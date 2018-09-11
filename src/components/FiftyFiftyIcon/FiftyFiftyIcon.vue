@@ -1,18 +1,27 @@
+<!--
+    to test:
+       c-fifty
+       props
+         opposite
+         fontColor
+         background
+         end
+-->
 <template>
-    <div class="l-fifty" :class="{ 'is-opposite' : opposite }" :style="{ color: fontColor }">
-        <span class="l-fifty__background" :style="{ background: background }"></span>
+    <div class="c-fifty" :class="{ 'is-opposite' : opposite }" :style="{ color: fontColor }">
+        <span class="c-fifty__background" :style="{ background: background }"></span>
 
         <div class="container">
             <div class="row no-gutters">
                 <template v-if="opposite">
                     <div class="col-6">
-                        <div class="l-fifty__text">
+                        <div class="c-fifty__text">
                             <slot></slot>
                         </div>
                     </div>
 
                     <div class="col-6">
-                        <div class="l-fifty__image">
+                        <div class="c-fifty__image">
                             <slot name="image"></slot>
                         </div>
                     </div>
@@ -20,13 +29,13 @@
 
                 <template v-else>
                     <div class="col-6">
-                        <div class="l-fifty__image">
+                        <div class="c-fifty__image">
                             <slot name="image"></slot>
                         </div>
                     </div>
 
                     <div class="col-6">
-                        <div class="l-fifty__text">
+                        <div class="c-fifty__text">
                             <slot></slot>
                         </div>
                     </div>
@@ -34,7 +43,7 @@
             </div>
 
             <template v-if="end">
-                <span class="l-fifty__end"></span>
+                <span class="c-fifty__end"></span>
             </template>
         </div>
     </div>
@@ -65,7 +74,7 @@
 <style lang="scss" scoped>
     @import "~@/sass/base";
 
-    .l-fifty {
+    .c-fifty {
         $this: &;
 
         position: relative;
@@ -140,7 +149,7 @@
     }
 
     @include media-breakpoint-down(md) {
-        .l-fifty{
+        .c-fifty{
             &__text {
                 padding: rem-calc(22px);
             }

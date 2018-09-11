@@ -1,4 +1,5 @@
 import messageApi from '../../api/messages';
+import dayjs from 'dayjs';
 
 const state = () => ({
     list: []
@@ -60,7 +61,8 @@ function toViewModel(message) {
     return Object.freeze({
         id: message.id,
         title: message.title,
-        dateSent: message.dateSent,
+        text: message.text,
+        dateSent: dayjs(message.dateSent).format('MMM DD, YYYY'),
         sender: message.sender.email
     });
 }

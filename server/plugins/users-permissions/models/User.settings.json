@@ -40,11 +40,11 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "first name": {
+    "firstName": {
       "default": "",
       "type": "string"
     },
-    "last name": {
+    "lastName": {
       "default": "",
       "type": "string"
     },
@@ -52,21 +52,13 @@
       "default": "",
       "type": "string"
     },
-    "sent_messages": {
-      "collection": "message",
-      "via": "sender"
+    "isLandlord": {
+      "default": false,
+      "type": "boolean"
     },
-    "received_messages": {
-      "collection": "message",
-      "via": "recipient"
-    },
-    "type": {
-      "default": "",
-      "type": "enumeration",
-      "enum": [
-        "tenent",
-        "landlord"
-      ]
+    "isTenant": {
+      "default": false,
+      "type": "boolean"
     }
   },
   "collectionName": "users-permissions_user"

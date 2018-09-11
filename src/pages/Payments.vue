@@ -1,17 +1,9 @@
 <template>
-    <div class="payments">
-        <Hero>
-            <template slot="image">
-                <img src="assets/placeholder.gif" v-lazy-img="'/images/property.png'" alt="Hero image" />
-
-                <span class="h-mask is-medium"></span>
-            </template>
-        </Hero>
-
+    <div class="p-payments">
         <div class="l-dashboard">
             <div class="container">
                 <div class="l-dashboard__section">
-                    <Listing type="Payments" title-key="title" date-key="dateSent" :list="payments" view-all-path="/dashboard/payments"></Listing>
+                    <Listing type="Payments" title-key="description" date-key="paymentDate" :list="payments"></Listing>
                 </div>
             </div>
         </div>

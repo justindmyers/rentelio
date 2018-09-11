@@ -46,6 +46,7 @@
 
         margin: $hero-margin;
         position: relative;
+        transition: .2s ease all;
 
         &__content-container {
             padding: $hero-content-container-padding;
@@ -99,6 +100,15 @@
             top: 30px;
             margin-top: 15px;
             display: block;
+        }
+
+        &--dashboard {
+            max-height: 275px;
+            overflow: hidden;
+        }
+
+        &--small {
+            max-height: 150px;
         }
 
         .alert {

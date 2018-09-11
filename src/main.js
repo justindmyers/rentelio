@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import BootstrapVue from 'bootstrap-vue'
-import router from './routing/router';
+import router from './routing';
 import store from './store';
+import VueRouter from 'vue-router';
+import VeeValidate from 'vee-validate';
 
 import MainLayout from '@/layouts/Main.vue';
 
@@ -12,8 +14,12 @@ import modal from '@/components/modal.js';
 import youtube from '@/components/youtube.js';
 import lazyImg from '@/directives/lazy-img';
 
+Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(Vuex);
+Vue.use(VeeValidate, {
+    events: 'change|blur'
+});
 
 Vue.directive('lazy-img', lazyImg);
 Vue.component('modal', modal);

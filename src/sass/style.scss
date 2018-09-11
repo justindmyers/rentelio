@@ -31,16 +31,20 @@ body, .l-main {
 .slide-leave-active {
     transition: $material-leave;
     opacity: 1;
+    overflow: hidden;
 }
 
 .slide-enter-active {
     transition: $material-enter;
     opacity: 1;
+    overflow: hidden;
 }
+
 .slide-enter {
     transform: translate(100%, 0);
     opacity: 0;
 }
+
 .slide-leave-to {
     transform: translate(100%, 0);
     opacity: 0;

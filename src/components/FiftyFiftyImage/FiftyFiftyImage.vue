@@ -1,16 +1,16 @@
 <template>
-    <div class="l-fifty">
+    <div class="c-fifty">
         <div class="row no-gutters">
             <div class="col-lg-6">
-                <div class="l-fifty-image">
-                    <div class="l-fifty-image-wrapper h-placeholder-image h-placeholder-image--16-9">
+                <div class="c-fifty-image">
+                    <div class="c-fifty-image-wrapper h-placeholder-image h-placeholder-image--16-9">
                         <slot name="image"></slot>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="l-fifty-text right">
+                <div class="c-fifty-text right">
                     <slot></slot>
                 </div>
             </div>
@@ -27,8 +27,8 @@
 <style lang="scss" scoped>
     @import "~@/sass/base";
 
-    .l-fifty{
-        .l-fifty-text {
+    .c-fifty{
+        .c-fifty-text {
             display: flex;
             flex-direction: column;
             padding: 5rem;
@@ -60,11 +60,11 @@
             }
         }
 
-        .l-fifty-image{
+        .c-fifty-image{
             height: 100%;
         }
 
-        .l-fifty-image-wrapper{
+        .c-fifty-image-wrapper{
             height: 100%;
         }
 
@@ -75,8 +75,8 @@
     }
 
     @include media-breakpoint-down(md) {
-        .l-fifty{
-            .l-fifty-text {
+        .c-fifty{
+            .c-fifty-text {
                 padding: 2rem;
             }
         }

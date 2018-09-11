@@ -15,12 +15,10 @@
     },
     "sender": {
       "model": "user",
-      "via": "sent_messages",
       "plugin": "users-permissions"
     },
     "recipient": {
       "model": "user",
-      "via": "received_messages",
       "plugin": "users-permissions"
     },
     "dateRead": {

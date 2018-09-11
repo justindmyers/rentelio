@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="p-about">
         <Hero>
             <template slot="image">
                 <img class="h-mask-img" src="assets/placeholder.gif" v-lazy-img="'//placeimg.com/1200/600'" alt="Hero image" />

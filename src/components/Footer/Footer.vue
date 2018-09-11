@@ -1,12 +1,12 @@
 <template>
-    <footer class="footer">
-        <div class="footer__content">
+    <footer class="c-footer">
+        <div class="c-footer__content">
             <div class="container container-fluid">
-                <a class="footer__logo" href="/">
+                <a class="c-footer__logo" href="/">
                     <img src="@/assets/logo-footer.svg" alt="XCentium Logo">
                 </a>
 
-                <ul class="footer__nav">
+                <ul class="c-footer__nav">
                     <li>
                         <a href="#">Home</a>
                     </li>
@@ -25,7 +25,7 @@
                 </ul>
             </div>
         </div>
-        <p class="footer__copyright">&copy;2018 Rentelio. All rights reserved.</p>
+        <p class="c-footer__copyright">&copy;2018 Rentelio. All rights reserved.</p>
     </footer>
 </template>
 
@@ -38,7 +38,7 @@
 <style lang="scss" scoped>
     @import "~@/sass/base";
 
-    .footer {
+    .c-footer {
         padding: 0;
 
         &__content {

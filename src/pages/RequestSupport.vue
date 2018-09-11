@@ -1,7 +1,5 @@
 <template>
-    <div class="container">
-        <BackButton></BackButton>
-
+    <div class="p-request-support container">
         <div class="l-dashboard__section">
             <h1 class="h3 mb-4">Request Maintenance</h1>
 
@@ -42,7 +40,7 @@
                 </div>
 
                 <div class="input-group">
-                    <button class="btn btn-lg btn-primary">Send Request</button>
+                    <button class="btn btn-lg btn-primary btn-block">Send Request</button>
                 </div>
             </form>
         </div>
@@ -50,13 +48,8 @@
 </template>
 
 <script>
-    import BackButton from '@/components/BackButton/BackButton.vue';
-
     export default {
-        name: 'RequestSupport',
-        components: {
-            BackButton
-        }
+        name: 'RequestSupport'
     };
 </script>
 

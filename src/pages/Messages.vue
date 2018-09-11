@@ -1,18 +1,8 @@
 <template>
-    <div>
-        <Hero>
-            <template slot="image">
-                <img src="assets/placeholder.gif" v-lazy-img="'/images/property.png'" alt="Hero image" />
-
-                <span class="h-mask is-medium"></span>
-            </template>
-        </Hero>
-
-        <div class="l-dashboard">
-            <div class="container">
-                <div class="l-dashboard__section">
-                    <Listing type="Messages" title-key="title" date-key="dateSent" :list="messages" view-all-path="messages"></Listing>
-                </div>
+    <div class="p-messages l-dashboard">
+        <div class="container">
+            <div class="l-dashboard__section">
+                <Listing type="Messages" title-key="title" date-key="dateSent" :list="messages" view-all-path="messages"></Listing>
             </div>
         </div>
     </div>

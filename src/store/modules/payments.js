@@ -1,4 +1,5 @@
 import paymentApi from '../../api/payments';
+import dayjs from 'dayjs';
 
 export const state = () => ({
     list: []
@@ -24,10 +25,12 @@ export const mutations = {
 
 export const getters = {
     list: state => {
-        return state.list;
+        return state.list.map(toViewModel);
     },
     getPaymentById: state => id => {
-        return state.list.find(item => item.id === id);
+        return state.list.filter(item => item.id === id)
+                         .map(toViewModel)
+                         .pop();
     }
 };
 
@@ -52,6 +55,16 @@ export const actions = {
         });
     }
 };
+
+function toViewModel(payment) {
+    return Object.freeze({
+        id: payment.id,
+        description: payment.description,
+        amount: payment.amount,
+        paymentDate: dayjs(payment.paymentDate).format('MMM DD, YYYY'),
+        status: payment.status
+    });
+}
 
 export default {
     namespaced: true,

@@ -74,8 +74,8 @@
                                     </ul>
 
                                     <div class="c-main-nav__actions">
-                                        <a href="#" class="btn btn-block btn-primary btn-lg btn-round mb-4">Sign Up</a>
-                                        <a href="#">Log in to your account</a>
+                                        <router-link :to="{ name: 'register'}" class="btn btn-block btn-primary btn-lg btn-round mb-4" @click.native="$root.$emit('bv::hide::modal', 'main-nav')">Sign Up</router-link>
+                                        <router-link :to="{ name: 'login'}" @click.native="$root.$emit('bv::hide::modal', 'main-nav')">Log in to your account</router-link>
                                     </div>
                                 </nav>
                             </Modal>

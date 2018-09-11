@@ -1,15 +1,6 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import routes from './routes';
 import store from '../store';
 
-Vue.use(VueRouter);
-
-const router = new VueRouter({
-    routes
-});
-
-router.beforeEach((to, from, next) => {
+export function beforeEach(to, from, next) {
     const isPendingAuth = store.getters['user/isPendingAuth'];
 
     if(isPendingAuth) {
@@ -25,16 +16,27 @@ router.beforeEach((to, from, next) => {
     }
 
     function processRoute() {
-        if (to.matched.some(record => record.meta.requiresAuth)) {
-            const isLoggedIn = store.getters['user/isLoggedIn'];
+        const user = store.getters['user/currentUser'];
+        const isLoggedIn = store.getters['user/isLoggedIn'];
+        const dashboardRoute = user.isLandlord ? 'landlord-dashboard' : user.isTenant ? 'tenant-dashboard' : 'something-wrong';
 
+        if (to.matched.some(record => record.meta.requiresAuth)) {
             if (!isLoggedIn) {
-                next({
-                    path: '/login',
-                    query: {
-                        redirect: to.fullPath
-                    }
-                });
+                redirectToLogin(to.fullPath);
+            } else if (to.matched.some(record => record.meta.isLandlord) && !user.isLandlord) {
+                next({ name: 'unauthorized' });
+            } else if (to.matched.some(record => record.meta.isTenant) && !user.isTenant) {
+                next({ name: 'unauthorized' });
+            } else {
+                next();
+            }
+        } else if (to.matched.some(record => record.meta.isGuest)) {
+            if(isLoggedIn) {
+                if(to.query.redirect) {
+                    next({ path: to.query.redirect });
+                } else {
+                    next({ name: dashboardRoute });
+                }
             } else {
                 next();
             }
@@ -42,6 +44,13 @@ router.beforeEach((to, from, next) => {
             next();
         }
     }
-});
 
-export default router;
+    function redirectToLogin(path) {
+        next({
+            path: '/login',
+            query: {
+                redirect: path
+            }
+        });
+    }
+}

@@ -1,7 +1,5 @@
 <template>
-    <div class="container">
-        <BackButton></BackButton>
-
+    <div class="p-user-profile container">
         <div class="l-dashboard__section">
             <h1 class="h3 mb-4">User Profile</h1>
 
@@ -35,13 +33,8 @@
 </template>
 
 <script>
-    import BackButton from '@/components/BackButton/BackButton.vue';
-
     export default {
         name: 'UserProfile',
-        components: {
-            BackButton
-        },
         computed: {
             user() {
                 return this.$store.getters['user/currentUser'];

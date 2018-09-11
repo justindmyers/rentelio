@@ -9,5 +9,11 @@ export default {
     },
     login(username, password) {
         return strapi.login(username, password);
+    },
+    register(username, password) {
+        return strapi.register(username, username, password);
+    },
+    forgotPassword(email) {
+        return strapi.forgotPassword(email, 'url');
     }
 };

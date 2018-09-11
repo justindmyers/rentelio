@@ -38,6 +38,11 @@ const actions = {
 
         return response;
     },
+    async register(context, data) {
+        const response = await userApi.register(data.username, data.password);
+
+        return response;
+    },
     async getCurrentUser({ commit }) {
         try {
             const response = await userApi.getCurrentUser();

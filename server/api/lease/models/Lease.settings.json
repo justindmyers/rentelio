@@ -1,0 +1,65 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "lease",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "tenant": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "landlord": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "amount": {
+      "default": "",
+      "type": "integer"
+    },
+    "currency_type": {
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "USD"
+      ]
+    },
+    "start_date": {
+      "default": "",
+      "type": "date"
+    },
+    "end_date": {
+      "default": "",
+      "type": "date"
+    },
+    "term": {
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "Annual",
+        "Monthly"
+      ]
+    },
+    "payment_frequency": {
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "Annual",
+        "Monthly"
+      ]
+    },
+    "status": {
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "Active",
+        "Pending",
+        "Cancelled"
+      ]
+    }
+  }
+}

@@ -8,6 +8,7 @@
 
 // Public dependencies.
 const _ = require('lodash');
+const ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = {
 
@@ -17,9 +18,13 @@ module.exports = {
    * @return {Promise}
    */
 
-  fetchAll: (params) => {
+  fetchAll: (ctx) => {
+    const params = ctx.query;
+    const user = ctx.state.user;
+
     // Convert `params` object to filters compatible with Mongo.
     const filters = strapi.utils.models.convertParams('message', params);
+
     // Select field to populate.
     const populate = Message.associations
       .filter(ast => ast.autoPopulate !== false)
@@ -29,6 +34,9 @@ module.exports = {
     return Message
       .find()
       .where(filters.where)
+      .where({
+        recipient: user ? ObjectId(user._id) : null 
+      })
       .sort(filters.sort)
       .skip(filters.start)
       .limit(filters.limit)
@@ -150,7 +158,9 @@ module.exports = {
    * @return {Promise}
    */
 
-  search: async (params) => {
+  search: async (ctx) => {
+    var params = ctx.query;
+    
     // Convert `params` object to filters compatible with Mongo.
     const filters = strapi.utils.models.convertParams('message', params);
     // Select field to populate.

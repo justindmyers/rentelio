@@ -6,6 +6,7 @@
  * @description: A set of functions called "actions" for managing `Message`.
  */
 
+ 
 module.exports = {
 
   /**
@@ -16,9 +17,9 @@ module.exports = {
 
   find: async (ctx) => {
     if (ctx.query._q) {
-      return strapi.services.message.search(ctx.query);
+      return strapi.services.message.search(ctx);
     } else {
-      return strapi.services.message.fetchAll(ctx.query);
+      return strapi.services.message.fetchAll(ctx);
     }
   },
 

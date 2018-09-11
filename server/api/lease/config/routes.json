@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/lease",
+      "handler": "Lease.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/lease/count",
+      "handler": "Lease.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/lease/:_id",
+      "handler": "Lease.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/lease",
+      "handler": "Lease.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/lease/:_id",
+      "handler": "Lease.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/lease/:_id",
+      "handler": "Lease.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

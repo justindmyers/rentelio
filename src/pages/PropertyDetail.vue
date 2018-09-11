@@ -1,7 +1,5 @@
 <template>
-    <div class="container">
-        <BackButton></BackButton>
-
+    <div class="p-property container">
         <div class="l-dashboard__section">
             <h1 class="h3">592 Highland Avenue</h1>
             <p>Los Angeles, CA 90019</p>
@@ -35,13 +33,8 @@
 </template>
 
 <script>
-    import BackButton from '@/components/BackButton/BackButton.vue';
-
     export default {
-        name: 'PropertyDetail',
-        components: {
-            BackButton
-        }
+        name: 'PropertyDetail'
     };
 </script>
 
@@ -55,6 +48,7 @@
         font-weight: bold;
         margin-right: rem-calc(6);
     }
+
     dt::after {
         content: ':';
     }
