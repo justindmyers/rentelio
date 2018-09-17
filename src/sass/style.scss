@@ -50,16 +50,20 @@ body, .l-main {
     opacity: 0;
 }
 
-.btn--back {
-    @include reset-button();
+.slide-down-enter-active {
+    transition: $material-enter;
+}
 
-    margin-top: rem-calc(20);
-    display: inline-flex;
-    align-items: center;
-    line-height: 1;
-    
-    i {
-        margin-right: rem-calc(10);
-        font-size: rem-calc(20);
-    }
+.slide-down-leave-active {
+    transition: $material-leave;
+}
+
+.slide-down-enter, .slide-down-leave-to{
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+// We're controlling the animations manually, so disabled bootstrap's style
+.invalid-feedback {
+    display: block;
 }

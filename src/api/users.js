@@ -10,10 +10,10 @@ export default {
     login(username, password) {
         return strapi.login(username, password);
     },
-    register(username, password) {
-        return strapi.register(username, username, password);
+    register(username, password, firstName) {
+        return strapi.register(username, username, password, firstName);
     },
     forgotPassword(email) {
-        return strapi.forgotPassword(email, 'url');
+        return strapi.forgotPassword(email, `${window.location.protocol}//${window.location.host}/reset-password` );
     }
 };

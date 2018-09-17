@@ -1,0 +1,21 @@
+@import "~@/sass/base";
+
+.l-form-page__form {
+    padding: rem-calc(30) 0 rem-calc(25);
+}
+
+@include media-breakpoint-up(lg) {
+    .l-form-page {
+        display: flex;
+        flex: 1;
+        align-items: center;
+
+        &__form {
+            max-width: 500px;
+            margin: rem-calc(40) auto;
+            border: 1px solid #ddd;
+            padding: rem-calc(40) rem-calc(40) rem-calc(20);
+            border-radius: 5px;
+        }
+    }
+}

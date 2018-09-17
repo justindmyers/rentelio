@@ -43,6 +43,11 @@ const actions = {
 
         return response;
     },
+    async forgotPassword(context, data) {
+        const response = await userApi.forgotPassword(data.username);
+
+        return response;
+    },
     async getCurrentUser({ commit }) {
         try {
             const response = await userApi.getCurrentUser();

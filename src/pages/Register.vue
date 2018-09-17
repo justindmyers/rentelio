@@ -1,14 +1,10 @@
 <template>
-    <div class="p-register l-dashboard">
+    <div class="p-register l-form-page">
         <div class="container">
-            <div class="l-dashboard__section">
+            <div class="l-form-page__form">
                 <h1 class="h3 mb-4">Register</h1>
 
-                <ul class="alert alert-danger" v-show="serverErrors.length" role="alert">
-                    <li v-for="error in serverErrors" :key="error.message">
-                        {{ error.message }}
-                    </li>
-                </ul>
+                <form-messages :messages="serverMessages"></form-messages>
 
                 <form id="register-form" @submit.prevent="processForm" novalidate>
                     <div class="form-group mb-4">
@@ -24,9 +20,7 @@
                                v-model="username"
                                aria-describedby="email-errors">
 
-                        <div class="invalid-feedback" id="email-errors" aria-live="assertive">
-                            <span>{{ errors.first('email') }}</span>
-                        </div>
+                        <field-feedback :id="'email-errors'" :vee-errors="errors" :field-name="'email'"></field-feedback>
                     </div>
 
                     <div class="form-group mb-4">
@@ -39,11 +33,10 @@
                                :class="{ 'is-invalid' : errors.has('password') }"
                                v-validate="'required'" 
                                v-model="password"
+                               ref="password"
                                aria-describedby="password-errors">
 
-                        <div class="invalid-feedback" id="password-errors" aria-live="assertive">
-                            <span>{{ errors.first('password') }}</span>
-                        </div>
+                        <field-feedback :id="'password-errors'" :vee-errors="errors" :field-name="'password'"></field-feedback>
                     </div>
 
                     <div class="form-group mb-4">
@@ -58,13 +51,11 @@
                                v-model="confirmPassword"
                                aria-describedby="confirm-password-errors">
 
-                        <div class="invalid-feedback" id="confirm-password-errors" aria-live="assertive">
-                            <span>{{ errors.first('confirm-password') }}</span>
-                        </div>
+                        <field-feedback :id="'confirm-password-errors'" :vee-errors="errors" :field-name="'confirm-password'"></field-feedback>
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block">Register</button>
+                        <form-submit :is-processing="isProcessing">Register</form-submit>
                     </div>
                 </form>
             </div>
@@ -73,38 +64,39 @@
 </template>
 
 <script>
+    import { formPageMixin, FeedbackMessage, FEEDBACK_MESSAGE_PRIORITY } from '@/mixins/formPage';
+
     export default {
+        mixins: [formPageMixin],
         data() {
             return {
                 username: null,
                 password: null,
                 confirmPassword: null,
-                serverErrors: []
+                isProcessing: false
             };
         },
         methods: {
-            async processForm() {
-                this.$validator.validateAll().then((result) => {
-                    if (result) {
-                        this.serverErrors = [];
-
-                        this.register().catch(error => {
-                            this.serverErrors.push({
-                                message: error.message || error
-                            });
-                        });
-
-                        return;
-                    }
+            afterProcessForm() {
+                this.register().catch(error => {
+                    setTimeout(() => {
+                        this.isProcessing = false;
+                        this.addMessages(new FeedbackMessage(FEEDBACK_MESSAGE_PRIORITY.DANGER, error.message || error));
+                    }, 500);
                 });
             },
             async register() {
+                this.isProcessing = true;
+
                 await this.$store.dispatch('user/register', {
                     username: this.username, 
                     password: this.password
                 });
 
-                this.$router.push({ name: 'confirm-account' });
+                setTimeout(() => {
+                    this.isProcessing = false;
+                    this.$router.push({ name: 'confirm-account' });
+                }, 500);
             }
         }
     };

@@ -13,6 +13,7 @@ import DashboardHome from '@/pages/DashboardHome.vue';
 import Login from '@/pages/Login.vue';
 import Register from '@/pages/Register.vue';
 import ResetPassword from '@/pages/ResetPassword.vue';
+import ForgotPassword from '@/pages/ForgotPassword.vue';
 import Unauthorized from '@/pages/Unauthorized.vue';
 import ConfirmAccount from '@/pages/ConfirmAccount.vue';
 import SomethingWrong from '@/pages/SomethingWrong.vue';
@@ -52,6 +53,14 @@ export default [
     {
         path: '/forgot-password',
         name: 'forgot-password',
+        component: ForgotPassword,
+        meta: {
+            isGuest: true
+        }
+    },
+    {
+        path: '/reset-password',
+        name: 'reset-password',
         component: ResetPassword,
         meta: {
             isGuest: true
