@@ -6,10 +6,14 @@
 
 <script>
     import idMixin from 'bootstrap-vue/src/mixins/id';
+    import bModalDirective from 'bootstrap-vue/es/directives/modal/modal';
 
     export default {
         name: 'InlineSiteSearch',
         mixins: [idMixin],
+        directives: {
+            'b-modal': bModalDirective
+        },
         data() {
             return {
                 inputId: this.safeId() + '__search',

@@ -2,7 +2,7 @@
     <div class="c-hero c-text-promo">
         <div class="c-hero__container">
             <div class="c-hero__media h-placeholder-image h-placeholder-image--bg">
-                <img src="assets/text-promo-back.svg" v-lazy-img="'assets/text-promo-back.svg'" alt="Hero image" />
+                <lazy-img placeholder="assets/placeholder.gif" src="assets/text-promo-back.svg" alt="Hero image"></lazy-img>
             </div>
 
             <div class="c-hero__content-container">
@@ -24,8 +24,13 @@
 </template>
 
 <script>
+    import lazyImg from '@/components/lazyImg';
+
     export default {
-        name: 'TextPromo'
+        name: 'TextPromo',
+        components: {
+            lazyImg
+        }
     };
 </script>
 

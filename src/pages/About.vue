@@ -2,7 +2,7 @@
     <div class="p-about">
         <Hero>
             <template slot="image">
-                <img class="h-mask-img" src="assets/placeholder.gif" v-lazy-img="'//placeimg.com/1200/600'" alt="Hero image" />
+                <lazy-img placeholder="assets/placeholder.gif" src="//placeimg.com/1200/600"></lazy-img>
 
                 <span class="h-mask is-dark"></span>
             </template>
@@ -17,7 +17,7 @@
 
         <FiftyFiftyImage>
             <template slot="image">
-                <img src="assets/placeholder.gif" v-lazy-img="'//placeimg.com/600/600'" alt="" />
+                <lazy-img placeholder="assets/placeholder.gif" src="//placeimg.com/1200/600"></lazy-img>
             </template>
 
             <h3 class="h-line-mark">Global Biotech Launches New Informative Website</h3>
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+    import lazyImg from '@/components/lazyImg';
     import Hero from '../components/Hero/Hero.vue';
     import FiftyFiftyImage from '../components/FiftyFiftyImage/FiftyFiftyImage.vue';
     import Testimonial from '../components/Testimonial/Testimonial.vue';
@@ -40,6 +41,7 @@
     export default {
         name: 'about',
         components: {
+            lazyImg,
             Hero,
             FiftyFiftyImage,
             Testimonial,

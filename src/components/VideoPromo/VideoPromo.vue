@@ -1,7 +1,8 @@
 <template>
     <div class="c-video-promo">
         <button class="c-video-promo__media h-placeholder-image h-placeholder-image--bg h-video-play" v-b-modal="'uniqueModalId'">
-            <img src="@/assets/placeholder.gif" v-lazy-img="'//placeimg.com/1200/600'" alt="" />
+            
+            <lazy-img placeholder="@/assets/placeholder.gif" src="//placeimg.com/1200/600" alt=""></lazy-img>
 
             <span class="h-mask is-dark"></span>
         </button>
@@ -11,12 +12,18 @@
 </template>
 
 <script>
-    import Youtube from '../youtube';
+    import lazyImg from '@/components/lazyImg';
+    import Youtube from '@/components/youtube';
+    import bModalDirective from 'bootstrap-vue/es/directives/modal/modal';
 
     export default {
         name: 'VideoPromo',
         components: {
+            lazyImg,
             Youtube
+        },
+        directives: {
+            'b-modal': bModalDirective
         }
     };
 </script>

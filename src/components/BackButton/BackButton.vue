@@ -1,5 +1,5 @@
 <template>
-    <button class="buttton-back" v-on:click="goBack" type="button">
+    <button class="button-back" v-on:click="goBack" type="button">
         <i class="fas fa-arrow-left"></i> Back
     </button>
 </template>

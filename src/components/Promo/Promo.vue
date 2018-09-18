@@ -1,7 +1,7 @@
 <template>
     <div class="c-promo">
         <div class="c-promo__media h-placeholder-image h-placeholder-image--1-1">
-            <img src="assets/news-grid-image.jpg" v-lazy-img="'assets/news-grid-image.jpg'" alt="" />
+            <lazy-img placeholder="assets/placeholder.gif" src="assets/news-grid-image.jpg" />
         </div>
 
         <span class="h-mask is-dark"></span>
@@ -13,8 +13,13 @@
 </template>
 
 <script>
+    import lazyImg from '@/components/lazyImg';
+
     export default {
-        name: 'Promo'
+        name: 'Promo',
+        components: {
+            lazyImg
+        }
     };
 </script>
 

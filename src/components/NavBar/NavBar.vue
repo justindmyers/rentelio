@@ -88,14 +88,22 @@
 </template>
 
 <script>
-    import InlineSiteSearch from '../InlineSiteSearch/InlineSiteSearch.vue';
+    import bCollapse from 'bootstrap-vue/es/components/collapse/collapse';
+    import bBtnClose from 'bootstrap-vue/es/components/button/button-close';
+    import bModalDirective from 'bootstrap-vue/es/directives/modal/modal';
+    import InlineSiteSearch from '../InlineSiteSearch/InlineSiteSearch';
     import Modal from '../modal';
 
     export default {
         name: 'NavBar',
         components: {
             InlineSiteSearch,
-            Modal
+            Modal,
+            bCollapse,
+            bBtnClose
+        },
+        directives: {
+            'b-modal': bModalDirective
         },
         computed: {
             isLoggedIn() {

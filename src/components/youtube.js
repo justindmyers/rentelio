@@ -1,8 +1,12 @@
 import YouTubePlayer from 'youtube-player';
 import idMixin from 'bootstrap-vue/src/mixins/id';
+import bModal from 'bootstrap-vue/es/components/modal/modal';
 
 export default {
     mixins: [idMixin],
+    components: {
+        bModal
+    },
     render(h) {
         const youtubeContainerId = this.safeId();
 

@@ -2,7 +2,7 @@
     <div class="p-home">
         <Hero>
             <template slot="image">
-                <img src="assets/placeholder.gif" v-lazy-img="'/images/Rectangle.png'" alt="Hero image" />
+                <lazy-img placeholder="assets/placeholder.gif" src="/images/Rectangle.png" alt="Hero image" />
 
                 <span class="h-mask is-medium"></span>
             </template>
@@ -12,7 +12,7 @@
 
         <FiftyFiftyIcon background="linear-gradient(212.32deg, rgba(100,185,175,1) 0%, rgba(153,210,203,1) 100%)">
             <template slot="image">
-                <img src="assets/placeholder.gif" v-lazy-img="'/images/Phone-Tenant.png'" alt="" />
+                <lazy-img placeholder="assets/placeholder.gif" src="/images/Phone-Tenant.png"></lazy-img>
             </template>
 
             <h3>Tenants</h3>
@@ -21,7 +21,7 @@
 
         <FiftyFiftyIcon opposite background="#fff" font-color="#333" end>
             <template slot="image">
-                <img src="assets/placeholder.gif" v-lazy-img="'/images/Phone-Landlord.png'" alt="" />
+                <lazy-img placeholder="assets/placeholder.gif" src="/images/Phone-Landlord.png"></lazy-img>
             </template>
 
             <h3>Landlords</h3>
@@ -65,6 +65,7 @@
     import TextPromo from '../components/TextPromo/TextPromo.vue';
     import VideoPromo from '../components/VideoPromo/VideoPromo.vue';
     import Tiles from '../components/Tiles/Tiles.vue';
+    import lazyImg from '@/components/lazyImg';
 
     export default {
         name: 'app',
@@ -77,7 +78,8 @@
             Testimonial,
             TextPromo,
             VideoPromo,
-            Tiles
+            Tiles,
+            lazyImg
         }
     };
 </script>

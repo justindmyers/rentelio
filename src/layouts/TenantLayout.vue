@@ -37,16 +37,18 @@
 </template>
 
 <script>
-    import Hero from '../components/Hero/Hero.vue';
-    import ProfileCard from '../components/ProfileCard/ProfileCard.vue';
+    import Hero from '@/components/Hero/Hero.vue';
+    import ProfileCard from '@/components/ProfileCard/ProfileCard.vue';
     import BackButton from '@/components/BackButton/BackButton.vue';
+    import bAlert from 'bootstrap-vue/es/components/alert/alert';
 
     export default {
         name: 'Dashboard',
         components: {
             Hero,
             ProfileCard,
-            BackButton
+            BackButton,
+            bAlert
         },
         data() {
             return {

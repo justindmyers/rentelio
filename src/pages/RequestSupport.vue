@@ -25,13 +25,13 @@
                     <div class="c-image-upload">
                         <img src="//placeimg.com/80/80/any" />
                         <span>image812341.jpg</span>
-                        <b-btn>x</b-btn>
+                        <button>x</button>
                     </div>
 
                     <div class="c-image-upload">
                         <img src="//placeimg.com/80/80/any" />
                         <span>image812341.jpg</span>
-                        <b-btn>x</b-btn>
+                        <button>x</button>
                     </div>
 
                     <div class="c-image-upload">
