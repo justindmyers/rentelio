@@ -1,5 +1,5 @@
 <template>
-    <button class="btn btn-primary btn-lg btn-block" :disabled="isProcessing">
+    <button class="btn btn-lg btn-block" :class="buttonClasses" :disabled="isProcessing">
         <transition name="fade" mode="out-in">
             <span v-if="isProcessing" :key="'form-submit-processing-1'">
                 <i class="fas fa-spinner fa-spin"></i><span class="sr-only">{{ loadingText }}</span>
@@ -21,6 +21,14 @@
             isProcessing: {
                 required: true,
                 default: false
+            },
+            type: {
+                default: 'primary'
+            }
+        },
+        computed: {
+            buttonClasses() {
+                return `btn-${this.type}`;
             }
         }
     }

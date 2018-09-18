@@ -1,7 +1,7 @@
 <template>
-    <div class="invalid-feedback" :id="id" aria-live="assertive">
+    <div class="invalid-feedback" :class="{ 'is-inverse': inverse }" :id="id" aria-live="assertive" v-show="hasErrors">
         <transition name="slide-down">
-            <div v-show="veeErrors.count()">{{ errorMessage }}</div>
+            <div>{{ errorMessage }}</div>
         </transition>
     </div>
 </template>
@@ -11,15 +11,17 @@
 
     export default {
         mixins: [smoothReflow],
+        inject: ['$validator'],
         props: {
             id: {
                 required: true
             },
-            veeErrors: {
-                required: true
-            },
             fieldName: {
                 required: true
+            },
+            inverse: {
+                type: Boolean,
+                default: false
             }
         },
         mounted() {
@@ -32,7 +34,10 @@
         },
         computed: {
             errorMessage() {
-                return this.veeErrors.first(this.fieldName);
+                return this.errors.first(this.fieldName);
+            },
+            hasErrors() {
+                return this.errors.has(this.fieldName);
             }
         }
     }

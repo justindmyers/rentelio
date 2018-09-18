@@ -1,7 +1,27 @@
 @import "~@/sass/base";
 
-.l-form-page__form {
-    padding: rem-calc(30) 0 rem-calc(25);
+.l-form-page {
+    $this: &;
+    position: relative;
+    color: $white;
+
+    &__form {
+        position: relative;
+        padding: rem-calc(30) rem-calc(10) 0;
+    }
+
+    &__background {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        clip-path: polygon(0 0, 100% 0%, 100% calc(100% - 45px), 0 calc(100% - 15px));
+        top: 0;
+        height: 100%;
+        background: linear-gradient(212.32deg, #4a9189 0%, lighten(#4a9189, 5%) 100%);
+    }
 }
 
 @include media-breakpoint-up(lg) {
@@ -11,11 +31,15 @@
         align-items: center;
 
         &__form {
+            padding: rem-calc(40) rem-calc(20) 0;
+        }
+
+        &__content {
             max-width: 500px;
+            min-width: 500px;
             margin: rem-calc(40) auto;
-            border: 1px solid #ddd;
-            padding: rem-calc(40) rem-calc(40) rem-calc(20);
             border-radius: 5px;
+            box-shadow: 0 0 20px 3px rgba(0, 0, 0, .1);
         }
     }
 }

@@ -1,57 +1,56 @@
 <template>
-    <div class="p-reset-password l-form-page">
-        <div class="container">
-            <div class="l-form-page__form">
-                <h1 class="h3 mb-4">Reset Password</h1>
+    <form-page title="Reset Password" page-class="p-reset-password" :messages="serverMessages">
+        <template>
+            <form id="register-form" @submit.prevent="processForm" novalidate>
+                <div class="form-group mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" 
+                            class="form-control" 
+                            id="password" 
+                            name="password" 
+                            placeholder="password" 
+                            :class="{ 'is-invalid' : errors.has('password') }"
+                            v-validate="'required'" 
+                            v-model="password"
+                            ref="password"
+                            aria-describedby="password-errors">
 
-                <form-messages :messages="serverMessages"></form-messages>
+                    <field-feedback inverse :id="'password-errors'" :vee-errors="errors" :field-name="'password'"></field-feedback>
+                </div>
 
-                <form id="register-form" @submit.prevent="processForm" novalidate>
-                    <div class="form-group mb-4">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" 
-                               class="form-control" 
-                               id="password" 
-                               name="password" 
-                               placeholder="password" 
-                               :class="{ 'is-invalid' : errors.has('password') }"
-                               v-validate="'required'" 
-                               v-model="password"
-                               ref="password"
-                               aria-describedby="password-errors">
+                <div class="form-group mb-4">
+                    <label for="confirm-password" class="form-label">Confirm Password</label>
 
-                        <field-feedback :id="'password-errors'" :vee-errors="errors" :field-name="'password'"></field-feedback>
-                    </div>
+                    <input type="password" 
+                            class="form-control" 
+                            id="confirm-password" 
+                            name="confirm-password" 
+                            placeholder="confirm password" 
+                            :class="{ 'is-invalid' : errors.has('confirm-password') }"
+                            v-validate="'required|confirmed:password'" 
+                            v-model="confirmPassword"
+                            aria-describedby="confirm-password-errors">
 
-                    <div class="form-group mb-4">
-                        <label for="confirm-password" class="form-label">Confirm Password</label>
-                        <input type="password" 
-                               class="form-control" 
-                               id="confirm-password" 
-                               name="confirm-password" 
-                               placeholder="confirm password" 
-                               :class="{ 'is-invalid' : errors.has('confirm-password') }"
-                               v-validate="'required|confirmed:password'" 
-                               v-model="confirmPassword"
-                               aria-describedby="confirm-password-errors">
+                    <field-feedback inverse :id="'confirm-password-errors'" :vee-errors="errors" :field-name="'confirm-password'"></field-feedback>
+                </div>
 
-                        <field-feedback :id="'confirm-password-errors'" :vee-errors="errors" :field-name="'confirm-password'"></field-feedback>
-                    </div>
-
-                    <div class="form-group">
-                        <form-submit :is-processing="isProcessing">Reset Password</form-submit>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                <div class="form-group">
+                    <form-submit :is-processing="isProcessing" type="secondary">Reset Password</form-submit>
+                </div>
+            </form>
+        </template>
+    </form-page>
 </template>
 
 <script>
+    import FormPage from '@/components/Forms/FormPage';
     import { formPageMixin, FeedbackMessage, FEEDBACK_MESSAGE_PRIORITY } from '@/mixins/formPage';
 
     export default {
         mixins: [formPageMixin],
+        components: {
+            FormPage
+        },
         data() {
             return {
                 password: null,

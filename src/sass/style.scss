@@ -67,3 +67,12 @@ body, .l-main {
 .invalid-feedback {
     display: block;
 }
+
+.invalid-feedback.is-inverse {
+    background: theme-color("danger");
+    color: $white;
+    margin: 0;
+    padding: rem-calc(3) rem-calc(6) rem-calc(2);
+    border-radius: 0 0 $border-radius $border-radius;
+    margin-top: -2px;
+}

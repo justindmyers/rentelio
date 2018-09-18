@@ -1,59 +1,61 @@
 <template>
-    <div class="p-login l-form-page">
-        <div class="container">
-            <div class="l-form-page__form">
-                <h1 class="h3 mb-4">Login</h1>
+    <form-page title="Login" page-class="p-login" :messages="serverMessages">
+        <template>
+            <form @submit.prevent="processForm" novalidate>
+                <div class="form-group mb-4">
+                    <label for="email" class="form-label">Email</label>
 
-                <form-messages :messages="serverMessages"></form-messages>
+                    <input type="email" 
+                        class="form-control" 
+                        id="email" 
+                        required 
+                        name="email" 
+                        placeholder="user@rentelio.com"
+                        :class="{ 'is-invalid' : errors.has('email') }"
+                        v-validate="'required|email'" 
+                        v-model="username"
+                        aria-describedby="email-errors">
 
-                <form id="login-form" @submit.prevent="processForm" novalidate>
-                    <div class="form-group mb-4">
-                        <label for="email" class="form-label">Email</label>
+                    <field-feedback inverse :id="'email-errors'" :field-name="'email'"></field-feedback>
+                </div>
 
-                        <input type="email" 
-                               class="form-control" 
-                               id="email" 
-                               required 
-                               name="email" 
-                               placeholder="user@rentelio.com"
-                               :class="{ 'is-invalid' : errors.has('email') }"
-                               v-validate="'required|email'" 
-                               v-model="username"
-                               aria-describedby="email-errors">
+                <div class="form-group mb-4">
+                    <label for="password" class="form-label">Password</label>
 
-                        <field-feedback :id="'email-errors'" :vee-errors="errors" :field-name="'email'"></field-feedback>
-                    </div>
+                    <input type="password" 
+                        class="form-control" 
+                        id="password" 
+                        name="password" 
+                        placeholder="password" 
+                        :class="{ 'is-invalid' : errors.has('password') }"
+                        v-validate="'required'" 
+                        v-model="password"
+                        aria-describedby="password-errors">
 
-                    <div class="form-group mb-4">
-                        <label for="password" class="form-label">Password</label>
+                    <field-feedback inverse :id="'password-errors'" :field-name="'password'"></field-feedback>
+                </div>
 
-                        <input type="password" 
-                               class="form-control" 
-                               id="password" 
-                               name="password" 
-                               placeholder="password" 
-                               :class="{ 'is-invalid' : errors.has('password') }"
-                               v-validate="'required'" 
-                               v-model="password"
-                               aria-describedby="password-errors">
+                <div class="form-group">
+                    <form-submit :is-processing="isProcessing" type="secondary">Login</form-submit>
+                </div>
+            </form>
+        </template>
 
-                        <field-feedback :id="'password-errors'" :vee-errors="errors" :field-name="'password'"></field-feedback>
-                    </div>
-
-                    <div class="form-group">
-                        <form-submit :is-processing="isProcessing">Login</form-submit>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+        <template slot="after">
+            <router-link :to="{ name: 'forgot-password' }" class="btn btn-block btn-link mb-3">Need help logging in?</router-link>
+        </template>
+    </form-page>
 </template>
 
 <script>
+    import FormPage from '@/components/Forms/FormPage';
     import { formPageMixin, FeedbackMessage, FEEDBACK_MESSAGE_PRIORITY } from '@/mixins/formPage';
 
     export default {
         mixins: [formPageMixin],
+        components: {
+            FormPage
+        },
         data() {
             return {
                 username: null,

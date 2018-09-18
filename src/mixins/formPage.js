@@ -1,10 +1,8 @@
-import FormMessages from '@/components/Forms/FormMessages';
 import FormSubmit from '@/components/Forms/FormSubmit';
 import FieldFeedback from '@/components/Forms/FieldFeedback';
 
 export const formPageMixin = {
     components: {
-        FormMessages,
         FormSubmit,
         FieldFeedback
     },
