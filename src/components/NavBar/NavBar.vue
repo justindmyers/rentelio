@@ -46,12 +46,14 @@
                                     <h2 class="sr-only">Search</h2>
                                 </template>
 
-                                <b-btn-close class="c-main-nav__close-button" @click="$root.$emit('bv::hide::modal', 'main-nav')">
+                                <b-btn-close class="c-main-nav__close-button" @click="closeModal()">
                                     <img src="@/assets/menu-close.svg" />
                                 </b-btn-close>
 
                                 <div v-if="isLoggedIn">
-                                    Logged In Menu Here
+                                    Logged In Menu 
+                                    
+                                    <button type="button" @click="logout">Logout</button>
                                 </div>
 
                                 <nav class="c-main-nav" v-if="!isLoggedIn">
@@ -94,6 +96,8 @@
     import InlineSiteSearch from '../InlineSiteSearch/InlineSiteSearch';
     import Modal from '../modal';
 
+    import { FEEDBACK_MESSAGE_PRIORITY, FeedbackMessage } from '@/mixins/formPage';
+
     export default {
         name: 'NavBar',
         components: {
@@ -104,6 +108,23 @@
         },
         directives: {
             'b-modal': bModalDirective
+        },
+        methods: {
+            async logout() {
+                await this.$store.dispatch('user/logout');
+
+                this.closeModal();
+
+                this.$router.push({ 
+                    name: 'login', 
+                    params: {
+                        message: new FeedbackMessage(FEEDBACK_MESSAGE_PRIORITY.INFO, 'You have been logged out successfully')
+                    }
+                });
+            },
+            closeModal() {
+                this.$root.$emit('bv::hide::modal', 'main-nav');
+            }
         },
         computed: {
             isLoggedIn() {

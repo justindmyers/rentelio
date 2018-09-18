@@ -10,6 +10,9 @@ export default {
     login(username, password) {
         return strapi.login(username, password);
     },
+    logout() {
+        return strapi.clearToken();
+    },
     register(username, password, firstName) {
         return strapi.register(username, username, password, firstName);
     },

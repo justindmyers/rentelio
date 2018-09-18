@@ -11,6 +11,10 @@ const mutations = {
         state.user = user;
         state.isAuthenticated = true;
     },
+    logout(state) {
+        state.user = {};
+        state.isAuthenticated = false;
+    },
     authChecked(state) {
         state.isPendingAuth = false;
     }
@@ -37,6 +41,19 @@ const actions = {
         commit('login', response);
 
         return response;
+    },
+    logout({ commit }) {
+        return new Promise(function(resolve, reject) {
+            try {
+                userApi.logout();
+
+                commit('logout');
+
+                resolve(true);
+            } catch(ex) {
+                reject(ex);
+            }
+        });
     },
     async register(context, data) {
         const response = await userApi.register(data.username, data.password);
