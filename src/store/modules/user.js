@@ -48,6 +48,11 @@ const actions = {
 
         return response;
     },
+    async resetPassword(context, data) {
+        const response = await userApi.resetPassword(data.code, data.password);
+
+        return response;
+    },
     async getCurrentUser({ commit }) {
         try {
             const response = await userApi.getCurrentUser();

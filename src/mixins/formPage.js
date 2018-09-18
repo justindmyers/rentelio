@@ -14,6 +14,11 @@ export const formPageMixin = {
             serverMessages: []
         }
     },
+    mounted() {
+        if(typeof this.$route.params.message !== 'undefined') {
+            this.serverMessages.push(this.$route.params.message);
+        }
+    },
     methods: {
         addMessages(messages) {
             if(messages.length) {

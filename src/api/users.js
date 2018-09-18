@@ -15,5 +15,8 @@ export default {
     },
     forgotPassword(email) {
         return strapi.forgotPassword(email, `${window.location.protocol}//${window.location.host}/reset-password` );
+    },
+    resetPassword(code, password) {
+        return strapi.resetPassword(code, password, password);
     }
 };
