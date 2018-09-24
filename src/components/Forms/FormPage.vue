@@ -3,19 +3,28 @@
         <div class="l-form-page__content">
             <div class="l-form-page__form">
                 <div class="container">
-                    <h1 class="h3 mb-4">{{ title }}</h1>
+                    <div class="l-form-page__header">
+                        <slot name="header">
+                            <h1 class="l-form-page__heading h3">{{ title }}</h1>
+                        </slot>
+                    </div>
+                    <div class="l-form-page__inner">
+                        <form-messages :messages="messages"></form-messages>
 
-                    <form-messages :messages="messages"></form-messages>
-
-                    <transition name="fade">
-                        <slot></slot>
-                    </transition>
+                        <transition name="fade">
+                            <slot></slot>
+                        </transition>
+                    </div>
                 </div>
 
-                <span class="l-form-page__background"></span>
+                <span class="l-form-page__background" v-if="showBackground">
+                    <slot name="background"></slot>
+                </span>
             </div>
 
-            <slot name="after"></slot>
+            <div class="l-form-page__footer">
+                <slot name="after"></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -37,12 +46,19 @@
             },
             title: {
                 type: String,
-                required: true
+                required: false
+            },
+            showBackground: {
+                type: Boolean,
+                default: true
             }
         },
         computed: {
             pageClasses() {
-                return `l-form-page ${this.pageClass}`;
+                return [
+                    `l-form-page ${this.pageClass}`,
+                    this.showBackground ? 'has-background' : ''
+                ];
             }
         }
     }

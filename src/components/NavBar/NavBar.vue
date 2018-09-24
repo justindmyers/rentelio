@@ -26,14 +26,6 @@
             <div class="l-header__utility">
                 <nav class="c-icon-nav">
                     <ul class="c-icon-nav__list">
-                        <li class="c-icon-nav__item" v-if="!isLoggedIn">
-                            <InlineSiteSearch form-action="#" input-name="query" :search-icon="require(`@/assets/search.svg`)" placeholder="Placeholder">
-                                <button class="c-icon-nav__link">
-                                    <img src="@/assets/search.svg" alt="Search">
-                                </button>
-                            </InlineSiteSearch>
-                        </li>
-
                         <li class="c-icon-nav__item d-block d-sm-none">
                             <button type="button" class="c-nav-toggle" v-b-modal="'main-nav'">
                                 <span class="sr-only">Toggle navigation</span>
@@ -43,7 +35,7 @@
 
                             <Modal id="main-nav" class="c-main-nav__modal" hide-footer lazy>
                                 <template slot="modal-header">
-                                    <h2 class="sr-only">Search</h2>
+                                    <h2 class="sr-only">Navigation</h2>
                                 </template>
 
                                 <b-btn-close class="c-main-nav__close-button" @click="closeModal()">

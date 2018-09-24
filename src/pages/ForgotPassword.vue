@@ -1,9 +1,14 @@
 <template>
-    <form-page title="Forgot Password" page-class="p-forgot-password" :messages="serverMessages">
+    <form-page page-class="p-forgot-password" class="l-form-page--alternate"  :show-background="false" :messages="serverMessages">
+        <template slot="header">
+            <h1 class="l-form-page__heading h2">Request a password link</h1>
+            <p class="l-form-page__sub-heading">Enter a valid email address to receive a link to reset your password.</p>
+        </template>
+
         <template>
             <form id="forgot-password-form" @submit.prevent="processForm" novalidate v-if="!isSuccessful">
                 <div class="form-group mb-4">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">Account Email Address</label>
 
                     <input type="email" 
                         class="form-control" 
@@ -16,12 +21,10 @@
                         v-model="username"
                         aria-describedby="email-errors">
 
-                    <field-feedback inverse :id="'email-errors'" :vee-errors="errors" :field-name="'email'"></field-feedback>
+                    <field-feedback :id="'email-errors'" :field-name="'email'"></field-feedback>
                 </div>
 
-                <div class="form-group">
-                    <form-submit :is-processing="isProcessing" type="secondary">Submit</form-submit>
-                </div>
+                <form-submit :is-processing="isProcessing">Submit</form-submit>
             </form>
         </template>
     </form-page>
@@ -30,12 +33,14 @@
 
 <script>
     import FormPage from '@/components/Forms/FormPage';
+    import lazyImg from '@/components/lazyImg';
     import { formPageMixin, FeedbackMessage, FEEDBACK_MESSAGE_PRIORITY } from '@/mixins/formPage';
 
     export default {
         mixins: [formPageMixin],
         components: {
-            FormPage
+            FormPage,
+            lazyImg
         },
         data() {
             return {

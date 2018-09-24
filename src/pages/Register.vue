@@ -36,7 +36,7 @@
                     <field-feedback inverse :id="'password-errors'" :field-name="'password'"></field-feedback>
                 </div>
 
-                <div class="form-group mb-4">
+                <div class="form-group mb-5">
                     <label for="confirm-password" class="form-label">Confirm Password</label>
                     <input type="password" 
                         class="form-control" 
@@ -52,9 +52,16 @@
                 </div>
 
                 <div class="form-group">
-                    <form-submit :is-processing="isProcessing" type="secondary">Register</form-submit>
+                    <form-submit :is-processing="isProcessing">Register</form-submit>
                 </div>
             </form>
+        </template>
+
+        <template slot="background">
+            <span class="h-placeholder-image h-placeholder-image--bg">
+                <lazy-img placeholder="images/placeholder.gif" src="//placeimg.com/600/600/arch" alt="Hero image" />
+                <span class="h-mask is-medium"></span>
+            </span>
         </template>
 
         <template slot="after">
@@ -65,12 +72,14 @@
 
 <script>
     import FormPage from '@/components/Forms/FormPage';
+    import lazyImg from '@/components/lazyImg';
     import { formPageMixin, FeedbackMessage, FEEDBACK_MESSAGE_PRIORITY } from '@/mixins/formPage';
 
     export default {
         mixins: [formPageMixin],
         components: {
-            FormPage
+            FormPage,
+            lazyImg
         },
         data() {
             return {

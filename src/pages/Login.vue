@@ -1,5 +1,5 @@
 <template>
-    <form-page title="Login" page-class="p-login" :messages="serverMessages">
+    <form-page title="Log in to your account" page-class="p-login" :messages="serverMessages">
         <template>
             <form @submit.prevent="processForm" novalidate>
                 <div class="form-group mb-4">
@@ -19,7 +19,7 @@
                     <field-feedback inverse :id="'email-errors'" :field-name="'email'"></field-feedback>
                 </div>
 
-                <div class="form-group mb-4">
+                <div class="form-group mb-5">
                     <label for="password" class="form-label">Password</label>
 
                     <input type="password" 
@@ -36,9 +36,16 @@
                 </div>
 
                 <div class="form-group">
-                    <form-submit :is-processing="isProcessing" type="secondary">Login</form-submit>
+                    <form-submit :is-processing="isProcessing">Log In</form-submit>
                 </div>
             </form>
+        </template>
+
+        <template slot="background">
+            <span class="h-placeholder-image h-placeholder-image--bg">
+                <lazy-img placeholder="images/placeholder.gif" src="//placeimg.com/600/600/arch" alt="Hero image" />
+                <span class="h-mask is-medium"></span>
+            </span>
         </template>
 
         <template slot="after">
@@ -49,12 +56,14 @@
 
 <script>
     import FormPage from '@/components/Forms/FormPage';
+    import lazyImg from '@/components/lazyImg';
     import { formPageMixin, FeedbackMessage, FEEDBACK_MESSAGE_PRIORITY } from '@/mixins/formPage';
 
     export default {
         mixins: [formPageMixin],
         components: {
-            FormPage
+            FormPage,
+            lazyImg
         },
         data() {
             return {

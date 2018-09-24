@@ -3,7 +3,15 @@
 .l-form-page {
     $this: &;
     position: relative;
-    color: $white;
+
+    &.has-background {
+        color: $white;
+    }
+
+    &__heading {
+        font-weight: 500;
+        margin: rem-calc(20) 0 rem-calc(40);
+    }
 
     &__form {
         position: relative;
@@ -20,7 +28,14 @@
         clip-path: polygon(0 0, 100% 0%, 100% calc(100% - 45px), 0 calc(100% - 15px));
         top: 0;
         height: 100%;
-        background: linear-gradient(212.32deg, #4a9189 0%, lighten(#4a9189, 5%) 100%);
+        background: lighten(#535D68, 20%);
+    }
+
+    &__submit {
+        width: 300px;
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
     }
 }
 
@@ -31,15 +46,56 @@
         align-items: center;
 
         &__form {
-            padding: rem-calc(40) rem-calc(20) 0;
+            padding: rem-calc(80) rem-calc(20) 0;
+        }
+
+        &__header, &__inner, &__footer {
+            margin: 0 auto;
+            max-width: 350px;
         }
 
         &__content {
-            max-width: 500px;
-            min-width: 500px;
-            margin: rem-calc(40) auto;
-            border-radius: 5px;
-            box-shadow: 0 0 20px 3px rgba(0, 0, 0, .1);
+            width: 100%;
+            margin: 0 auto rem-calc(60);
+        }
+
+        &__submit {
+            margin-top: rem-calc(60);
+        }
+    }
+
+    .l-form-page--alternate {
+        $this: '.l-form-page';
+
+        #{$this}__content {
+            margin-bottom: rem-calc(80);
+        }
+
+        #{$this}__header {
+            max-width: none;
+            text-align: center;
+        }
+
+        #{$this}__heading {
+            font-weight: 700;
+            margin-bottom: rem-calc(15);
+        }
+
+        #{$this}__sub-heading {
+            font-size: rem-calc(24);
+            margin-bottom: rem-calc(70);
+        }
+
+        #{$this}__form {
+            padding-top: rem-calc(70);
+        }
+
+        #{$this}__inner {
+            max-width: 550px;
+        }
+
+        #{$this}__submit {
+            margin-top: rem-calc(80);
         }
     }
 }

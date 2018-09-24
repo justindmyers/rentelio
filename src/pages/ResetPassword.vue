@@ -1,8 +1,13 @@
 <template>
-    <form-page title="Reset Password" page-class="p-reset-password" :messages="serverMessages">
+    <form-page page-class="p-reset-password" class="l-form-page--alternate" :show-background="false" :messages="serverMessages">
+        <template slot="header">
+            <h1 class="l-form-page__heading h2">Reset Your Password</h1>
+            <p class="l-form-page__sub-heading">Create a new password for your Rentelio account.</p>
+        </template>
+
         <template>
             <form id="register-form" @submit.prevent="processForm" novalidate>
-                <div class="form-group mb-4">
+                <div class="form-group mb-5">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" 
                             class="form-control" 
@@ -18,7 +23,7 @@
                     <field-feedback inverse :id="'password-errors'" :vee-errors="errors" :field-name="'password'"></field-feedback>
                 </div>
 
-                <div class="form-group mb-4">
+                <div class="form-group mb-5">
                     <label for="confirm-password" class="form-label">Confirm Password</label>
 
                     <input type="password" 
@@ -34,22 +39,29 @@
                     <field-feedback inverse :id="'confirm-password-errors'" :vee-errors="errors" :field-name="'confirm-password'"></field-feedback>
                 </div>
 
-                <div class="form-group">
-                    <form-submit :is-processing="isProcessing" type="secondary">Reset Password</form-submit>
-                </div>
+                <form-submit :is-processing="isProcessing">Reset Password</form-submit>
             </form>
+        </template>
+
+        <template slot="background">
+            <span class="h-placeholder-image h-placeholder-image--bg">
+                <lazy-img placeholder="images/placeholder.gif" src="//placeimg.com/600/600/arch" alt="Hero image" />
+                <span class="h-mask is-medium"></span>
+            </span>
         </template>
     </form-page>
 </template>
 
 <script>
     import FormPage from '@/components/Forms/FormPage';
+    import lazyImg from '@/components/lazyImg';
     import { formPageMixin, FeedbackMessage, FEEDBACK_MESSAGE_PRIORITY } from '@/mixins/formPage';
 
     export default {
         mixins: [formPageMixin],
         components: {
-            FormPage
+            FormPage,
+            lazyImg
         },
         data() {
             return {
