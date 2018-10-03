@@ -1,0 +1,18 @@
+[
+    {
+        "description": "Listing 1",
+        "address": "1234 Anywhere St.",
+        "address2": "Apt 105",
+        "city": "Anytown",
+        "state": "ZZ",
+        "zipCode": "99999",
+        "country": "USA",
+        "numberOfRooms": "1",
+        "numberOfBaths": "2",
+        "squareFootage": "300",
+        "type": "house",
+        "petsAllowed": false,
+        "amenities": "no amenities",
+        "mlsCode": "123456789"
+    }
+]
