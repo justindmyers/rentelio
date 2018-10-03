@@ -31,7 +31,7 @@
         background: lighten(#535D68, 20%);
     }
 
-    &__submit {
+    &__submit:not(.btn-block) {
         width: 300px;
         max-width: 100%;
         margin: 0 auto;

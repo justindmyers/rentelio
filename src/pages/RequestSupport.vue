@@ -3,44 +3,68 @@
         <div class="l-dashboard__section">
             <h1 class="h3 mb-4">Request Maintenance</h1>
 
-            <form>
+            <form-messages :messages="serverMessages"></form-messages>
+
+            <form @submit.prevent="processForm" novalidate v-if="!isSuccessful">
                 <div class="input-group mb-4">
                     <label for="title">Need Help With</label>
-                    <input id="title" class="form-control" name="title" placeholder="Leaving sink" />
+                    <input id="title" 
+                           class="form-control" 
+                           name="title" 
+                           type="text" 
+                           placeholder="Leaving sink" 
+                           :class="{ 'is-invalid' : errors.has('title') }"
+                           v-validate="'required'"
+                           required
+                           v-model="title"
+                           aria-describedby="title-errors" />
+
+                    <field-feedback :id="'title-errors'" :field-name="'title'"></field-feedback>
                 </div>
 
                 <div class="input-group mb-4">
                     <label for="date">Since when?</label>
-                    <input id="date" class="form-control" name="date" placeholder="ex: last week, 2 days ago, etc." />
+                    <input id="date" 
+                           class="form-control" 
+                           name="date" 
+                           type="date" 
+                           placeholder="ex: last week, 2 days ago, etc." 
+                           :class="{ 'is-invalid' : errors.has('date') }"
+                           v-validate="'required'"
+                           required
+                           v-model="date" 
+                           aria-describedby="date-errors" />
+
+                    <field-feedback :id="'date-errors'" :field-name="'date'"></field-feedback>
                 </div>
 
                 <div class="input-group mb-4">
                     <label for="message">Have more information?</label>
-                    <textarea id="message" class="form-control" name="message" placeholder="up to 280 characters" />
+                    <textarea id="message" 
+                              class="form-control" 
+                              name="message" 
+                              placeholder="up to 280 characters" 
+                              required
+                              :class="{ 'is-invalid' : errors.has('message') }"
+                              v-validate="'required'" 
+                              v-model="info" 
+                              aria-describedby="message-errors" />
+
+                    <field-feedback :id="'message-errors'" :field-name="'message'"></field-feedback>
                 </div>
 
                 <div class="input-group mb-4">
-                    <label for="message" class="mb-3">Have a photo? (optional)</label>
+                    <label class="mb-3">Have a photo? (optional)</label>
 
-                    <div class="c-image-upload">
-                        <img src="//placeimg.com/80/80/any" />
-                        <span>image812341.jpg</span>
-                        <button>x</button>
-                    </div>
+                    <transition-group name="fade" mode="out-in">
+                        <image-upload-preview v-for="(image, index) in images" :key="index" :src="image.data" :filename="image.filename" @removed="imageRemoved(image)"></image-upload-preview>
+                    </transition-group>
 
-                    <div class="c-image-upload">
-                        <img src="//placeimg.com/80/80/any" />
-                        <span>image812341.jpg</span>
-                        <button>x</button>
-                    </div>
-
-                    <div class="c-image-upload">
-                        Upload a photo
-                    </div>
+                    <image-upload-button @added="imageAdded" v-if="images.length < 3"></image-upload-button>
                 </div>
 
                 <div class="input-group">
-                    <button class="btn btn-lg btn-primary btn-block">Send Request</button>
+                    <form-submit class="btn-block" :is-processing="isProcessing">Submit</form-submit>
                 </div>
             </form>
         </div>
@@ -48,33 +72,58 @@
 </template>
 
 <script>
+    import FormMessages from '@/components/Forms/FormMessages';
+    import ImageUploadButton from '@/components/ImageUpload/ImageUploadButton';
+    import ImageUploadPreview from '@/components/ImageUpload/ImageUploadPreview';
+
+    import { formPageMixin, FeedbackMessage, FEEDBACK_MESSAGE_PRIORITY } from '@/mixins/formPage';
+    import { sleep } from '@/utils/utils';
+
     export default {
-        name: 'RequestSupport'
+        name: 'RequestSupport',
+        mixins: [formPageMixin],
+        inject: ['$validator'],
+        components: {
+            FormMessages,
+            ImageUploadButton,
+            ImageUploadPreview
+        },
+        data() {
+            return {
+                title: null,
+                date: null,
+                info: null,
+                isSuccessful: false,
+                images: []
+            }
+        },
+        methods: {
+            afterProcessForm() {
+                this.isSuccessful = false;
+
+                this.submit().catch(error => {
+                    setTimeout(() => {
+                        this.isProcessing = false;
+                        this.addMessages(new FeedbackMessage(FEEDBACK_MESSAGE_PRIORITY.DANGER, error.message || error));
+                    }, 500);
+                });
+            },
+            async submit() {
+                this.isProcessing = true;
+
+                await sleep(500);
+
+                this.addMessages(new FeedbackMessage(FEEDBACK_MESSAGE_PRIORITY.SUCCESS, 'Your request has been submitted.'));
+
+                this.isProcessing = false;
+                this.isSuccessful = true;
+            },
+            imageAdded(image) {
+                this.images.push(image);
+            },
+            imageRemoved(image) {
+                this.images.splice(this.images.indexOf(image), 1);
+            }
+        }
     };
 </script>
-
-<style lang="scss" scoped>
-    @import "~@/sass/base";
-
-    .c-image-upload {
-        display: flex;
-        align-items: center;
-        margin-bottom: rem-calc(10);
-
-        img {
-            margin-right: 15px;
-            border-radius: 4px;
-            border: 1px solid $gray-400;
-        }
-
-        span {
-            flex: 1;
-        }
-
-        .btn {
-            background: none;
-            border: none;
-            color: $black;
-        }
-    }
-</style>
