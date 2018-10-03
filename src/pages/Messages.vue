@@ -22,9 +22,6 @@
             messages() {
                 return this.$store.getters['messages/list'];
             }
-        },
-        mounted() {
-            this.$store.dispatch('messages/getAllMessages');
         }
     };
 </script>

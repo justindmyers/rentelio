@@ -24,10 +24,7 @@
             payments() {
                 return this.$store.getters['payments/list'];
             }
-        },
-        mounted() {
-            this.$store.dispatch('payments/getAllPayments');
-        },
+        }
     };
 </script>
 

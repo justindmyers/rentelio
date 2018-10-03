@@ -1,8 +1,8 @@
 <template>
     <div>
-        <Hero class="c-hero--dashboard" :class="{ 'c-hero--small': $route.path !== '/tenant/dashboard' }">
+        <Hero class="c-hero--dashboard c-hero--small" :class="{ 'c-hero--small': $route.path !== '/tenant/dashboard' }">
             <template slot="image">
-                <img src="assets/placeholder.gif" v-lazy-img="'/images/property.png'" alt="Hero image" />
+                <lazy-img placeholder="images/placeholder.gif" src="/images/property.png" alt="Hero image" />
 
                 <span class="h-mask is-medium"></span>
             </template>
@@ -41,6 +41,10 @@
     import ProfileCard from '@/components/ProfileCard/ProfileCard.vue';
     import BackButton from '@/components/BackButton/BackButton.vue';
     import bAlert from 'bootstrap-vue/es/components/alert/alert';
+    import lazyImg from '@/components/lazyImg';
+
+    import store from '@/store';
+    import { mapActions } from 'vuex';
 
     export default {
         name: 'Dashboard',
@@ -48,14 +52,31 @@
             Hero,
             ProfileCard,
             BackButton,
-            bAlert
+            bAlert,
+            lazyImg
         },
         data() {
             return {
                 prevHeight: 0,
             };
         },
+        beforeRouteEnter (to, from, next) {
+            Promise.all([
+                store.dispatch('payments/getAllPayments'), 
+                store.dispatch('messages/getAllMessages'), 
+                store.dispatch('user/getListings'),
+                store.dispatch('user/getLeases')
+            ]).then(() => {
+                next();
+            });
+        },
         methods: {
+            ...mapActions({
+                getPayments: 'payments/getAllPayments',
+                getMessages: 'messages/getAllMessages',
+                getListings: 'user/getListings',
+                getLeases: 'user/getLeases'
+            }),
             beforeLeave(element) {
                 this.prevHeight = getComputedStyle(element).height;
             },

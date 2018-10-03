@@ -56,15 +56,15 @@
 </template>
 
 <script>
-    import NavBar from '../components/NavBar/NavBar.vue';
-    import Hero from '../components/Hero/Hero.vue';
-    import FiftyFiftyIcon from '../components/FiftyFiftyIcon/FiftyFiftyIcon.vue';
-    import FiftyFiftyImage from '../components/FiftyFiftyImage/FiftyFiftyImage.vue';
-    import Footer from '../components/Footer/Footer.vue';
-    import Testimonial from '../components/Testimonial/Testimonial.vue';
-    import TextPromo from '../components/TextPromo/TextPromo.vue';
-    import VideoPromo from '../components/VideoPromo/VideoPromo.vue';
-    import Tiles from '../components/Tiles/Tiles.vue';
+    import NavBar from '@/components/NavBar/NavBar.vue';
+    import Hero from '@/components/Hero/Hero.vue';
+    import FiftyFiftyIcon from '@/components/FiftyFiftyIcon/FiftyFiftyIcon.vue';
+    import FiftyFiftyImage from '@/components/FiftyFiftyImage/FiftyFiftyImage.vue';
+    import Footer from '@/components/Footer/Footer.vue';
+    import Testimonial from '@/components/Testimonial/Testimonial.vue';
+    import TextPromo from '@/components/TextPromo/TextPromo.vue';
+    import VideoPromo from '@/components/VideoPromo/VideoPromo.vue';
+    import Tiles from '@/components/Tiles/Tiles.vue';
     import lazyImg from '@/components/lazyImg';
 
     export default {

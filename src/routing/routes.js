@@ -1,25 +1,34 @@
-import Home from '@/pages/Home.vue';
-import About from '@/pages/About.vue';
-import Info from '@/pages/Info.vue';
-import Messages from '@/pages/Messages.vue';
+// Layouts
+import TenantLayout from '@/layouts/TenantLayout.vue';
+import LandlordLayout from '@/layouts/LandlordLayout.vue';
+
+// Marketing Pages
+import Home from '@/pages/marketing/Home.vue';
+import About from '@/pages/marketing/About.vue';
+import Info from '@/pages/marketing/Info.vue';
+
+// Auth Pages
+import Login from '@/pages/auth/Login.vue';
+import Register from '@/pages/auth/Register.vue';
+import ResetPassword from '@/pages/auth/ResetPassword.vue';
+import ForgotPassword from '@/pages/auth/ForgotPassword.vue';
+import ConfirmAccount from '@/pages/auth/ConfirmAccount.vue';
+
+// Static Pages
+import SomethingWrong from '@/pages/static/SomethingWrong.vue';
+import Page404 from '@/pages/static/404.vue';
+import Unauthorized from '@/pages/static/Unauthorized.vue';
+
+// App Pages
+import DashboardHome from '@/pages/DashboardHome.vue';
 import MessageDetail from '@/pages/MessageDetail.vue';
+import Messages from '@/pages/Messages.vue';
 import Payments from '@/pages/Payments.vue';
 import PaymentDetail from '@/pages/PaymentDetail.vue';
 import PropertyDetail from '@/pages/PropertyDetail.vue';
 import RequestSupport from '@/pages/RequestSupport.vue';
 import SchedulePayment from '@/pages/SchedulePayment.vue';
 import UserProfile from '@/pages/UserProfile.vue';
-import DashboardHome from '@/pages/DashboardHome.vue';
-import Login from '@/pages/Login.vue';
-import Register from '@/pages/Register.vue';
-import ResetPassword from '@/pages/ResetPassword.vue';
-import ForgotPassword from '@/pages/ForgotPassword.vue';
-import Unauthorized from '@/pages/Unauthorized.vue';
-import ConfirmAccount from '@/pages/ConfirmAccount.vue';
-import SomethingWrong from '@/pages/SomethingWrong.vue';
-
-import TenantLayout from '@/layouts/TenantLayout.vue';
-import LandlordLayout from '@/layouts/LandlordLayout.vue';
 
 export default [
     {
@@ -111,6 +120,12 @@ export default [
         },
         children: [
             {
+                path: '',
+                redirect: {
+                    name: 'tenant-dashboard'
+                }
+            },
+            {
                 path: 'dashboard',
                 name: 'tenant-dashboard',
                 component: DashboardHome
@@ -158,5 +173,9 @@ export default [
                 props: true
             }
         ]
+    },
+    { 
+        path: '*', 
+        component: Page404
     }
 ];

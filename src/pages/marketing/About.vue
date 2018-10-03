@@ -31,12 +31,12 @@
 
 <script>
     import lazyImg from '@/components/lazyImg';
-    import Hero from '../components/Hero/Hero.vue';
-    import FiftyFiftyImage from '../components/FiftyFiftyImage/FiftyFiftyImage.vue';
-    import Testimonial from '../components/Testimonial/Testimonial.vue';
-    import TextPromo from '../components/TextPromo/TextPromo.vue';
-    import VideoPromo from '../components/VideoPromo/VideoPromo.vue';
-    import Tiles from '../components/Tiles/Tiles.vue';
+    import Hero from '@/components/Hero/Hero.vue';
+    import FiftyFiftyImage from '@/components/FiftyFiftyImage/FiftyFiftyImage.vue';
+    import Testimonial from '@/components/Testimonial/Testimonial.vue';
+    import TextPromo from '@/components/TextPromo/TextPromo.vue';
+    import VideoPromo from '@/components/VideoPromo/VideoPromo.vue';
+    import Tiles from '@/components/Tiles/Tiles.vue';
 
     export default {
         name: 'about',

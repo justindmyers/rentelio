@@ -1,40 +1,57 @@
 <template>
     <div class="p-property container">
         <div class="l-dashboard__section">
-            <h1 class="h3">592 Highland Avenue</h1>
-            <p>Los Angeles, CA 90019</p>
+            <h1 class="h3">{{ address }}</h1>
+            <p>{{ address2 }}</p>
         </div>
 
         <div class="l-dashboard__section">
             <h2 class="h4 mb-3">Rental Information</h2>
 
-            <dl>
-                <dt>Term</dt>
-                <dd>Annual</dd>
-                
-                <dt>Move In</dt>
-                <dd>3/15/2018</dd>
-                
-                <dt>Rate</dt>
-                <dd>$3015</dd>
-            </dl>
+            <div class="p-property__rental-info">
+                <dl>
+                    <dt>Term</dt>
+                    <dd>{{ lease.term }}</dd>
+                    
+                    <dt>Lease Start</dt>
+                    <dd>{{ lease.startDate }}</dd>
+                    
+                    <dt>Lease End</dt>
+                    <dd>{{ lease.endDate }} </dd>
+
+                    <dt>Rate</dt>
+                    <dd>{{ lease.rate }}</dd>
+                </dl>
+            </div>
         </div>
 
         <div class="l-dashboard__section">
             <h2 class="h4 mb-3">Included Amenities</h2>
 
-            <ul>
-                <li>Water &amp; Gas</li>
-                <li>Cable + Internet</li>
-                <li>Trash</li>
-            </ul>
+            <div class="p-property__amenities">
+                {{ listing.amenities }}
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
+
     export default {
-        name: 'PropertyDetail'
+        name: 'PropertyDetail',
+        computed: {
+            ...mapGetters({
+                lease: 'user/lease',
+                listing: 'user/listing'
+            }),
+            address() {
+                return this.listing.formattedAddress();
+            },
+            address2() {
+                return this.listing.formattedAddress2();
+            }
+        }
     };
 </script>
 

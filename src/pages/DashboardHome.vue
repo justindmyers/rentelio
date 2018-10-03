@@ -1,8 +1,8 @@
 <template>
     <div class="p-dashboard container">
         <div class="l-dashboard__section">
-            <h1 class="h3">592 Highland Avenue</h1>
-            <p>Los Angeles, CA 90019</p>
+            <h1 class="h3">{{ address }}</h1>
+            <p>{{ address2 }}</p>
         </div>
 
         <div class="l-dashboard__section">
@@ -50,6 +50,8 @@
     import Listing from '../components/Listing/Listing.vue';
     import IconNavItem from '../components/IconNav/IconNavItem.vue';
 
+    import { mapGetters } from 'vuex';
+
     export default {
         name: 'DashboardHome',
         components: {
@@ -58,16 +60,18 @@
             IconNavItem
         },
         computed: {
-            payments() {
-                return this.$store.getters['payments/list'];
+            ...mapGetters({
+                payments: 'payments/list',
+                messages: 'messages/list',
+                lease: 'user/lease',
+                listing: 'user/listing'
+            }),
+            address() {
+                return `${this.listing.address}, ${this.listing.address2}`;
             },
-            messages() {
-                return this.$store.getters['messages/list'];
+            address2() {
+                return `${this.listing.city}, ${this.listing.state} ${this.listing.zipCode}`;
             }
-        },
-        mounted() {
-            this.$store.dispatch('payments/getAllPayments');
-            this.$store.dispatch('messages/getAllMessages');
         }
     };
 </script>
