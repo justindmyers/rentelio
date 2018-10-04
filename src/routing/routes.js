@@ -20,7 +20,6 @@ import Page404 from '@/pages/static/404.vue';
 import Unauthorized from '@/pages/static/Unauthorized.vue';
 
 // App Pages
-import DashboardHome from '@/pages/DashboardHome.vue';
 import MessageDetail from '@/pages/MessageDetail.vue';
 import Messages from '@/pages/Messages.vue';
 import Payments from '@/pages/Payments.vue';
@@ -29,6 +28,14 @@ import PropertyDetail from '@/pages/PropertyDetail.vue';
 import RequestSupport from '@/pages/RequestSupport.vue';
 import SchedulePayment from '@/pages/SchedulePayment.vue';
 import UserProfile from '@/pages/UserProfile.vue';
+
+// Tenant Page
+import TenantDashboard from '@/pages/tenant/Dashboard.vue';
+import MaintenanceRequest from '@/pages/tenant/MaintenanceRequest.vue';
+import MaintenanceRequestDetail from '@/pages/tenant/MaintenanceRequestDetail.vue';
+
+// Landlord Pages
+import LandlordDashboard from '@/pages/landlord/Dashboard';
 
 export default [
     {
@@ -94,6 +101,13 @@ export default [
         name: 'something-wrong'
     },
     {
+        path: '/dashboard',
+        name: 'dashboard',
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/landlord',
         component: LandlordLayout,
         meta: {
@@ -103,7 +117,14 @@ export default [
         children: [
             {
                 path: '',
-                component: DashboardHome
+                redirect: {
+                    name: 'landlord-dashboard'
+                }
+            },
+            {
+                path: 'dashboard',
+                name: 'landlord-dashboard',
+                component: LandlordDashboard
             },
             {
                 path: 'profile',
@@ -128,7 +149,7 @@ export default [
             {
                 path: 'dashboard',
                 name: 'tenant-dashboard',
-                component: DashboardHome
+                component: TenantDashboard
             },
             {
                 path: 'property-detail',
@@ -170,6 +191,17 @@ export default [
                 path: 'payments/:id',
                 name: 'tenant-payment-detail',
                 component: PaymentDetail,
+                props: true
+            },
+            {
+                path: 'maintenance-request',
+                name: 'tenant-maintenance',
+                component: MaintenanceRequest
+            },
+            {
+                path: 'maintenance-request/:id',
+                name: 'tenant-maintenance-detail',
+                component: MaintenanceRequestDetail,
                 props: true
             }
         ]

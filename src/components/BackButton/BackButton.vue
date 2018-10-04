@@ -5,11 +5,19 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
+
     export default {
+        name: 'BackButton',
         methods: {
             goBack() {
-                this.$router.go(-1);
+                this.previousRoute ? this.$router.back() : this.$router.push({ name: 'dashboard' });
             }
+        },
+        computed: {
+            ...mapGetters({
+                previousRoute: 'user/previousRoute'
+            })
         }
     };
 </script>
@@ -31,4 +39,3 @@
         }
     }
 </style>
-

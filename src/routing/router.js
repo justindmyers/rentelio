@@ -3,6 +3,10 @@ import store from '../store';
 export function beforeEach(to, from, next) {
     const isPendingAuth = store.getters['user/isPendingAuth'];
 
+    if(from.fullPath !== '/') {
+        store.commit('user/setPreviousRoute', from);
+    }
+
     if(isPendingAuth) {
         // wait until not pending then run
         const interval = setInterval(() => {
@@ -27,6 +31,8 @@ export function beforeEach(to, from, next) {
                 next({ name: 'unauthorized' });
             } else if (to.matched.some(record => record.meta.isTenant) && !user.isTenant) {
                 next({ name: 'unauthorized' });
+            } else if (to.fullPath === '/dashboard') {
+                next({ name: dashboardRoute });
             } else {
                 next();
             }
