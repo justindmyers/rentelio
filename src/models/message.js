@@ -1,36 +1,32 @@
-/**
- * Message Model 
- * Derived from: https://schema.org/Message
- * 
- * Schema:
- *   id: String
- *   dateSent: Date
- *   dateRead: Date
- *   recepient: Relation
- *   sender: Relation
- *   title: String
- *   text - String
- */
+import { extendModel } from '@/utils/utils';
+import dayjs from 'dayjs';
 
-const Message = (function createMessageFactory() {
-    let messagePrototype = {
+const MessageModel = (function createMessageFactory() {
+    const modelPrototype = {
         id: null,
         title: null,
+        text: null,
         dateSent: null,
         dateRead: null,
         recepient: null,
         sender: null,
-        isViewModel: true
+        formattedDate: (date) => {
+            return dayjs(date).format('MMM DD, YYYY')
+        },
+        toViewModel: function() {
+            return Object.freeze({
+                id: this.id,
+                title: this.title,
+                text: this.text,
+                dateSent: this.formattedDate(this.dateSent),
+                dateRead: this.formattedDate(this.dateRead),
+                recipient: this.recipient.email, // transform to User object if needed
+                sender: this.sender.email, // transform to User object if needed
+            });
+        }
     };
 
-    return function(message) {
-        let newMessage = Object.create(messagePrototype);
-        Object.assign(newMessage, message);
-
-        return newMessage;
-    };
+    return model => extendModel(model, modelPrototype);
 })();
 
-export default Message;
-
-//  let todo = Todo({id : 1, title: "This is a title", userName: "Cristi", completed: false });
+export default MessageModel;

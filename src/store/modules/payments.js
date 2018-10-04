@@ -1,42 +1,25 @@
 import paymentApi from '../../api/payments';
-import dayjs from 'dayjs';
+import Payment from '@/models/payment';
+import { pushTo, replaceRecordInList, clear, findByKey } from '@/utils/vuex';
 
-export const state = () => ({
+const state = () => ({
     list: []
 });
 
-export const mutations = {
-    add(state, payment) {
-        state.list.push(payment);
-    },
-    update(state, payment) {
-        const index = state.list.indexOf(item => item.id === payment.id);
-
-        if(index) {
-            state.list.splice(index, 1, payment);
-        } else {
-            state.list.push(payment);
-        }
-    },
-    emptyList(state) {
-        state.list = [];
-    }
+const mutations = {
+    add: pushTo('list', Payment),
+    update: replaceRecordInList('list', Payment),
+    empty: clear('list')
 };
 
-export const getters = {
-    list: state => {
-        return state.list.map(toViewModel);
-    },
-    getPaymentById: state => id => {
-        return state.list.filter(item => item.id === id)
-                         .map(toViewModel)
-                         .pop();
-    }
+const getters = {
+    list: state => state.list.map(payment => payment.toViewModel()),
+    getPaymentById: findByKey('list', 'id', payment => payment.toViewModel())
 };
 
-export const actions = {
+const actions = {
     async getAllPayments({ commit }) {
-        commit('emptyList');
+        commit('empty');
 
         const response = await paymentApi.get();
 
@@ -55,16 +38,6 @@ export const actions = {
         });
     }
 };
-
-function toViewModel(payment) {
-    return Object.freeze({
-        id: payment.id,
-        description: payment.description,
-        amount: payment.amount,
-        paymentDate: dayjs(payment.paymentDate).format('MMM DD, YYYY'),
-        status: payment.status
-    });
-}
 
 export default {
     namespaced: true,

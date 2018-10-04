@@ -10,8 +10,10 @@ const state = () => ({
     user: {},
     lease: {},
     listing: {},
+    alerts: {},
     isAuthenticated: false,
-    isPendingAuth: true
+    isPendingAuth: true,
+    previousRoute: null
 });
 
 const mutations = {
@@ -19,6 +21,7 @@ const mutations = {
     setAuthenticated: set('isAuthenticated'),
     setListing: set('listing'),
     setLease: set('lease'),
+    setPreviousRoute: set('previousRoute'),
     authChecked(state) {
         state.isPendingAuth = false;
     }
@@ -30,7 +33,8 @@ const getters = {
     lease: state => LeaseViewModel(state.lease),
     listing: state => ListingViewModel(state.listing),
     isLoggedIn: get('isAuthenticated'),
-    isPendingAuth: get('isPendingAuth')
+    isPendingAuth: get('isPendingAuth'),
+    previousRoute: get('previousRoute')
 };
 
 // Use Message data object here?
@@ -103,7 +107,6 @@ const actions = {
         }
     }
 };
-
 
 export default {
     namespaced: true,

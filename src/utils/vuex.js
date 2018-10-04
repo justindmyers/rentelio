@@ -10,20 +10,23 @@ export const get = key => state => state[key];
 // Find an object in a list of objects by matching a property value.
 // userById: findByKey('users', 'id')
 // getters.userById('123')
-export function findByKey(prop, targetKey) {
-    return state => val => state[prop].find(x => x[targetKey] === val);
+export function findByKey(prop, targetKey, callback) {
+    return state => val => state[prop].filter(x => x[targetKey] === val)
+                         .map(val => callback ? callback(val) : val)
+                         .pop();
 }
 
 // Filter a list of objects by matching a property value.
 // usersByStatus: filterByKey('users', 'status')
 // getters.usersByStatus('INACTIVE')
-export function filterByKey(prop, targetKey) {
+export function filterByKey(prop, targetKey, callback) {
     return state => vals => {
         if (!Array.isArray(vals)) {
             vals = [vals];
         }
 
-        return state[prop].filter(x => vals.indexOf(x[targetKey]) > -1);
+        return state[prop].filter(x => vals.indexOf(x[targetKey]) > -1)
+                          .map(val => callback ? callback(val) : val);
     }
 }
 
@@ -44,6 +47,8 @@ export function mapKeys(prop, targetKey) {
 export const set = key => (state, val) => {
     state[key] = val;
 }
+
+export const clear = key => state => state[key] = [];
 
 // Set a value at a path within state
 // Create objects and arrays as needed
@@ -75,9 +80,12 @@ export const pick = propMap => (state, data) => {
     });
 }
 
-// push an item onto a list
+// push an item onto a list, optional model
 // addItem: pushTo('items')
-export const pushTo = key => (state, val) => state[key].push(val);
+// addItem: pushTo('items', toViewModel)
+export const pushTo = (key, model = null) => (state, val) => {
+    state[key].push(model ? new model(val) : val);
+};
 
 // copy all key/values from data to state
 // useful for resetting state to default values
@@ -113,9 +121,9 @@ export const extendRecordInList = (key, idKey = 'id', valKey) => (state, data) =
 }
 
 // add or replace a record in a list
-export const replaceRecordInList = (key, idKey = 'id', valKey) => (state, data) => {
+export const replaceRecordInList = (key, model, idKey = 'id') => (state, data) => {
     const id = data[idKey];
-    const val = valKey ? data[valKey] : data;
+    const val = model ? new model(data) : data;
     const index = state[key].findIndex(x => x[idKey] === id);
 
     return index < 0 ?

@@ -1,43 +1,25 @@
 import messageApi from '../../api/messages';
-import dayjs from 'dayjs';
+import Message from '@/models/message';
+import { pushTo, replaceRecordInList, clear, findByKey } from '@/utils/vuex';
 
 const state = () => ({
     list: []
 });
 
 const mutations = {
-    add(state, message) {
-        state.list.push(message);
-    },
-    update(state, message) {
-        const messageItem = state.list.find(item => item.id === message.id);
-
-        if(typeof messageItem !== 'undefined') {
-            state.list.splice(state.list.indexOf(messageItem), 1, message);
-        } else {
-            state.list.push(message);
-        }
-    },
-    emptyList(state) {
-        state.list = [];
-    }
+    add: pushTo('list', Message),
+    update: replaceRecordInList('list', Message),
+    empty: clear('list')
 };
 
 const getters = {
-    list: state => {
-        return state.list.map(toViewModel);
-    },
-    getMessageById: state => id => {
-        return state.list.filter(item => item.id === id)
-                         .map(toViewModel)
-                         .pop();
-    }
+    list: state => state.list.map(message => message.toViewModel()),
+    getMessageById: findByKey('list', 'id', message => message.toViewModel())
 };
 
-// Use Message data object here?
 const actions = {
     async getAllMessages({ commit }) {
-        commit('emptyList');
+        commit('empty');
 
         const response = await messageApi.get();
 
@@ -56,16 +38,6 @@ const actions = {
         });
     }
 };
-
-function toViewModel(message) {
-    return Object.freeze({
-        id: message.id,
-        title: message.title,
-        text: message.text,
-        dateSent: dayjs(message.dateSent).format('MMM DD, YYYY'),
-        sender: message.sender.email
-    });
-}
 
 export default {
     namespaced: true,

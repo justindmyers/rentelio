@@ -32,17 +32,7 @@ const app = {
     onDeviceReady: function () {
         app.receivedEvent('deviceready');
 
-        new Vue({
-            router,
-            store,
-            el: '#app',
-            components: {
-                MainLayout
-            },
-            render: function(createElement) {
-                return createElement(MainLayout);
-            }
-        });
+        initVue();
     },
     receivedEvent: function (id) {
         var parentElement = document.getElementById(id);
@@ -60,6 +50,10 @@ const app = {
 if(isCordovaApp) {
     app.initialize();
 } else {
+    initVue();
+}
+
+function initVue() {
     new Vue({
         router,
         store,

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import messages from './modules/messages';
 import payments from './modules/payments';
 import user from './modules/user';
+import maintenanceRequest from './modules/maintenanceRequest';
 
 Vue.use(Vuex);
 
@@ -12,7 +13,8 @@ export default new Vuex.Store({
     modules: {
         messages,
         payments,
-        user
+        user,
+        maintenanceRequest
     },
     strict: debug
     // plugins: debug ? [createLogger()] : []

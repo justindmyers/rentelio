@@ -1,3 +1,5 @@
+import { extendModel } from '@/utils/utils';
+
 const ListingViewModel = (function createListingFactory() {
     const modelPrototype = {
         id: null,
@@ -22,12 +24,7 @@ const ListingViewModel = (function createListingFactory() {
         }
     };
 
-    return function(model) {
-        let extendedModel = Object.create(modelPrototype);
-        Object.assign(extendedModel, model);
-
-        return extendedModel;
-    };
+    return model => extendModel(model, modelPrototype);
 })();
 
 export default ListingViewModel;

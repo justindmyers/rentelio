@@ -1,3 +1,5 @@
+import { extendModel } from '@/utils/utils';
+
 const Lease = (function createLeaseFactory() {
     const modelPrototype = {
         id: null,
@@ -13,12 +15,7 @@ const Lease = (function createLeaseFactory() {
         listing: null
     };
 
-    return function(model) {
-        let extendedModel = Object.create(modelPrototype);
-        Object.assign(extendedModel, model);
-
-        return extendedModel;
-    };
+    return model => extendModel(model, modelPrototype);
 })();
 
 export default Lease;
