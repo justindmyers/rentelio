@@ -1,0 +1,13 @@
+[
+    {
+        "id": "",
+        "description": "",
+        "sender": "",
+        "recipient": "",
+        "amount": "",
+        "type": "DEBIT",
+        "paymentDate": "",
+        "status": "PENDING",
+        "confirmation": ""
+    }
+]

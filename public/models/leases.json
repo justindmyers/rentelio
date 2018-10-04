@@ -1,5 +1,6 @@
 [
     {
+        "id": "leaseId1",
         "tenants": ["5b873629498c235ddc443451"],
         "landlord": ["5b873629498c235ddc443451"],
         "realEstateAgent": "realEstateAgentId",

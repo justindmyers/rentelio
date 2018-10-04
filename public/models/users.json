@@ -1,0 +1,22 @@
+[
+    {
+        "id": "",
+        "username": "",
+        "email": "",
+        "password": "",
+        "confirmed": "",
+        "role": "",
+        "phone": "",
+        "blocked": "",
+        "firstName": "",
+        "lastName": "",
+        "isLandlord": "",
+        "isTenant": "",
+        "mailingAddress1": "",
+        "mailingAddress2": "",
+        "mailingCity": "",
+        "mailingState": "",
+        "mailingZipCode": "",
+        "mailingCountry": ""
+    }
+]
