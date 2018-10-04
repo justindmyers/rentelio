@@ -10,6 +10,10 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fa-regular';
 @import '~@fortawesome/fontawesome-free/scss/fa-solid';
 
+button:not(:disabled) {
+    cursor: pointer;
+}
+
 img {
     max-width: 100%;
 }

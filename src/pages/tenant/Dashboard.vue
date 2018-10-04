@@ -42,13 +42,17 @@
         <div class="l-dashboard__section">
             <Listing type="Payments" title-key="description" date-key="paymentDate" :list="payments" view-all-path="/tenant/payments" :show-view-all="true"></Listing>
         </div>
+
+        <div class="l-dashboard__section">
+            <Listing type="Maintenance Requests" title-key="title" date-key="date" :list="maintenanceRequests" view-all-path="/tenant/maintenance-request" :show-view-all="true"></Listing>
+        </div>
     </div>
 </template>
 
 <script>
-    import IconNav from '../components/IconNav/IconNav.vue';
-    import Listing from '../components/Listing/Listing.vue';
-    import IconNavItem from '../components/IconNav/IconNavItem.vue';
+    import IconNav from '@/components/IconNav/IconNav.vue';
+    import Listing from '@/components/Listing/Listing.vue';
+    import IconNavItem from '@/components/IconNav/IconNavItem.vue';
 
     import { mapGetters } from 'vuex';
 
@@ -64,7 +68,8 @@
                 payments: 'payments/list',
                 messages: 'messages/list',
                 lease: 'user/lease',
-                listing: 'user/listing'
+                listing: 'user/listing',
+                maintenanceRequests: 'maintenanceRequest/list'
             }),
             address() {
                 return `${this.listing.address}, ${this.listing.address2}`;

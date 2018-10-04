@@ -3,7 +3,7 @@
         <div class="l-dashboard">
             <div class="container">
                 <div class="l-dashboard__section">
-                    <Listing type="Payments" title-key="description" date-key="paymentDate" :list="payments"></Listing>
+                    <Listing type="Payments" title-key="description" date-key="paymentDate" :list="payments" view-all-path="payments"></Listing>
                 </div>
             </div>
         </div>
@@ -27,7 +27,3 @@
         }
     };
 </script>
-
-<style lang="scss" scoped>
-    @import "~@/sass/base";
-</style>

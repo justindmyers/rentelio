@@ -1,5 +1,5 @@
 <template>
-    <button class="l-form-page__submit btn btn-lg" :class="buttonClasses" :disabled="isProcessing">
+    <button class="l-form-page__submit btn btn-lg" :class="buttonClasses" :disabled="isProcessing || isInvalid">
         <transition name="fade" mode="out-in">
             <span v-if="isProcessing" :key="'form-submit-processing-1'">
                 <i class="fas fa-spinner fa-spin"></i><span class="sr-only">{{ loadingText }}</span>
@@ -20,6 +20,9 @@
             },
             isProcessing: {
                 required: true,
+                default: false
+            },
+            isInvalid: {
                 default: false
             },
             type: {

@@ -65,7 +65,8 @@
                 store.dispatch('payments/getAllPayments'), 
                 store.dispatch('messages/getAllMessages'), 
                 store.dispatch('user/getListings'),
-                store.dispatch('user/getLeases')
+                store.dispatch('user/getLeases'),
+                store.dispatch('maintenanceRequest/getAllRequests')
             ]).then(() => {
                 next();
             });

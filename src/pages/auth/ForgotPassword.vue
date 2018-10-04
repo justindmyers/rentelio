@@ -44,7 +44,6 @@
         },
         data() {
             return {
-                isSuccessful: false,
                 username: null
             };
         },

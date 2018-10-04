@@ -1,13 +1,16 @@
 import FormSubmit from '@/components/Forms/FormSubmit';
 import FieldFeedback from '@/components/Forms/FieldFeedback';
+import FormMessages from '@/components/Forms/FormMessages';
 
 export const formPageMixin = {
     components: {
         FormSubmit,
-        FieldFeedback
+        FieldFeedback,
+        FormMessages
     },
     data() {
         return {
+            isSuccessful: false,
             isProcessing: false,
             serverMessages: []
         }

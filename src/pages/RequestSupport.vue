@@ -12,7 +12,7 @@
                            class="form-control" 
                            name="title" 
                            type="text" 
-                           placeholder="Leaving sink" 
+                           placeholder="Leaking sink" 
                            :class="{ 'is-invalid' : errors.has('title') }"
                            v-validate="'required'"
                            required
@@ -33,6 +33,8 @@
                            v-validate="'required'"
                            required
                            v-model="date" 
+                           :min="minDate" 
+                           :max="maxDate"
                            aria-describedby="date-errors" />
 
                     <field-feedback :id="'date-errors'" :field-name="'date'"></field-feedback>
@@ -77,12 +79,12 @@
     import ImageUploadPreview from '@/components/ImageUpload/ImageUploadPreview';
 
     import { formPageMixin, FeedbackMessage, FEEDBACK_MESSAGE_PRIORITY } from '@/mixins/formPage';
-    import { sleep } from '@/utils/utils';
+    import { mapActions } from 'vuex';
+    import dayjs from 'dayjs';
 
     export default {
         name: 'RequestSupport',
         mixins: [formPageMixin],
-        inject: ['$validator'],
         components: {
             FormMessages,
             ImageUploadButton,
@@ -93,25 +95,32 @@
                 title: null,
                 date: null,
                 info: null,
-                isSuccessful: false,
-                images: []
+                images: [],
+                minDate: dayjs().subtract(2, 'month').format('YYYY-MM-DD'),
+                maxDate: dayjs().format('YYYY-MM-DD')
             }
         },
         methods: {
+            ...mapActions({
+                createRequest: 'maintenanceRequest/createRequest',
+            }),
             afterProcessForm() {
                 this.isSuccessful = false;
 
                 this.submit().catch(error => {
-                    setTimeout(() => {
-                        this.isProcessing = false;
-                        this.addMessages(new FeedbackMessage(FEEDBACK_MESSAGE_PRIORITY.DANGER, error.message || error));
-                    }, 500);
+                    this.isProcessing = false;
+                    this.addMessages(new FeedbackMessage(FEEDBACK_MESSAGE_PRIORITY.DANGER, error.message || error));
                 });
             },
             async submit() {
                 this.isProcessing = true;
 
-                await sleep(500);
+                await this.createRequest({
+                    title: this.title,
+                    date: this.date,
+                    description: this.info,
+                    images: this.images
+                });
 
                 this.addMessages(new FeedbackMessage(FEEDBACK_MESSAGE_PRIORITY.SUCCESS, 'Your request has been submitted.'));
 
