@@ -12,10 +12,10 @@ export default class Payment extends Model {
             amount: this.attr(''),
             paymentDate: this.attr(''),
             status: this.attr(''),
-            sender:  this.attr(null),
-            senderEntity: this.belongsTo(User, 'sender'),
-            recipient: this.attr(null),
-            recipientEntity: this.belongsTo(User, 'recipient')
+            sender_id:  this.attr(null),
+            sender: this.belongsTo(User, 'sender_id'),
+            recipient_id: this.attr(null),
+            recipient: this.belongsTo(User, 'recipient_id')
         };
     }
 
@@ -26,8 +26,8 @@ export default class Payment extends Model {
             amount: this.amount,
             paymentDate: formatShortDate(this.paymentDate),
             status: this.status,
-            sender: this.senderEntity.email,
-            recipient: this.recipientEntity.email
+            sender: this.sender.email,
+            recipient: this.recipient.email
         });
     }
 }
