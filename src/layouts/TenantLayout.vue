@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="l-tenant">
         <Hero class="c-hero--dashboard c-hero--small" :class="{ 'c-hero--small': $route.path !== '/tenant/dashboard' }">
             <template slot="image">
                 <lazy-img placeholder="images/placeholder.gif" src="/images/property.png" alt="Hero image" />
@@ -26,11 +26,11 @@
                     <img src="//placehold.it/100/100" />
                 </template>
 
-                <h3 class="mb-1">Trevor Smith</h3>
+                <h3 class="mb-1">{{ lease.landlord.firstName }} {{ lease.landlord.lastName }}</h3>
                 <p>Landlord</p>
 
-                <p class="mb-1">Mobile: <a href="tel:1-310-431-0012">1-310-231-0012</a></p>
-                <p class="mb-0">Email: <a href="mailto:tsmith@email.com">tsmith@email.com</a></p>
+                <p class="mb-1">Mobile: <a :href="`tel:${lease.landlord.phone}`">{{ lease.landlord.phone }}</a></p>
+                <p class="mb-0">Email: <a :href="`mailto:${lease.landlord.email}`">{{ lease.landlord.email }}</a></p>
             </ProfileCard>
         </div>
     </div>
@@ -44,7 +44,6 @@
     import lazyImg from '@/components/lazyImg';
 
     import store from '@/store';
-    import { mapActions } from 'vuex';
 
     export default {
         name: 'Dashboard',
@@ -62,22 +61,17 @@
         },
         beforeRouteEnter (to, from, next) {
             Promise.all([
-                store.dispatch('payments/getAllPayments'), 
-                store.dispatch('messages/getAllMessages'), 
-                store.dispatch('user/getListings'),
-                store.dispatch('user/getLeases'),
-                store.dispatch('maintenanceRequest/getAllRequests')
+                store.dispatch('entities/listing/fetch'),
+                store.dispatch('entities/lease/fetch'),
+                store.dispatch('entities/maintenanceRequest/fetch'),
+                store.dispatch('entities/payment/fetch'), 
+                store.dispatch('entities/message/fetch'), 
+                store.dispatch('entities/user/fetch')
             ]).then(() => {
                 next();
             });
         },
         methods: {
-            ...mapActions({
-                getPayments: 'payments/getAllPayments',
-                getMessages: 'messages/getAllMessages',
-                getListings: 'user/getListings',
-                getLeases: 'user/getLeases'
-            }),
             beforeLeave(element) {
                 this.prevHeight = getComputedStyle(element).height;
             },
@@ -92,6 +86,11 @@
             },
             afterEnter(element) {
                 element.style.height = 'auto';
+            }
+        },
+        computed: {
+            lease() {
+                return this.$store.getters['user/currentLease'];
             }
         }
     };

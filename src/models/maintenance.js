@@ -1,34 +1,35 @@
-import { extendModel } from '@/utils/utils';
-import dayjs from 'dayjs';
+import { Model } from '@vuex-orm/core';
+import User from './user';
+import { formatShortDate } from '@/utils/utils';
 
-const MaintenanceRequest = (function createMaintenanceFactory() {
-    const modelPrototype = {
-        id: null,
-        tenant: null,
-        lease: null,
-        title: null,
-        description: null,
-        date: null,
-        status: null,
-        images: [],
-        formattedDate: (date) => {
-            return dayjs(date).format('MMM DD, YYYY')
-        },
-        toViewModel: function() {
-            return Object.freeze({
-                id: this.id,
-                tenant: this.tenant.email,
-                lease: this.lease,
-                title: this.title,
-                description: this.description,
-                date: this.formattedDate(this.date),
-                status: this.status,
-                images: this.images
-            });
-        }
-    };
+export default class MaintenanceRequest extends Model {
+    static entity = 'maintenanceRequest';
 
-    return model => extendModel(model, modelPrototype);
-})();
+    static fields() {
+        return {
+            id: this.attr(null),
+            tenant: this.attr(null),
+            tenantEntity: this.belongsTo(User, 'tenant'),
+            lease: this.attr(null),
+            //leaseEntity: this.belongsTo(Lease, 'lease'),
+            title: this.attr(''),
+            description:  this.attr(''),
+            date:  this.attr(''),
+            status: this.attr(''),
+            images: this.attr([])
+        };
+    }
 
-export default MaintenanceRequest;
+    get toViewModel() {
+        return Object.freeze({
+            id: this.id,
+            tenant: this.tenantEntity,
+            lease: this.lease,
+            title: this.title,
+            description: this.description,
+            date: formatShortDate(this.date),
+            status: this.status,
+            images: this.images
+        });
+    }
+}

@@ -27,7 +27,7 @@ export default {
                 date: new Date(request.date),
                 description: request.description,
                 status: "CREATED",
-                images: request.images
+                images: request.images.map(image => image.data)
             });
         });
     },

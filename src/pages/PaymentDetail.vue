@@ -21,11 +21,13 @@
         props: ['id'],
         computed: {
             message() {
-                return this.$store.getters['payments/getPaymentById'](this.id);
+                return this.$store.getters['entities/payment/query']()
+                                  .where('id', this.id)
+                                  .withAll()
+                                  .get()
+                                  .map(payment => payment.toViewModel)
+                                  .pop();
             }
-        },
-        mounted() {
-            this.$store.dispatch('payments/getPaymentById', this.id);
         }
     };
 </script>

@@ -20,7 +20,10 @@
         },
         computed: {
             messages() {
-                return this.$store.getters['messages/list'];
+                return this.$store.getters['entities/message/query']()
+                                  .withAll()
+                                  .get()
+                                  .map(message => message.toViewModel);
             }
         }
     };

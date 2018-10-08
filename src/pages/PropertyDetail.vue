@@ -36,20 +36,34 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
+    import { formattedAddress, formattedAddress2 } from '@/utils/utils';
 
     export default {
         name: 'PropertyDetail',
         computed: {
-            ...mapGetters({
-                lease: 'user/lease',
-                listing: 'user/listing'
-            }),
+            lease() {
+                const currentUser = this.$store.getters['user/currentUser'];
+
+                return this.$store.getters['entities/lease/query']()
+                                  .where('tenant', currentUser.id)
+                                  .withAll()
+                                  .get()
+                                  .map(lease => lease.toViewModel)
+                                  .pop();
+            },
+            listing() {
+                return this.$store.getters['entities/listing/query']()
+                                  .where('id', this.lease.listing)
+                                  .withAll()
+                                  .get()
+                                  .map(listing => listing.toViewModel)
+                                  .pop();
+            },
             address() {
-                return this.listing.formattedAddress();
+                return formattedAddress(this.listing.address, this.listing.address2);
             },
             address2() {
-                return this.listing.formattedAddress2();
+                return formattedAddress2(this.listing.city, this.listing.state, this.listing.zipCode);
             }
         }
     };

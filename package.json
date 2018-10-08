@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.1.0",
+    "@vuex-orm/core": "^0.26.4",
     "bootstrap-vue": "^2.0.0-rc.11",
     "braintree-web": "^3.34.1",
     "braintree-web-drop-in": "^1.11.0",

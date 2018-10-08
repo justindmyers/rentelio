@@ -25,6 +25,9 @@
                             </dd>
                         </dl>
                     </div>
+                    <div v-else>
+                        <p role="alert" class="alert alert-danger">Request not found</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,12 +44,12 @@
         },
         computed: {
             request() {
-                return this.$store.getters['maintenanceRequest/getRequestById'](this.id);
-            }
-        },
-        mounted() {
-            if(!this.request) {
-                this.$store.dispatch('maintenanceRequest/getRequestById', this.id);
+                return this.$store.getters['entities/maintenanceRequest/query']()
+                                  .where('id', this.id)
+                                  .withAll()
+                                  .get()
+                                  .map(message => message.toViewModel)
+                                  .pop();
             }
         }
     };

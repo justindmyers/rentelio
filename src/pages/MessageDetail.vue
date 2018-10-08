@@ -32,11 +32,13 @@
         props: ['id'],
         computed: {
             message() {
-                return this.$store.getters['messages/getMessageById'](this.id);
+                return this.$store.getters['entities/message/query']()
+                                  .where('id', this.id)
+                                  .withAll()
+                                  .get()
+                                  .map(message => message.toViewModel)
+                                  .pop();
             }
-        },
-        mounted() {
-            this.$store.dispatch('messages/getMessageById', this.id);
         }
     };
 </script>

@@ -22,7 +22,10 @@
         },
         computed: {
             payments() {
-                return this.$store.getters['payments/list'];
+                return this.$store.getters['entities/payment/query']()
+                                  .withAll()
+                                  .get()
+                                  .map(message => message.toViewModel);
             }
         }
     };

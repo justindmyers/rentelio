@@ -1,19 +1,128 @@
 [
     {
-        "id": "",
+        "id": "listing1",
         "description": "Listing 1",
-        "address": "1234 Anywhere St.",
-        "address2": "Apt 105",
-        "city": "Anytown",
-        "state": "ZZ",
-        "zipCode": "99999",
+        "address": "23 Canterbury St. ",
+        "address2": "",
+        "city": "North Royalton",
+        "state": "OH",
+        "zipCode": "44133",
+        "country": "US",
+        "numberOfRooms": "3",
+        "numberOfBaths": "2",
+        "squareFootage": "900",
+        "type": "house",
+        "petsAllowed": false,
+        "amenities": "no amenities",
+        "mlsCode": "mlsListing1",
+        "images": [
+            "//via.placeholder.com/800x800?text=Listing%201%20Image%201",
+            "//via.placeholder.com/800x800?text=Listing%201%20Image%202"
+        ]
+    },
+    {
+        "id": "listing2",
+        "description": "Listing 2",
+        "address": "9900 Tallwood St. ",
+        "address2": "#100",
+        "city": "Kokomo",
+        "state": "IN",
+        "zipCode": "46901",
+        "country": "USA",
+        "numberOfRooms": "2",
+        "numberOfBaths": "1",
+        "squareFootage": "600",
+        "type": "apartment",
+        "petsAllowed": false,
+        "amenities": "no amenities",
+        "mlsCode": "mlsListing2",
+        "images": [
+            "//via.placeholder.com/800x800?text=Listing%202%20Image%201",
+            "//via.placeholder.com/800x800?text=Listing%202%20Image%202"
+        ]
+    },
+    {
+        "id": "listing3",
+        "description": "Listing 3",
+        "address": "514 SW. West Lane",
+        "address2": "",
+        "city": "Lorton",
+        "state": "VA",
+        "zipCode": "22079",
         "country": "USA",
         "numberOfRooms": "1",
-        "numberOfBaths": "2",
+        "numberOfBaths": "1",
         "squareFootage": "300",
         "type": "house",
         "petsAllowed": false,
         "amenities": "no amenities",
-        "mlsCode": "123456789"
+        "mlsCode": "mlsListing3",
+        "images": [
+            "//via.placeholder.com/800x800?text=Listing%203%20Image%201",
+            "//via.placeholder.com/800x800?text=Listing%203%20Image%202"
+        ]
+    },
+    {
+        "id": "listing4",
+        "description": "Listing 4",
+        "address": "51 Wild Rose St. ",
+        "address2": "",
+        "city": "Stamford",
+        "state": "CT",
+        "zipCode": "06902",
+        "country": "USA",
+        "numberOfRooms": "2",
+        "numberOfBaths": "1.5",
+        "squareFootage": "500",
+        "type": "condo",
+        "petsAllowed": false,
+        "amenities": "no amenities",
+        "mlsCode": "mlsListing4",
+        "images": [
+            "//via.placeholder.com/800x800?text=Listing%204%20Image%201",
+            "//via.placeholder.com/800x800?text=Listing%204%20Image%202"
+        ]
+    },
+    {
+        "id": "listing5",
+        "description": "Listing 5",
+        "address": "500 Maple Lane ",
+        "address2": "Apt 105",
+        "city": "Holland",
+        "state": "MI",
+        "zipCode": "49423",
+        "country": "USA",
+        "numberOfRooms": "3",
+        "numberOfBaths": "1",
+        "squareFootage": "500",
+        "type": "apartment",
+        "petsAllowed": false,
+        "amenities": "no amenities",
+        "mlsCode": "mlsListing5",
+        "images": [
+            "//via.placeholder.com/800x800?text=Listing%205%20Image%201",
+            "//via.placeholder.com/800x800?text=Listing%205%20Image%202"
+        ]
+    },
+    {
+        "id": "listing6",
+        "description": "Listing 6",
+        "address": "7 Strawberry St.",
+        "address2": "",
+        "city": "Everett",
+        "state": "MA",
+        "zipCode": "02149",
+        "country": "USA",
+        "numberOfRooms": "2",
+        "numberOfBaths": "1.5",
+        "squareFootage": "800",
+        "type": "house",
+        "petsAllowed": false,
+        "amenities": "no amenities",
+        "mlsCode": "mlsListing6",
+        "images": [
+            "//via.placeholder.com/800x800?text=Listing%206%20Image%201",
+            "//via.placeholder.com/800x800?text=Listing%206%20Image%202"
+        ]
     }
 ]

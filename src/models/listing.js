@@ -1,30 +1,43 @@
-import { extendModel } from '@/utils/utils';
+import { Model } from '@vuex-orm/core';
 
-const ListingViewModel = (function createListingFactory() {
-    const modelPrototype = {
-        id: null,
-        address: null,
-        address2: null,
-        city: null,
-        state: null,
-        zipCode: null,
-        country: null,
-        numberOfRooms: null,
-        numberOfBaths: null,
-        squareFootage: null,
-        type: null,
-        petsAllowed: null,
-        amenities: null,
-        mlsCode: null,
-        formattedAddress: function() {
-            return `${this.address}, ${this.address2}`;
-        },
-        formattedAddress2: function() {
-            return `${this.city}, ${this.state} ${this.zipCode}`;
-        }
-    };
+export default class Listing extends Model {
+    static entity = 'listing';
 
-    return model => extendModel(model, modelPrototype);
-})();
+    static fields() {
+        return {
+            id: this.attr(null),
+            address: this.attr(''),
+            address2: this.attr(''),
+            city: this.attr(''),
+            state: this.attr(''),
+            zipCode: this.attr(''),
+            country: this.attr(''),
+            numberOfRooms: this.attr(''),
+            numberOfBaths: this.attr(''),
+            squareFootage: this.attr(''),
+            type: this.attr(''),
+            petsAllowed: this.attr(''),
+            amenities: this.attr(''),
+            mlsCode: this.attr('')
+        };
+    }
 
-export default ListingViewModel;
+    get toViewModel() {
+        return Object.freeze({
+            id: this.id,
+            address: this.address,
+            address2: this.address2,
+            city: this.city,
+            state: this.state,
+            zipCode: this.zipCode,
+            country: this.country,
+            numberOfRooms: this.numberOfRooms,
+            numberOfBaths: this.numberOfBaths,
+            squareFootage: this.squareFootage,
+            type: this.type,
+            petsAllowed: this.petsAllowed,
+            amenities: this.amenities,
+            mlsCode: this.mlsCode
+        });
+    }
+}

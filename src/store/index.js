@@ -1,20 +1,40 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import VuexORM from '@vuex-orm/core';
+
 import messages from './modules/messages';
 import payments from './modules/payments';
-import user from './modules/user';
+import leases from './modules/leases';
+import listings from './modules/listings';
 import maintenanceRequest from './modules/maintenanceRequest';
+import user from './modules/user';
+
+import UserModel from '@/models/user';
+import MessageModel from '@/models/message';
+import PaymentModel from '@/models/payment';
+import LeaseModel from '@/models/lease';
+import ListingModel from '@/models/listing';
+import MaintenanceRequestModel from '@/models/maintenance';
+import users from './modules/users';
 
 Vue.use(Vuex);
+
+// Create a new database instance.
+const database = new VuexORM.Database()
+
+database.register(UserModel, users);
+database.register(MessageModel, messages);
+database.register(PaymentModel, payments);
+database.register(MaintenanceRequestModel, maintenanceRequest);
+database.register(LeaseModel, leases);
+database.register(ListingModel, listings);
 
 const debug = process.env.NODE_ENV !== 'production';
 
 export default new Vuex.Store({
+    plugins: [VuexORM.install(database)],
     modules: {
-        messages,
-        payments,
-        user,
-        maintenanceRequest
+        user
     },
     strict: debug
     // plugins: debug ? [createLogger()] : []

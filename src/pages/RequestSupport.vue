@@ -102,7 +102,7 @@
         },
         methods: {
             ...mapActions({
-                createRequest: 'maintenanceRequest/createRequest',
+                createRequest: 'entities/maintenanceRequest/createRequest',
             }),
             afterProcessForm() {
                 this.isSuccessful = false;

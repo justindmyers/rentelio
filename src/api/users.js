@@ -7,6 +7,9 @@ export default {
     getCurrentUser() {
         return strapi.request('get', 'user/me');
     },
+    getUsers() {
+        return strapi.request('get', 'user');
+    },
     login(username, password) {
         return strapi.login(username, password);
     },

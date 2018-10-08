@@ -54,7 +54,7 @@
     import Listing from '@/components/Listing/Listing.vue';
     import IconNavItem from '@/components/IconNav/IconNavItem.vue';
 
-    import { mapGetters } from 'vuex';
+    import { formattedAddress, formattedAddress2 } from '@/utils/utils';
 
     export default {
         name: 'DashboardHome',
@@ -64,18 +64,45 @@
             IconNavItem
         },
         computed: {
-            ...mapGetters({
-                payments: 'payments/list',
-                messages: 'messages/list',
-                lease: 'user/lease',
-                listing: 'user/listing',
-                maintenanceRequests: 'maintenanceRequest/list'
-            }),
+            lease() {
+                return this.$store.getters['user/currentLease'];
+            },
+            listing() {
+                return this.$store.getters['entities/listing/query']()
+                                  .where('id', this.lease.listing)
+                                  .get()
+                                  .map(listing => listing.toViewModel)
+                                  .pop();
+            },
             address() {
-                return `${this.listing.address}, ${this.listing.address2}`;
+                return formattedAddress(this.listing.address, this.listing.address2);
             },
             address2() {
-                return `${this.listing.city}, ${this.listing.state} ${this.listing.zipCode}`;
+                return formattedAddress2(this.listing.city, this.listing.state, this.listing.zipCode);
+            },
+            messages() {
+                return this.$store.getters['entities/message/query']()
+                                  .withAll()
+                                  .all()
+                                  .map(message => message.toViewModel);
+            },
+            maintenanceRequests() {
+                return this.$store.getters['entities/maintenanceRequest/query']()
+                                  .withAll()
+                                  .all()
+                                  .map(request => request.toViewModel);
+            },
+            payments() {
+                return this.$store.getters['entities/payment/query']()
+                                  .withAll()
+                                  .all()
+                                  .map(request => request.toViewModel);
+            },
+            users() {
+                return this.$store.getters['entities/user/query']()
+                                  .withAll()
+                                  .all()
+                                  .map(request => request);
             }
         }
     };

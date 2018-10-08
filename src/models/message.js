@@ -1,32 +1,33 @@
-import { extendModel } from '@/utils/utils';
-import dayjs from 'dayjs';
+import { Model } from '@vuex-orm/core';
+import User from './user';
+import { formatShortDate } from '@/utils/utils';
 
-const MessageModel = (function createMessageFactory() {
-    const modelPrototype = {
-        id: null,
-        title: null,
-        text: null,
-        dateSent: null,
-        dateRead: null,
-        recepient: null,
-        sender: null,
-        formattedDate: (date) => {
-            return dayjs(date).format('MMM DD, YYYY')
-        },
-        toViewModel: function() {
-            return Object.freeze({
-                id: this.id,
-                title: this.title,
-                text: this.text,
-                dateSent: this.formattedDate(this.dateSent),
-                dateRead: this.formattedDate(this.dateRead),
-                recipient: this.recipient.email, // transform to User object if needed
-                sender: this.sender.email, // transform to User object if needed
-            });
-        }
-    };
+export default class Message extends Model {
+    static entity = 'message';
 
-    return model => extendModel(model, modelPrototype);
-})();
+    static fields() {
+        return {
+            id: this.attr(null),
+            title: this.attr(''),
+            text:  this.attr(''),
+            dateSent:  this.attr(''),
+            dateRead:  this.attr(''),
+            sender:  this.attr(null),
+            senderEntity: this.belongsTo(User, 'sender'),
+            recipient: this.attr(null),
+            recipientEntity: this.belongsTo(User, 'recipient')
+        };
+    }
 
-export default MessageModel;
+    get toViewModel() {
+        return Object.freeze({
+            id: this.id,
+            title: this.title,
+            text: this.text,
+            dateSent: formatShortDate(this.dateSent),
+            dateRead: formatShortDate(this.dateRead),
+            recipient: this.recipientEntity.email,
+            sender: this.senderEntity.email
+        });
+    }
+}

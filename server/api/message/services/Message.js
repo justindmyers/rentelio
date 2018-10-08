@@ -39,8 +39,7 @@ module.exports = {
       })
       .sort(filters.sort)
       .skip(filters.start)
-      .limit(filters.limit)
-      .populate(populate);
+      .limit(filters.limit);
   },
 
   /**
@@ -57,8 +56,7 @@ module.exports = {
       .join(' ');
 
     return Message
-      .findOne(_.pick(params, _.keys(Message.schema.paths)))
-      .populate(populate);
+      .findOne(_.pick(params, _.keys(Message.schema.paths)));
   },
 
   /**
