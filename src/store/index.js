@@ -17,6 +17,8 @@ import ListingModel from '@/models/listing';
 import MaintenanceRequestModel from '@/models/maintenance';
 import users from './modules/users';
 
+import { TenantUserModel } from '@/models/lease';
+
 Vue.use(Vuex);
 
 // Create a new database instance.
@@ -28,6 +30,8 @@ database.register(PaymentModel, payments);
 database.register(MaintenanceRequestModel, maintenanceRequest);
 database.register(LeaseModel, leases);
 database.register(ListingModel, listings);
+
+database.register(TenantUserModel, {});
 
 const debug = process.env.NODE_ENV !== 'production';
 

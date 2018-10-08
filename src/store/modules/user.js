@@ -24,12 +24,25 @@ const getters = {
     isLoggedIn: get('isAuthenticated'),
     isPendingAuth: get('isPendingAuth'),
     previousRoute: get('previousRoute'),
+    currentLandlord(state, getters) {
+        const lease = getters['currentLease'];
+
+        return lease ? lease.landlord : null;
+    },
+    currentListing(state, getters) {
+        const lease = getters['currentLease'];
+
+        return lease ? lease.listing : null;
+    },
     currentLease(state, getters, rootState, rootGetters) {
-        return rootGetters['entities/lease/query']().where('tenant', state.user.id)
-                                                           .withAll()
-                                                           .get()
-                                                           .map(lease => lease.toViewModel)
-                                                           .pop()
+        return rootGetters['entities/lease/query']()
+            .whereHas('tenant', (query) => {
+                query.where('id', state.user.id)
+            })
+            .withAll()
+            .get()
+            .map(lease => lease.toViewModel)
+            .pop();
     }
 };
 

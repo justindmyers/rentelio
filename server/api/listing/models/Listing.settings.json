@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "listing",
   "info": {
     "name": "listing",
     "description": ""
@@ -37,6 +37,7 @@
       "default": "",
       "type": "enumeration",
       "enum": [
+        "",
         "ABW",
         "AFG",
         "AGO",
@@ -304,6 +305,7 @@
       "default": "",
       "type": "enumeration",
       "enum": [
+        "",
         "Apartment",
         "House",
         "Condo",
@@ -314,19 +316,30 @@
       "default": "",
       "type": "enumeration",
       "enum": [
+        "",
         "No",
         "Yes",
         "Cats Allowed",
         "Dogs Allowed"
       ]
     },
-    "Amenities": {
+    "amenities": {
       "default": "",
       "type": "text"
     },
     "mlsId": {
       "default": "",
       "type": "string"
+    },
+    "images": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "landlords": {
+      "collection": "user",
+      "via": "properties",
+      "plugin": "users-permissions"
     }
   }
 }

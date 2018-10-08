@@ -1,4 +1,5 @@
 import { Model } from '@vuex-orm/core';
+import { formattedAddress, formattedAddress2 } from '@/utils/utils';
 
 export default class Listing extends Model {
     static entity = 'listing';
@@ -39,5 +40,13 @@ export default class Listing extends Model {
             amenities: this.amenities,
             mlsCode: this.mlsCode
         });
+    }
+
+    get formattedAddress() {
+        return formattedAddress(this.address, this.address2) 
+    }
+
+    get formattedAddress2() {
+        return formattedAddress2(this.city, this.state, this.zipCode);
     }
 }

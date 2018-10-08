@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "lease",
   "info": {
     "name": "lease",
     "description": ""
@@ -10,29 +10,24 @@
   },
   "attributes": {
     "tenant": {
-      "model": "user",
+      "collection": "user",
+      "via": "leases",
+      "dominant": true,
       "plugin": "users-permissions"
     },
     "landlord": {
       "model": "user",
       "plugin": "users-permissions"
     },
-    "amount": {
+    "rate": {
       "default": "",
       "type": "integer"
     },
-    "currency_type": {
-      "default": "",
-      "type": "enumeration",
-      "enum": [
-        "USD"
-      ]
-    },
-    "start_date": {
+    "startDate": {
       "default": "",
       "type": "date"
     },
-    "end_date": {
+    "endDate": {
       "default": "",
       "type": "date"
     },
@@ -40,14 +35,26 @@
       "default": "",
       "type": "enumeration",
       "enum": [
-        "Annual",
-        "Monthly"
+        "",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
       ]
     },
-    "payment_frequency": {
+    "paymentFrequency": {
       "default": "",
       "type": "enumeration",
       "enum": [
+        "",
         "Annual",
         "Monthly"
       ]
@@ -56,10 +63,18 @@
       "default": "",
       "type": "enumeration",
       "enum": [
+        "",
         "Active",
         "Pending",
         "Cancelled"
       ]
+    },
+    "listing": {
+      "model": "listing"
+    },
+    "description": {
+      "default": "",
+      "type": "text"
     }
   }
 }

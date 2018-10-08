@@ -59,6 +59,19 @@
     "isTenant": {
       "default": false,
       "type": "boolean"
+    },
+    "profile": {
+      "model": "profile",
+      "via": "user"
+    },
+    "leases": {
+      "collection": "lease",
+      "via": "tenant"
+    },
+    "properties": {
+      "collection": "listing",
+      "dominant": true,
+      "via": "landlords"
     }
   },
   "collectionName": "users-permissions_user"

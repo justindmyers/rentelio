@@ -21,24 +21,14 @@
                 <router-view></router-view>
             </transition>
 
-            <ProfileCard>
-                <template slot="image">
-                    <img src="//placehold.it/100/100" />
-                </template>
-
-                <h3 class="mb-1">{{ lease.landlord.firstName }} {{ lease.landlord.lastName }}</h3>
-                <p>Landlord</p>
-
-                <p class="mb-1">Mobile: <a :href="`tel:${lease.landlord.phone}`">{{ lease.landlord.phone }}</a></p>
-                <p class="mb-0">Email: <a :href="`mailto:${lease.landlord.email}`">{{ lease.landlord.email }}</a></p>
-            </ProfileCard>
+            <ProfileCardUser v-if="landlord" :user="landlord"></ProfileCardUser>
         </div>
     </div>
 </template>
 
 <script>
     import Hero from '@/components/Hero/Hero.vue';
-    import ProfileCard from '@/components/ProfileCard/ProfileCard.vue';
+    import ProfileCardUser from '@/components/ProfileCard/ProfileCardUser.vue';
     import BackButton from '@/components/BackButton/BackButton.vue';
     import bAlert from 'bootstrap-vue/es/components/alert/alert';
     import lazyImg from '@/components/lazyImg';
@@ -49,7 +39,7 @@
         name: 'Dashboard',
         components: {
             Hero,
-            ProfileCard,
+            ProfileCardUser,
             BackButton,
             bAlert,
             lazyImg
@@ -62,7 +52,6 @@
         beforeRouteEnter (to, from, next) {
             Promise.all([
                 store.dispatch('entities/listing/fetch'),
-                store.dispatch('entities/lease/fetch'),
                 store.dispatch('entities/maintenanceRequest/fetch'),
                 store.dispatch('entities/payment/fetch'), 
                 store.dispatch('entities/message/fetch'), 
@@ -89,8 +78,8 @@
             }
         },
         computed: {
-            lease() {
-                return this.$store.getters['user/currentLease'];
+            landlord() {
+                return this.$store.getters['user/currentLandlord']
             }
         }
     };
