@@ -1,0 +1,51 @@
+{
+  "connection": "default",
+  "collectionName": "profile",
+  "info": {
+    "name": "profile",
+    "description": "Extended user details"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "firstName": {
+      "default": "",
+      "type": "string"
+    },
+    "lastName": {
+      "default": "",
+      "type": "string"
+    },
+    "mailingAddress": {
+      "default": "",
+      "type": "string"
+    },
+    "mailingAddress2": {
+      "default": "",
+      "type": "string"
+    },
+    "mailingCity": {
+      "default": "",
+      "type": "string"
+    },
+    "mailingState": {
+      "default": "",
+      "type": "string"
+    },
+    "mailingZipCode": {
+      "default": "",
+      "type": "string"
+    },
+    "user": {
+      "model": "user",
+      "via": "profile",
+      "plugin": "users-permissions"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    }
+  }
+}
