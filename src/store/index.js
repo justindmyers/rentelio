@@ -8,6 +8,8 @@ import leases from './modules/leases';
 import listings from './modules/listings';
 import maintenanceRequest from './modules/maintenanceRequest';
 import user from './modules/user';
+import users from './modules/users';
+
 
 import UserModel from '@/models/user';
 import MessageModel from '@/models/message';
@@ -15,7 +17,7 @@ import PaymentModel from '@/models/payment';
 import LeaseModel from '@/models/lease';
 import ListingModel from '@/models/listing';
 import MaintenanceRequestModel from '@/models/maintenance';
-import users from './modules/users';
+import ProfileModel from '@/models/profile';
 
 import { TenantUserModel } from '@/models/lease';
 
@@ -30,6 +32,7 @@ database.register(PaymentModel, payments);
 database.register(MaintenanceRequestModel, maintenanceRequest);
 database.register(LeaseModel, leases);
 database.register(ListingModel, listings);
+database.register(ProfileModel, {});
 
 database.register(TenantUserModel, {});
 

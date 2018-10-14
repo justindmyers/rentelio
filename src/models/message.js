@@ -12,10 +12,10 @@ export default class Message extends Model {
             text:  this.attr(''),
             dateSent:  this.attr(''),
             dateRead:  this.attr(''),
-            sender:  this.attr(null),
-            senderEntity: this.belongsTo(User, 'sender'),
-            recipient: this.attr(null),
-            recipientEntity: this.belongsTo(User, 'recipient')
+            sender_id:  this.attr(null),
+            sender: this.belongsTo(User, 'sender_id'),
+            recipient_id: this.attr(null),
+            recipient: this.belongsTo(User, 'recipient_id')
         };
     }
 
@@ -26,8 +26,8 @@ export default class Message extends Model {
             text: this.text,
             dateSent: formatShortDate(this.dateSent),
             dateRead: formatShortDate(this.dateRead),
-            recipient: this.recipientEntity.email,
-            sender: this.senderEntity.email
+            recipient: this.recipient.email,
+            sender: this.sender.email
         });
     }
 }

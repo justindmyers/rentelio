@@ -1,5 +1,6 @@
 import { Model } from '@vuex-orm/core';
 import User from './user';
+import Lease from './lease';
 import { formatShortDate } from '@/utils/utils';
 
 export default class MaintenanceRequest extends Model {
@@ -8,10 +9,10 @@ export default class MaintenanceRequest extends Model {
     static fields() {
         return {
             id: this.attr(null),
-            tenant: this.attr(null),
-            tenantEntity: this.belongsTo(User, 'tenant'),
-            lease: this.attr(null),
-            //leaseEntity: this.belongsTo(Lease, 'lease'),
+            tenant_id: this.attr(null),
+            tenant: this.belongsTo(User, 'tenant_id'),
+            lease_id: this.attr(null),
+            lease: this.belongsTo(Lease, 'lease_id'),
             title: this.attr(''),
             description:  this.attr(''),
             date:  this.attr(''),
@@ -23,7 +24,7 @@ export default class MaintenanceRequest extends Model {
     get toViewModel() {
         return Object.freeze({
             id: this.id,
-            tenant: this.tenantEntity,
+            tenant: this.tenant,
             lease: this.lease,
             title: this.title,
             description: this.description,

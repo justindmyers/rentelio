@@ -1,8 +1,8 @@
 <template>
     <div class="p-property container">
         <div class="l-dashboard__section">
-            <h1 class="h3">{{ address }}</h1>
-            <p>{{ address2 }}</p>
+            <h1 class="h3">{{ listing.formattedAddress }}</h1>
+            <p>{{ listing.formattedAddress2 }}</p>
         </div>
 
         <div class="l-dashboard__section">
@@ -36,34 +36,14 @@
 </template>
 
 <script>
-    import { formattedAddress, formattedAddress2 } from '@/utils/utils';
-
     export default {
         name: 'PropertyDetail',
         computed: {
             lease() {
-                const currentUser = this.$store.getters['user/currentUser'];
-
-                return this.$store.getters['entities/lease/query']()
-                                  .where('tenant', currentUser.id)
-                                  .withAll()
-                                  .get()
-                                  .map(lease => lease.toViewModel)
-                                  .pop();
+                return this.$store.getters['user/currentLease'];
             },
             listing() {
-                return this.$store.getters['entities/listing/query']()
-                                  .where('id', this.lease.listing)
-                                  .withAll()
-                                  .get()
-                                  .map(listing => listing.toViewModel)
-                                  .pop();
-            },
-            address() {
-                return formattedAddress(this.listing.address, this.listing.address2);
-            },
-            address2() {
-                return formattedAddress2(this.listing.city, this.listing.state, this.listing.zipCode);
+                return this.lease.listing.toViewModel;
             }
         }
     };

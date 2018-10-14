@@ -38,7 +38,9 @@ export default class Listing extends Model {
             type: this.type,
             petsAllowed: this.petsAllowed,
             amenities: this.amenities,
-            mlsCode: this.mlsCode
+            mlsCode: this.mlsCode,
+            formattedAddress: this.formattedAddress,
+            formattedAddress2: this.formattedAddress2
         });
     }
 

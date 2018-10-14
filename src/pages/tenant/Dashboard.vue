@@ -2,8 +2,8 @@
     <div class="p-dashboard container">
         <div v-if="lease">
             <div class="l-dashboard__section">
-                <h1 class="h3">{{ address }}</h1>
-                <p>{{ address2 }}</p>
+                <h1 class="h3">{{ listing.formattedAddress }}</h1>
+                <p>{{ listing.formattedAddress2 }}</p>
             </div>
 
             <div class="l-dashboard__section">
@@ -48,6 +48,7 @@
                 <Listing type="Maintenance Requests" title-key="title" date-key="date" :list="maintenanceRequests" view-all-path="/tenant/maintenance-request" :show-view-all="true"></Listing>
             </div>
         </div>
+
         <div v-else>
             <div class="l-dashboard__section">
                 <div class="alert alert-info">
@@ -75,17 +76,7 @@
                 return this.$store.getters['user/currentLease'];
             },
             listing() {
-                return this.$store.getters['entities/listing/query']()
-                                  .where('id', this.lease.listing)
-                                  .get()
-                                  .map(listing => listing.toViewModel)
-                                  .pop();
-            },
-            address() {
-                return this.listing ? this.listing.formattedAddress() : null;
-            },
-            address2() {
-                return this.listing ? this.listing.formattedAddress2() : null;
+                return this.lease.listing.toViewModel;
             },
             messages() {
                 return this.$store.getters['entities/message/query']()
