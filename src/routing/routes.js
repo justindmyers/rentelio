@@ -1,41 +1,42 @@
 // Layouts
-import TenantLayout from '@/layouts/TenantLayout.vue';
-import LandlordLayout from '@/layouts/LandlordLayout.vue';
+import TenantLayout from '@/layouts/TenantLayout';
+import LandlordLayout from '@/layouts/LandlordLayout';
 
 // Marketing Pages
-import Home from '@/pages/marketing/Home.vue';
-import About from '@/pages/marketing/About.vue';
-import Info from '@/pages/marketing/Info.vue';
+import Home from '@/pages/marketing/Home';
+import About from '@/pages/marketing/About';
+import Info from '@/pages/marketing/Info';
 
 // Auth Pages
-import Login from '@/pages/auth/Login.vue';
-import Register from '@/pages/auth/Register.vue';
-import ResetPassword from '@/pages/auth/ResetPassword.vue';
-import ForgotPassword from '@/pages/auth/ForgotPassword.vue';
-import ConfirmAccount from '@/pages/auth/ConfirmAccount.vue';
+import Login from '@/pages/auth/Login';
+import Register from '@/pages/auth/Register';
+import ResetPassword from '@/pages/auth/ResetPassword';
+import ForgotPassword from '@/pages/auth/ForgotPassword';
+import ConfirmAccount from '@/pages/auth/ConfirmAccount';
 
 // Static Pages
-import SomethingWrong from '@/pages/static/SomethingWrong.vue';
-import Page404 from '@/pages/static/404.vue';
-import Unauthorized from '@/pages/static/Unauthorized.vue';
+import SomethingWrong from '@/pages/static/SomethingWrong';
+import Page404 from '@/pages/static/404';
+import Unauthorized from '@/pages/static/Unauthorized';
 
 // App Pages
-import MessageDetail from '@/pages/MessageDetail.vue';
-import Messages from '@/pages/Messages.vue';
-import Payments from '@/pages/Payments.vue';
-import PaymentDetail from '@/pages/PaymentDetail.vue';
-import PropertyDetail from '@/pages/PropertyDetail.vue';
-import RequestSupport from '@/pages/RequestSupport.vue';
-import SchedulePayment from '@/pages/SchedulePayment.vue';
-import UserProfile from '@/pages/UserProfile.vue';
+import MessageDetail from '@/pages/MessageDetail';
+import Messages from '@/pages/Messages';
+import Payments from '@/pages/Payments';
+import PaymentDetail from '@/pages/PaymentDetail';
+import PropertyDetail from '@/pages/PropertyDetail';
+import UserProfile from '@/pages/UserProfile';
 
 // Tenant Page
-import TenantDashboard from '@/pages/tenant/Dashboard.vue';
-import MaintenanceRequest from '@/pages/tenant/MaintenanceRequest.vue';
-import MaintenanceRequestDetail from '@/pages/tenant/MaintenanceRequestDetail.vue';
+import TenantDashboard from '@/pages/tenant/Dashboard';
+import MaintenanceRequest from '@/pages/tenant/MaintenanceRequest';
+import MaintenanceRequestDetail from '@/pages/tenant/MaintenanceRequestDetail';
+import SchedulePayment from '@/pages/tenant/SchedulePayment';
+import RequestSupport from '@/pages/tenant/RequestSupport';
 
 // Landlord Pages
 import LandlordDashboard from '@/pages/landlord/Dashboard';
+import SelectProperty from '@/pages/landlord/SelectProperty';
 
 export default [
     {
@@ -105,6 +106,14 @@ export default [
         name: 'dashboard',
         meta: {
             requiresAuth: true
+        }
+    },
+    {
+        path: '/select-property',
+        component: SelectProperty,
+        meta: {
+            requiresAuth: true,
+            isLandlord: true
         }
     },
     {
