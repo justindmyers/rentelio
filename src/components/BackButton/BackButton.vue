@@ -11,7 +11,13 @@
         name: 'BackButton',
         methods: {
             goBack() {
-                this.previousRoute ? this.$router.back() : this.$router.push({ name: 'dashboard' });
+                this.previousRoute ? this.$router.back() : this.$router.push({ name: this.homePath });
+            }
+        },
+        props: {
+            homePath: {
+                required: true,
+                default: 'dashboard'
             }
         },
         computed: {

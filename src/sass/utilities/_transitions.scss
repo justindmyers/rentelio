@@ -1,0 +1,20 @@
+.expand-enter-active,
+.expand-leave-active {
+    transition: height .3s $swift-ease-in-duration,
+                opacity .3s $swift-ease-in-duration;
+    overflow: hidden;
+}
+
+.expand-enter-active {
+    opacity: 1;
+}
+
+.expand-leave-active {
+    opacity: 0;
+}
+
+.expand-enter,
+.expand-leave-to {
+    height: 0;
+    opacity: 0;
+}

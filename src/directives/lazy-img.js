@@ -13,7 +13,10 @@ export default {
             el.src = binding.value;
 
             el.classList.remove(LazyImgInitial);
-            el.classList.add(LazyImgLoaded);
+
+            setTimeout(() => {
+                el.classList.add(LazyImgLoaded);
+            });
         };
     }
 };
