@@ -56,7 +56,7 @@
 </template>
 
 <script>
-    import NavBar from '@/components/NavBar/NavBar.vue';
+    import Navbar from '@/components/Navbar/Navbar.vue';
     import Hero from '@/components/Hero/Hero.vue';
     import FiftyFiftyIcon from '@/components/FiftyFiftyIcon/FiftyFiftyIcon.vue';
     import FiftyFiftyImage from '@/components/FiftyFiftyImage/FiftyFiftyImage.vue';
@@ -70,7 +70,7 @@
     export default {
         name: 'app',
         components: {
-            NavBar,
+            Navbar,
             Hero,
             FiftyFiftyIcon,
             FiftyFiftyImage,

@@ -1,6 +1,6 @@
 <template>
     <div class="l-main">
-        <NavBar></NavBar>
+        <navbar></navbar>
 
         <main>
             <transition name="fade" mode="out-in">
@@ -8,18 +8,18 @@
             </transition>
         </main>
 
-        <Footer></Footer>
+        <footer></footer>
     </div>
 </template>
 
 <script>
-    import NavBar from '../components/NavBar/NavBar.vue';
+    import Navbar from '../components/Navbar/Navbar.vue';
     import Footer from '../components/Footer/Footer.vue';
 
     export default {
         name: 'app',
         components: {
-            NavBar,
+            Navbar,
             Footer
         },
         created() {
