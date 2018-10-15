@@ -46,6 +46,10 @@
       "model": "file",
       "via": "related",
       "plugin": "upload"
+    },
+    "phone": {
+      "default": "",
+      "type": "string"
     }
   }
 }

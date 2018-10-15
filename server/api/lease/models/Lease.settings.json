@@ -11,8 +11,8 @@
   "attributes": {
     "tenant": {
       "collection": "user",
-      "via": "leases",
       "dominant": true,
+      "via": "leases",
       "plugin": "users-permissions"
     },
     "landlord": {

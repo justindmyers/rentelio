@@ -40,18 +40,6 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "firstName": {
-      "default": "",
-      "type": "string"
-    },
-    "lastName": {
-      "default": "",
-      "type": "string"
-    },
-    "phone": {
-      "default": "",
-      "type": "string"
-    },
     "isLandlord": {
       "default": false,
       "type": "boolean"
@@ -70,8 +58,8 @@
     },
     "properties": {
       "collection": "listing",
-      "dominant": true,
-      "via": "landlords"
+      "via": "landlords",
+      "dominant": true
     }
   },
   "collectionName": "users-permissions_user"
