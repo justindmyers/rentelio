@@ -10,25 +10,25 @@
                 <IconNav>
                     <IconNavItem>
                         <router-link :to="{ name: 'tenant-property-detail' }">
-                            <i class="fas fa-info"></i> Property<br/> Info
+                            <i class="fal fa-info-circle"></i> Property<br/> Info
                         </router-link>
                     </IconNavItem>
 
                     <IconNavItem>
                         <router-link :to="{ name: 'tenant-request-support' }">
-                            <i class="fas fa-wrench"></i> Request<br/> Support
+                            <i class="fal fa-wrench"></i> Request<br/> Support
                         </router-link>
                     </IconNavItem>
 
                     <IconNavItem>
                         <router-link :to="{ name: 'tenant-schedule-payment' }">
-                            <i class="far fa-credit-card"></i> Make a<br/> Payment
+                            <i class="fal fa-credit-card"></i> Make a<br/> Payment
                         </router-link>
                     </IconNavItem>
 
                     <IconNavItem>
                         <router-link :to="{ name: 'tenant-profile' }">
-                            <i class="fas fa-user"></i> Your<br/> Profile
+                            <i class="fal fa-user-circle"></i> Your<br/> Profile
                         </router-link>
                     </IconNavItem>
                 </IconNav>

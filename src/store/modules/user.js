@@ -7,11 +7,13 @@ const state = () => ({
     isAuthenticated: false,
     isPendingAuth: true,
     selectedProperty: null,
+    userViewType: 'tenant',
     previousRoute: null
 });
 
 const mutations = {
     setUser: set('user'),
+    setUserViewType: set('userViewType'),
     setAuthenticated: set('isAuthenticated'),
     setPreviousRoute: set('previousRoute'),
     setSelectedProperty: set('selectedProperty'),
@@ -25,6 +27,7 @@ const getters = {
     isLoggedIn: get('isAuthenticated'),
     isPendingAuth: get('isPendingAuth'),
     previousRoute: get('previousRoute'),
+    userViewType: get('userViewType'),
     selectedProperty(state, getters, rootState, rootGetters) {
         return rootGetters['entities/listing/query']()
             .where('id', state.selectedProperty)

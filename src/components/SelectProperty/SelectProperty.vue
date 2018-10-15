@@ -45,6 +45,8 @@
         methods: {
             selectProperty(property) {
                 this.$store.commit('user/setSelectedProperty', property.id);
+
+                this.$emit('selected');
             }
         },
         beforeRouteEnter (to, from, next) {

@@ -9,7 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.1.0",
+    "@fortawesome/fontawesome-pro": "^5.4.1",
     "@vuex-orm/core": "^0.26.4",
     "bootstrap-vue": "^2.0.0-rc.11",
     "braintree-web": "^3.34.1",

@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue, RouterLinkStub } from '@vue/test-utils';
 
 import Vuex from 'vuex';
-import NavBar from '@/components/NavBar/NavBar';
+import Navbar from '@/components/Navbar/Navbar';
 
 const localVue = createLocalVue();
 
@@ -9,7 +9,7 @@ localVue.directive('b-modal', {});
 
 localVue.use(Vuex);
 
-describe('NavBar.vue', () => {
+describe('Navbar.vue', () => {
     let store;
 
     beforeEach(() => {
@@ -26,7 +26,7 @@ describe('NavBar.vue', () => {
     });
 
     it('should render the component wrapper', () => {
-        const wrapper = shallowMount(NavBar, { 
+        const wrapper = shallowMount(Navbar, { 
             store, 
             localVue,
             stubs: {
@@ -35,8 +35,8 @@ describe('NavBar.vue', () => {
                 'b-btn-close': true
             }
         });
-        const component = wrapper.find(NavBar);
+        const component = wrapper.find(Navbar);
 
-        expect(component.is(NavBar)).toBe(true);
+        expect(component.is(Navbar)).toBe(true);
     });
 });

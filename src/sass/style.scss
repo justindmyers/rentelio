@@ -3,12 +3,14 @@
 @import "bootstrap/bootstrap";
 @import "layouts/layouts";
 @import "utilities/utilities";
+@import "components/components";
 
-$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+$fa-font-path: '~@fortawesome/fontawesome-pro/webfonts';
 
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/fa-regular';
-@import '~@fortawesome/fontawesome-free/scss/fa-solid';
+@import '~@fortawesome/fontawesome-pro/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-pro/scss/regular.scss';
+@import '~@fortawesome/fontawesome-pro/scss/solid.scss';
+@import '~@fortawesome/fontawesome-pro/scss/light.scss';
 
 button:not(:disabled) {
     cursor: pointer;
@@ -93,4 +95,9 @@ body, .l-main {
     padding: rem-calc(3) rem-calc(6) rem-calc(2);
     border-radius: 0 0 $border-radius $border-radius;
     margin-top: -2px;
+}
+
+i[class*="fa-"]:before {
+    display: inline-block;
+    text-decoration: none;
 }
