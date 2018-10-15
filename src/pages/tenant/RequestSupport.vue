@@ -116,6 +116,7 @@
                 this.isProcessing = true;
 
                 await this.createRequest({
+                    leaseId: this.lease.id,
                     title: this.title,
                     date: this.date,
                     description: this.info,
@@ -132,6 +133,11 @@
             },
             imageRemoved(image) {
                 this.images.splice(this.images.indexOf(image), 1);
+            }
+        },
+        computed: {
+            lease() {
+                return this.$store.getters['user/currentLease'];
             }
         }
     };

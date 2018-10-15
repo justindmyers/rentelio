@@ -1,0 +1,49 @@
+{
+  "connection": "default",
+  "collectionName": "request",
+  "info": {
+    "name": "request",
+    "description": "Maintenance Request"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "type": "string"
+    },
+    "date": {
+      "default": "",
+      "type": "date"
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "status": {
+      "default": "requested",
+      "type": "enumeration",
+      "enum": [
+        "",
+        "requested",
+        "pending",
+        "reviewed",
+        "in progress",
+        "completed"
+      ]
+    },
+    "images": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "lease": {
+      "model": "lease"
+    },
+    "tenant": {
+      "model": "user",
+      "plugin": "users-permissions"
+    }
+  }
+}
