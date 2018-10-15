@@ -1,6 +1,6 @@
 import { Model } from '@vuex-orm/core';
 
-import Lease from '@/models/lease';
+import Lease from '@/models/lease'; 
 import User from '@/models/user';
 
 export default class Profile extends Model {

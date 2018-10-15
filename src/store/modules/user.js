@@ -39,7 +39,7 @@ const getters = {
             .whereHas('tenant', (query) => {
                 query.where('id', state.user.id)
             })
-            .withAll()
+            .withAllRecursive()
             .get()
             .map(lease => lease.toViewModel)
             .pop();
@@ -70,7 +70,7 @@ const actions = {
         });
     },
     async register(context, data) {
-        return userApi.register(data.username, data.password);
+        return userApi.register(data.username, data.password, data.profile);
     },
     async forgotPassword(context, data) {
         return userApi.forgotPassword(data.username);

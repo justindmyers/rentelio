@@ -16,8 +16,18 @@ export default {
     logout() {
         return strapi.clearToken();
     },
-    register(username, password, firstName) {
-        return strapi.register(username, username, password, firstName);
+    async register(username, password, profile) {
+        const register = await strapi.register(username, username, password);
+
+        if(register) {
+            profile.user = register.user.id;
+
+            return await strapi.request('post', '/profile', {
+                data: profile
+            });
+        }
+
+        return register;
     },
     forgotPassword(email) {
         return strapi.forgotPassword(email, `${window.location.protocol}//${window.location.host}/reset-password` );
