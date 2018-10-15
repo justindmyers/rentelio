@@ -34,8 +34,6 @@
                 </IconNav>
             </div>
 
-            <router-view></router-view>
-
             <div class="l-dashboard__section">
                 <Listing type="Messages" title-key="title" date-key="dateSent" :list="messages" view-all-path="/tenant/messages" :show-view-all="true"></Listing>
             </div>
@@ -94,13 +92,13 @@
                 return this.$store.getters['entities/payment/query']()
                                   .withAll()
                                   .all()
-                                  .map(request => request.toViewModel);
+                                  .map(payment => payment.toViewModel);
             },
             users() {
                 return this.$store.getters['entities/user/query']()
                                   .withAll()
                                   .all()
-                                  .map(request => request);
+                                  .map(user => user);
             }
         }
     };

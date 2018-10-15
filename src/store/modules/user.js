@@ -6,6 +6,7 @@ const state = () => ({
     alerts: {},
     isAuthenticated: false,
     isPendingAuth: true,
+    selectedProperty: null,
     previousRoute: null
 });
 
@@ -13,17 +14,25 @@ const mutations = {
     setUser: set('user'),
     setAuthenticated: set('isAuthenticated'),
     setPreviousRoute: set('previousRoute'),
+    setSelectedProperty: set('selectedProperty'),
     authChecked(state) {
         state.isPendingAuth = false;
     }
 };
 
-// use mapGetters instead
 const getters = {
     currentUser: get('user'),
     isLoggedIn: get('isAuthenticated'),
     isPendingAuth: get('isPendingAuth'),
     previousRoute: get('previousRoute'),
+    selectedProperty(state, getters, rootState, rootGetters) {
+        return rootGetters['entities/listing/query']()
+            .where('id', state.selectedProperty)
+            .withAll()
+            .get()
+            .map(listing => listing.toViewModel)
+            .pop();
+    },
     currentLandlord(state, getters) {
         const lease = getters['currentLease'];
 

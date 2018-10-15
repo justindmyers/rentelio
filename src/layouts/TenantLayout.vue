@@ -13,11 +13,13 @@
         </Hero>
 
         <div class="l-dashboard">
-            <div class="back-container container" v-if="$route.path !== '/tenant/dashboard'">
-                <BackButton></BackButton>
-            </div>
+            <transition-expand>
+                <div class="back-container container" v-show="$route.path !== '/tenant/dashboard'">
+                    <BackButton home-path="tenant-dashboard"></BackButton>
+                </div>
+            </transition-expand>
 
-            <transition name="slide" mode="out-in" @beforeLeave="beforeLeave" @enter="enter" @afterEnter="afterEnter">
+            <transition name="fade" mode="out-in" @beforeLeave="beforeLeave" @enter="enter" @afterEnter="afterEnter">
                 <router-view></router-view>
             </transition>
 
@@ -32,6 +34,7 @@
     import BackButton from '@/components/BackButton/BackButton.vue';
     import bAlert from 'bootstrap-vue/es/components/alert/alert';
     import lazyImg from '@/components/lazyImg';
+    import transitionExpand from '@/components/transitionExpand';
 
     import store from '@/store';
 
@@ -42,7 +45,8 @@
             ProfileCardUser,
             BackButton,
             bAlert,
-            lazyImg
+            lazyImg,
+            transitionExpand
         },
         data() {
             return {
@@ -51,7 +55,6 @@
         },
         beforeRouteEnter (to, from, next) {
             Promise.all([
-                store.dispatch('entities/listing/fetch'),
                 store.dispatch('entities/maintenanceRequest/fetch'),
                 store.dispatch('entities/payment/fetch'), 
                 store.dispatch('entities/message/fetch'), 

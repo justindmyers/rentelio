@@ -1,6 +1,12 @@
 <template>
-    <div>
-        <h1>Select Property</h1>
+    <div class="l-landlord">
+        <Hero class="c-hero--dashboard c-hero--small">
+            <template slot="image">
+                <lazy-img placeholder="images/placeholder.gif" src="/images/property.png" alt="Hero image" />
+
+                <span class="h-mask is-medium"></span>
+            </template>
+        </Hero>
 
         <div class="l-dashboard">
             <transition name="slide" mode="out-in">
@@ -11,12 +17,26 @@
 </template>
 
 <script>
-    import Hero from '../components/Hero/Hero.vue';
+    import Hero from '@/components/Hero/Hero.vue';
+    import lazyImg from '@/components/lazyImg';
+
+    import store from '@/store';
 
     export default {
         name: 'Dashboard',
         components: {
-            Hero
+            Hero,
+            lazyImg
+        },
+        beforeRouteEnter (to, from, next) {
+            Promise.all([
+                store.dispatch('entities/maintenanceRequest/fetch'),
+                store.dispatch('entities/payment/fetch'), 
+                store.dispatch('entities/message/fetch'), 
+                store.dispatch('entities/user/fetch')
+            ]).then(() => {
+                next();
+            });
         }
     };
 </script>

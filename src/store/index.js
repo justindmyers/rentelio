@@ -20,6 +20,7 @@ import MaintenanceRequestModel from '@/models/maintenance';
 import ProfileModel from '@/models/profile';
 
 import { TenantUserModel } from '@/models/lease';
+import { ListingUserModel } from '@/models/user';
 
 Vue.use(Vuex);
 
@@ -33,8 +34,8 @@ database.register(MaintenanceRequestModel, maintenanceRequest);
 database.register(LeaseModel, leases);
 database.register(ListingModel, listings);
 database.register(ProfileModel, {});
-
 database.register(TenantUserModel, {});
+database.register(ListingUserModel, {});
 
 const debug = process.env.NODE_ENV !== 'production';
 

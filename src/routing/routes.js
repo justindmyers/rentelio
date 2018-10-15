@@ -36,7 +36,6 @@ import RequestSupport from '@/pages/tenant/RequestSupport';
 
 // Landlord Pages
 import LandlordDashboard from '@/pages/landlord/Dashboard';
-import SelectProperty from '@/pages/landlord/SelectProperty';
 
 export default [
     {
@@ -106,14 +105,6 @@ export default [
         name: 'dashboard',
         meta: {
             requiresAuth: true
-        }
-    },
-    {
-        path: '/select-property',
-        component: SelectProperty,
-        meta: {
-            requiresAuth: true,
-            isLandlord: true
         }
     },
     {
